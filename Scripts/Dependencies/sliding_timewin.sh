@@ -1,4 +1,4 @@
-while getopts mode:win:skip:pp:roi: option
+while getopts mode:win:skip:path:roi: option
 do
 				case "${option}"
 				in
@@ -16,7 +16,7 @@ if [ $mode == 'subj' ]; then
 	cd   $subj
 	echo $subj
 
-	N_pts     =$(fslnvols fun/s_norm*.nii.gz)
+	N_pts     =$(fslnvols rest/s_norm*.nii.gz)
 	num_wins  =$(expr $N_pts / $t_skip) # number of time points in the 4D scan
 	start_pt  =$(expr $N_pts - $(expr $num_wins \* $t_skip) )
 	start_pt  =$(expr $start_pt + 1) #starting point for the sliding time window
@@ -31,7 +31,7 @@ if [ $mode == 'subj' ]; then
 	for roi in $(ls $ROI_DIR); do
 		roi=${roi%'.nii.gz'*}
 
-		fslstats -t ../fun/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
+		fslstats -t ../rest/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
 
 	done
 
@@ -45,7 +45,7 @@ else
 			cd $subj
 			echo  $subj
 
-			N_pts     =$(fslnvols fun/s_norm*.nii.gz)
+			N_pts     =$(fslnvols rest/s_norm*.nii.gz)
 			num_wins  =$(expr $N_pts / $t_skip) # number of time points in the 4D scan
 			start_pt  =$(expr $N_pts - $(expr $num_wins \* $t_skip) )
 			start_pt  =$(expr $start_pt + 1) #starting point for the sliding time window
@@ -57,7 +57,7 @@ else
 
 			for roi in $(ls $ROI_DIR); do
 				roi=${roi%'.nii.gz'*}
-				fslstats -t ../fun/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
+				fslstats -t ../rest/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
 			done
 
 		done
