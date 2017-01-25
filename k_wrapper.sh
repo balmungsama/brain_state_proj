@@ -2,7 +2,7 @@
 ##
 
 # TOP_DIR=$1
-echo " WELCOME TO THE BRAIN STATE"
+echo "WELCOME TO THE BRAIN STATE"
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo ' '
 echo "What would you like to do?"
@@ -17,7 +17,9 @@ read DATA
 
 case $DATA in
 	
-	1)
+	1)	echo "Sliding time windows"
+		echo "--------------------------------"
+		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read mode
 		echo -n "Enter the group/subject directory:  "
@@ -28,7 +30,7 @@ case $DATA in
 		read win
 		echo -n "Size of the time skip (in TR):  "
 		read skip
-		
+		echo " "
 		echo "Creating ROI time courses..."
 		./sliding_timewin.sh -mode $mode -path $path -roi $roi -win $win -skip $skip
 		echo "Finished."
@@ -57,7 +59,6 @@ case $DATA in
 		read plot
 		echo ' '
 		echo 'Computing correlation matrices...'
-
 		Rscript FCmatrices.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool $plot
 		echo 'Finished.'
 		;;

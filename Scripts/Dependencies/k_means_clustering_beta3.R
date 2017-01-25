@@ -32,18 +32,6 @@ for(req_var in required_variables) {
 }
 if(missing_requirements > 0) {stop} 
 else {
-	#### User-defined parameters ###
-	# TYPE        <- c('group', 'subj')
-	# TOP_DIR     <- '/media/member/Data1/Thalia/brain_variability_osu_data/resting_cp_john' # master directory containing all subject data (each subject must have own directory)
-	# ROI_LABELS  <- file.path(TOP_DIR, '..', 'priv_john_proj', paste0('roi_labels.txt')) # path to the text file containing the labels to be used in the ROIs
-	# lateralized <- T
-	# kk          <- 2:10      # number of k clusters
-	# kk_reps     <- 20        # number of repeats used to determine optimal k value
-	# conf_lvl    <- 0.95      # level of confidence for the BIC & AIC estimates (b/w 0.00 & 1.00)
-	# kk_pool     <- 3         # total number of k-means samples to draw in order to synthesize representative matrix
-	# plot        <- TRUE
-
-
 
 	#### import brain roi labels ####
 	labels  <- read.csv(ROI_LABELS, header = F)
@@ -66,14 +54,13 @@ else {
 	} else if (TYPE == 'subj') {
 		subj_dirs <- '/'
 	} else {
-		print("Please select either 'group' or 'subj'")
+		print("		Please select either 'group' or 'subj'")
 		stop
 	}
 
-
 	for(subj in subj_dirs) {
 		if(!dir.exists(file.path(TOP_DIR, subj, 'roi_twindows'))) {
-			print(paste0('Subject ', subj, ' does not have any time-window correlation matrices.'))
+			print(paste0('		Subject ', subj, ' does not have any time-window correlation matrices.'))
 			next
 		}       # check if correlation matrices for each time window exist. If it doesn't exist, skip to next participant
 		
@@ -144,7 +131,7 @@ else {
 	dir.create(file.path(TOP_DIR, '..', 'k_clusters'))
 	dir.create(file.path(TOP_DIR, '..', 'k_clusters', 'nifti_imgs'))
 
-	print('Running k-means clustering...')
+	print('		Running k-means clustering...')
 	k_optim_tab <- data.frame(k_val = NA, BIC = NA, AIC = NA)   # create a table to contain the BIC/AIC information for each cluster
 	for( k_val in kk ){
 		print(paste0('		K = ', k_val))
@@ -164,7 +151,7 @@ else {
 			write.csv(x = cluster_ls, file = file.path(TOP_DIR, '..', 'k_clusters', paste0('ls_clusters_k', k_val, '_rep', k_rep, '.csv'))) # save the clusters in the appropriate directory
 		}
 	}
-	print('DONE')
+	print('		DONE')
 
 	k_optim_tab            <- k_optim_tab[ -which( is.na(k_optim_tab[,1]) ), ]
 	row.names(k_optim_tab) <- NULL
