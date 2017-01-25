@@ -4,14 +4,13 @@
 TOP_DIR=$1
 
 echo "ENTER A NUMBER"
+
 read DATA
-test
-test
 
 case $DATA in
-
+	
 	1)
-			echo "Generating FC Matrices"
+		echo "Generating FC Matrices"
 		;;
 	2)
 		echo "You entered two"
