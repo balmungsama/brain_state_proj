@@ -55,6 +55,7 @@ case $DATA in
 		read conf_lvl
 		echo -n "Number of iterations used to synthesize representative clusters:  < NOT CURRENTLY WORKING >"
 		read kk_pool 
+		kk_pool=1 ####### to remove once this if fixed
 		echo "Would you like plots? T or F? :  "
 		read plot
 		echo ' '
@@ -63,7 +64,13 @@ case $DATA in
 		echo 'Finished.'
 		;;
 	3)
-		echo "You entered three"
+		echo "Correlate brain state frequency with behavioural performance"
+		;;
+
+	4)
+		echo "Whole-brain PPI analysis"
+		echo "------------------------"
+		
 		;;
 
 	*)
