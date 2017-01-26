@@ -28,12 +28,13 @@ case $DATA in
 		echo -n "Enter the directory for ROI files:  "
 		read roi
 		echo -n "Size of the time windows (in TR):  "
-		read win
+		read t_win
 		echo -n "Size of the time skip (in TR):  "
-		read skip
+		read t_skip
 		echo " "
 		echo "Creating ROI time courses..."
-		Dependencies/sliding_timewin.sh -mode $mode -path $path -roi $roi -win $win -skip $skip
+		./Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi
+		# echo $mode
 		echo "Finished."
 		;;
 	2)
