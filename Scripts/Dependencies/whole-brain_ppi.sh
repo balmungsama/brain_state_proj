@@ -11,7 +11,7 @@ do
 	esac
 done
 
-template_fsf='Dependencies/req_files/ppi_feat_template.fsf'  # make this relative to wherever this package is located
+# template_fsf=$FSF_TEMPLATE  # make this relative to wherever this package is located
 
 cd TOP_DIR
 
@@ -48,7 +48,7 @@ for subj in $subj_dirs; do
 
 			fslstats -t $run -k $roi -M > $TASK_DIR/tmp_roi_tcourse.txt
 
-			cp $template_fsf $subj/$TASK_DIR/
+			cp $FSF_TEMPLATE $subj/$TASK_DIR/
 			mv $subj/$TASK_DIR/ppi_feat_template.fsf $subj/$TASK_DIR/ppi_task.fsf
 
 			### NEED TO CREATE THE ROI TIME SERIES

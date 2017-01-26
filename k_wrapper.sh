@@ -1,7 +1,8 @@
 #!/bin/bash
 ##
 
-# TOP_DIR=$1
+export FSF_TEMPLATE='Dependencies/req_files/ppi_feat_template.fsf'
+
 echo "WELCOME TO THE BRAIN STATE"
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo ' '
@@ -12,7 +13,7 @@ echo '2. Compute brain states.'
 echo '3. Find relations between frequency of brain states and behavioural performance.'
 echo '4. Perform a whole-brain PPI to find FC patterns associated with behavioural performance.'
 echo ' '
-echo 'Pick a number:  '
+echo -n 'Pick a number:  '
 read DATA  
 
 case $DATA in
@@ -70,7 +71,7 @@ case $DATA in
 	4)
 		echo "Whole-brain PPI analysis"
 		echo "------------------------"
-		
+
 		;;
 
 	*)
