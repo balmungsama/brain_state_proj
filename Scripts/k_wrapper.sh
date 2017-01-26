@@ -14,10 +14,10 @@ echo '3. Find relations between frequency of brain states and behavioural perfor
 echo '4. Perform a whole-brain PPI to find FC patterns associated with behavioural performance.'
 echo ' '
 echo -n 'Pick a number:  '
-read DATA  
+read DATA
 
 case $DATA in
-	
+
 	1)	echo "Sliding time windows"
 		echo "--------------------------------"
 		echo " "
@@ -33,7 +33,7 @@ case $DATA in
 		read skip
 		echo " "
 		echo "Creating ROI time courses..."
-		./sliding_timewin.sh -mode $mode -path $path -roi $roi -win $win -skip $skip
+		Dependencies/sliding_timewin.sh -mode $mode -path $path -roi $roi -win $win -skip $skip
 		echo "Finished."
 		;;
 	2)
@@ -55,7 +55,7 @@ case $DATA in
 		echo -n "Enter confidence level for AIC/BIC estimations (0 to 1, 0.95 default):  "
 		read conf_lvl
 		echo -n "Number of iterations used to synthesize representative clusters:  < NOT CURRENTLY WORKING >"
-		read kk_pool 
+		read kk_pool
 		kk_pool=1 ####### to remove once this if fixed
 		echo "Would you like plots? T or F? :  "
 		read plot
