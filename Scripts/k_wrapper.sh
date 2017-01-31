@@ -58,11 +58,9 @@ case $DATA in
 		echo -n "Number of iterations used to synthesize representative clusters:  < NOT CURRENTLY WORKING >"
 		read kk_pool
 		kk_pool=1 ####### to remove once this if fixed
-		echo "Would you like plots? T or F? :  "
-		read plot
 		echo ' '
 		echo 'Computing correlation matrices...'
-		Rscript FCmatrices.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool $plot
+		Rscript Dependencies/k_means_clustering_beta3.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool
 		echo 'Finished.'
 		;;
 	3)

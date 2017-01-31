@@ -22,7 +22,6 @@ kk          <- args[10]
 kk_reps     <- args[11]
 conf_lvl    <- args[12]
 kk_pool     <- args[13]
-plot        <- args[14]
 
 ## stop the function if any of these variables are missing
 required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl')

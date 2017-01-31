@@ -11,6 +11,8 @@ do
 	esac
 done
 
+echo $TYPE
+
 # template_fsf=$FSF_TEMPLATE  # make this relative to wherever this package is located
 
 cd $TOP_DIR

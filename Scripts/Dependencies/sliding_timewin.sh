@@ -13,6 +13,7 @@
 # 					;;
 # 	esac
 # done
+
 mode=$1
 t_win=$2
 t_skip=$3
