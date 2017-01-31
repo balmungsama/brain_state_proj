@@ -86,6 +86,8 @@ case $DATA in
 		;;
 
 	*)
+		echo ' '
 		echo "That's not an option. You always ask too much of me."
+		echo ' '
 
 esac
