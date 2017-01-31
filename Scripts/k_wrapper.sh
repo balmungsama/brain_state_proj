@@ -19,7 +19,7 @@ read DATA
 case $DATA in
 
 	1)	echo "Sliding time windows"
-		echo "--------------------------------"
+		echo "--------------------"
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read mode
@@ -70,7 +70,19 @@ case $DATA in
 	4)
 		echo "Whole-brain PPI analysis"
 		echo "------------------------"
-
+		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
+		read TYPE
+		echo -n "Enter the group/subject directory:  "
+		read TOP_DIR
+		echo -n "Enter the directory to the task data:  "
+		read TASK 
+		echo -n "Enter the path for ROI files:  "
+		read ROI
+		echo -n "How many volumes should be deleted?  "
+		read DEL 
+		echo -n "What high-pass filter would you like to apply? (Hz):  "
+		read HIGH
+		./Dependencies/whole_brain_ppi.sh --mode $TYPE --path $TOP_DIR --task $TASK --roi $ROI --del $DEL --high $HIGH
 		;;
 
 	*)
