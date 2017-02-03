@@ -99,5 +99,20 @@ for subj in $subj_dirs; do
 			echo " "
 
 		done
+
+		mkdir $TOP_DIR/$subj/ppi_results/contrsuct_matrix
+		for ppi_out in $(ls $TOP_DIR/$subj/ppi_results/*$TASK_NM.nii.gz); do 
+			ppi_nm=$(basename $ppi_out)
+			ppi_nm=($(echo $ppi_nm | tr "_" "\n"))
+			ppi_nm=${ppi_nm[0]}
+
+			for roi in $(ls $ROI_DIR); do
+				roi_nm=$(basename -s '.nii.gz' $roi )
+				fslstats $ppi_out -k $ROI_DIR/$roi -M > $TOP_DIR/$subj/ppi_results/contrsuct_matrix/$ppi_nm'_'$roi_nm'_'$TASK_NM.txt
+			done
+		done
+
+		Rscript construct_task_mat.R $TASK_NM $TOP_DIR/$subj/ppi_results/contrsuct_matrix
+
 	done
 done
