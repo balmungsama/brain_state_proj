@@ -34,3 +34,27 @@ for(roi_1 in roi_ls) {
 }
 
 write.csv(x = ppi_mat, file = file.path(OUT_DIR, paste0(TASK_NM, '_', length(roi_ls), 'x', length(roi_ls), '.csv')) )
+
+par(mar=c(7,4,4,2)+0.1) 
+
+png(filename = file.path(OUT_DIR, paste0(TASK_NM, '_', length(roi_ls), 'x', length(roi_ls), '.png')), width = 1500, height = 1500)
+
+colfunc <- colorRampPalette(c('#426DED', '#EDE742', '#ED4242')) # the colours defining the range to be used
+heat_cols <- colfunc(100)  #  gradient of 100 colours b/w the 3 key colours defined above
+
+heatmap.2(clus_avg,
+          main = paste0(TASK_NM, ' : whole-brain task FC'),
+          trace = 'none',
+          Rowv = F,
+          Colv = F,
+          scale = 'none',
+          key = T,
+          density.info = 'none',
+          dendrogram = 'none',
+          key.xlab = NA,
+          key.title = NA,
+          # labRow = labels,
+          # labCol = labels,
+          col = heat_cols)
+
+dev.off()
