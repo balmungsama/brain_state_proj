@@ -1,19 +1,28 @@
-while getopts mode:path:task:roi:del:high: option
-do
-	case "${option}"
-		in
-		mode) TYPE=${OPTARG};;
-		path) TOP_DIR=${OPTARG};;
-		task) TASK_NM=${OPTARG};;
-		roi) ROI_DIR=${OPTARG};;
-		del) DEL_VOLs=${OPTARG};;
-		high) HIGH_PASS=${OPTARG};;
-	esac
-done
+# while getopts mode:path:task:roi:del:high: option
+# do
+# 	case "${option}"
+# 		in
+# 		mode) TYPE=${OPTARG};;
+# 		path) TOP_DIR=${OPTARG};;
+# 		task) TASK_NM=${OPTARG};;
+# 		roi) ROI_DIR=${OPTARG};;
+# 		del) DEL_VOLs=${OPTARG};;
+# 		high) HIGH_PASS=${OPTARG};;
+# 	esac
+# done
 
-echo $TYPE
+TYPE=$1
+TOP_DIR=$2
+TASK_NM=$3
+ROI_DIR=$4
+DEL_VOLs=$5
+HIGH_PASS=$6
+
+echo ' '
 
 # template_fsf=$FSF_TEMPLATE  # make this relative to wherever this package is located
+FSF_TEMPLATE='/media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/req_files/ppi_feat_template.fsf'
+NUM_ROIS=$(expr $(ls $ROI_DIR -l | wc -l) - 1)
 
 cd $TOP_DIR
 
@@ -28,74 +37,67 @@ else
 fi
 
 for subj in $subj_dirs; do
-	
+
 	subj_nm=$(basename $subj)
-	tot_runs=$(ls $subj/$TASK_NM/s_norm*.nii.gz)
+	tot_runs=$subj/task_data/s_norm_m_$TASK_NM.nii.gz
 	mkdir $subj/ppi_results
-	
+
+	echo "Running subject $subj_nm ..."
+
 	COUNT=0
 	for run in $tot_runs; do
 
-		run_nm=$(basename run)
+		run_nm=$(basename $run)
 
 		FS_info=($(fslinfo $run))
 
 		TR_in_sec=${FS_info[19]}
 		NUM_VOLs=${FS_info[9]}
 
-		TASK_ls=($(ls $subj/$TASK_NM/*.txt))
+		TASK_ls=$subj/behav_ons/$TASK_NM.txt # adapt this so it works with multiple runs
 
 		for roi in $(ls $ROI_DIR); do
 
-			fslstats -t $run -k $roi -M > $subj/$TASK_NM/tmp_roi_tcourse.txt
-			ROI_TSERIES=$subj/$TASK_NM/tmp_roi_tcourse.txt
+			roi_nm=$(basename -s '.nii.gz' $roi )
+			echo "	+ Extracting ROI time course - $roi_nm ... "
 
-			cp $FSF_TEMPLATE $subj/$TASK_NM/
-			mv $subj/$TASK_NM/ppi_feat_template.fsf $subj/$TASK_NM/ppi_task.fsf
+			fslmeants -i $TOP_DIR/$run -m $ROI_DIR/$roi -o $TOP_DIR/$subj/tmp_roi_tcourse.txt
+			ROI_TSERIES=$subj/tmp_roi_tcourse.txt
+
+			cp $FSF_TEMPLATE $subj/task_data/
+			mv $subj/task_data/ppi_feat_template.fsf $subj/task_data/ppi_task.fsf
 
 			### NEED TO CREATE THE ROI TIME SERIES
-			
-			roi_nm=$(basename $roi)
 
-			### PROBLEM: Some of these substitutions have dashes in them. FIX THIS.
-			##
-			# sed -ie 's/'few'/'asd'/g' $subj/$TASK_NM/ppi_task.fsf
-			sed -ie 's?***OUTPUT_DIR?'$subj/$TASK_NM'?g' $subj/$TASK_NM/ppi_task.fsf 
-			
-			sed -ie 's?***TR_in_sec?'$TR_in_sec'?g' $subj/$TASK_NM/ppi_task.fsf
-			
-			sed -ie 's?***NUM_VOLs?'$NUM_VOLs'?g' $subj/$TASK_NM/ppi_task.fsf
-			
-			sed -ie 's?***DEL_VOLs?'$DEL_VOLs'?g' $subj/$TASK_NM/ppi_task.fsf
-			
-			sed -ie 's?***FUN_DATA?'$run'?g' $subj/$TASK_NM/ppi_task.fsf
-			
-			sed -ie 's?***TASK_TSERIES?'${TASK_ls[$COUNT]}'?g' $subj/$TASK_NM/ppi_task.fsf
-			
-			sed -ie 's?***ROI_TSERIES?'$ROI_TSERIES'?g' $subj/$TASK_NM/ppi_task.fsf
+			sed -ie 's#\*\*\*OUTPUT_DIR#"'$TOP_DIR/$subj/task_data'"#g' $subj/task_data/ppi_task.fsf
 
-			sed -ie 's?***HIGH_PASS?'$HIGH_PASS'?g' $subj/$TASK_NM/ppi_task.fsf
+			sed -ie 's#\*\*\*TR_in_sec#'$TR_in_sec'#g' $subj/task_data/ppi_task.fsf
 
-			feat $subj/$TASK_NM/ppi_task.fsf
+			sed -ie 's#\*\*\*NUM_VOLs#'$NUM_VOLs'#g' $subj/task_data/ppi_task.fsf
 
-			mv $subj/$TASK_NM'.feat'/thresh_zstat3.nii.gz $subj/ppi_results/$roi_nm'_'$subj_nm'_'$run_nm.nii.gz
+			sed -ie 's#\*\*\*DEL_VOLs#'$DEL_VOLs'#g' $subj/task_data/ppi_task.fsf
 
-			rm -r $subj/$TASK_NM'.feat'
-			rm $subj/$TASK_NM/ppi_task.fsf
-			rm $subj/$TASK_NM/tmp_roi_tcourse.txt
+			sed -ie 's#\*\*\*FUN_DATA#"'$TOP_DIR/$run'"#g' $subj/task_data/ppi_task.fsf
+
+			sed -ie 's#\*\*\*TASK_TSERIES#"'$TOP_DIR/$subj/behav_ons/$subj_nm'_'$TASK_NM'.txt"#g' $subj/task_data/ppi_task.fsf
+
+			sed -ie 's#\*\*\*ROI_TSERIES#"'$TOP_DIR/$ROI_TSERIES'"#g' $subj/task_data/ppi_task.fsf
+
+			sed -ie 's#\*\*\*HIGH_PASS#'$HIGH_PASS'#g' $subj/task_data/ppi_task.fsf
+
+			echo "	+ Running PPI ... "
+			feat $TOP_DIR/$subj/task_data/ppi_task.fsf
+			mv $TOP_DIR/$subj/task_data.feat/stats/zstat3.nii.gz $TOP_DIR/$subj/ppi_results/$roi_nm'_'$subj_nm'_'$TASK_NM.nii.gz
+
+			rm -r $TOP_DIR/$subj/task_data.feat
+			rm $TOP_DIR/$subj/task_data/ppi_task.fsf
+			rm $TOP_DIR/$ROI_TSERIES
 
 			COUNT=$(( $COUNT + 1 ))
+
+			echo "	  Done ROI # $COUNT/$NUM_ROIS"
+			echo " "
 
 		done
 	done
 done
-
-
-###########################################################
-
-# for roi in $(ls $ROI_DIR); do
-# 	roi=${roi%'.nii.gz'*}
-
-# 	fslstats -t ../fun/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
-
-# done

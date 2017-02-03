@@ -1,8 +1,9 @@
 #!/bin/bash
 ##
 
-export FSF_TEMPLATE='Dependencies/req_files/ppi_feat_template.fsf'
+# export FSF_TEMPLATE='Dependencies/req_files/ppi_feat_template.fsf'
 
+clear
 echo "WELCOME TO THE BRAIN STATE"
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo ' '
@@ -16,6 +17,9 @@ echo ' '
 echo -n 'Pick a number:  '
 read DATA
 
+echo ' '
+echo ' '
+
 case $DATA in
 
 	1)	echo "Sliding time windows"
@@ -23,7 +27,7 @@ case $DATA in
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read mode
-		echo -n "Enter the group/subject directory:  "
+		echo -n "Enter the $mode directory:  "
 		read path
 		echo -n "Enter the directory for ROI files:  "
 		read roi
@@ -31,7 +35,8 @@ case $DATA in
 		read t_win
 		echo -n "Size of the time skip (in TR):  "
 		read t_skip
-		echo " "
+
+		clear
 		echo "Creating ROI time courses..."
 		./Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi
 		# echo $mode
@@ -43,7 +48,7 @@ case $DATA in
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read TYPE
-		echo -n "Enter the group/subject directory:  "
+		echo -n "Enter the $TYPE directory:  "
 		read TOP_DIR
 		echo -n "Enter the directory for ROI labels:  "
 		read ROI_LABELS
@@ -58,7 +63,8 @@ case $DATA in
 		echo -n "Number of iterations used to synthesize representative clusters:  < NOT CURRENTLY WORKING >"
 		read kk_pool
 		kk_pool=1 ####### to remove once this if fixed
-		echo ' '
+
+		clear
 		echo 'Computing correlation matrices...'
 		Rscript Dependencies/k_means_clustering_beta3.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool
 		echo 'Finished.'
@@ -72,17 +78,19 @@ case $DATA in
 		echo "------------------------"
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read TYPE
-		echo -n "Enter the group/subject directory:  "
+		echo -n "Enter the $TYPE directory:  "
 		read TOP_DIR
-		echo -n "Enter the directory to the task data:  "
-		read TASK 
 		echo -n "Enter the path for ROI files:  "
 		read ROI
+		echo -n "Enter the task name:  "
+		read TASK
 		echo -n "How many volumes should be deleted?  "
-		read DEL 
+		read DEL
 		echo -n "What high-pass filter would you like to apply? (Hz):  "
 		read HIGH
-		./Dependencies/whole_brain_ppi.sh --mode $TYPE --path $TOP_DIR --task $TASK --roi $ROI --del $DEL --high $HIGH
+
+		clear
+		./Dependencies/whole_brain_ppi.sh $TYPE $TOP_DIR $TASK $ROI $DEL $HIGH
 		;;
 
 	*)

@@ -68,10 +68,12 @@ for SUBJECT in $(ls -d ./*); do
 
 	###### MC & FUNC NORMALIZATION ######
 
-	cd ../fun
+	cd ../task_data
+	#echo $(pwd)
+	#continue
 
 	COUNT=0
-	for RUN in $(ls *.nii); do
+	for RUN in $(ls *.nii.gz); do
 
 		COUNT=$(expr $COUNT + 1)
 
@@ -81,8 +83,8 @@ for SUBJECT in $(ls -d ./*); do
 		mcflirt -in $RUN -o m_$RUN -plots # Motion Correction
 		mv *.par MPEs.par
 
-		echo '         Regressing out motion parameter estimates (6) ...'
-		fsl_glm -i m_$RUN -d MPEs.par --out_res=reg_m_$RUN
+		#echo '         Regressing out motion parameter estimates (6) ...'
+		#fsl_glm -i m_$RUN -d MPEs.par --out_res=reg_m_$RUN
 
 		# mkdir MPEs
 		# ENTRY=0
@@ -105,15 +107,15 @@ for SUBJECT in $(ls -d ./*); do
 		##### WARP FUNC TO T1 #####
 
 		echo '       + Linear-warping functional to structural...'
-		flirt -ref ../anatom/$SUBJ_ANAT -in reg_m_$RUN -omat func2str_$COUNT.mat -dof 6           # Functional to Structural
+		flirt -ref ../anatom/$SUBJ_ANAT -in m_$RUN -omat func2str_$COUNT.mat -dof 6           # Functional to Structural
 		echo '       + Linear-warping structural to standard template...'
 		flirt -ref $TEMPLATE -in ../anatom/Mprage_brain.nii.gz -omat ../anatom/aff_str2std.mat -out ../anatom/std_Mprage_brain.nii.gz  # Strcut to Std
 		echo '       + Non-linear-warping structural to standard template...'
 		fnirt --ref=$TEMPLATE --in=../anatom/$SUBJ_ANAT --aff=../anatom/aff_str2std.mat --cout=../anatom/warp_str2std.nii.gz # FNIRT strct to std
 		echo '       + Applying standardized warp to functional data...'
-		applywarp --ref=$TEMPLATE --in=reg_m_$RUN --out=norm_reg_m_$RUN.nii --warp=../anatom/warp_str2std.nii.gz --premat=func2str_$COUNT.mat
+		applywarp --ref=$TEMPLATE --in=m_$RUN --out=norm_m_$RUN.nii --warp=../anatom/warp_str2std.nii.gz --premat=func2str_$COUNT.mat
 		echo '       + Applying spatial smoothing kernel...'
-		fslmaths norm_reg_m_$RUN.nii -kernel gauss 2.54798709 -fmean s_norm_reg_m_$RUN.nii
+		fslmaths norm_m_$RUN.nii -kernel gauss 2.54798709 -fmean s_norm_m_$RUN.nii
 		echo '  '
 	done
 
