@@ -2,8 +2,9 @@ TASK_NM <- args[6]
 PPI_DIR <- args[7]
 OUT_DIR <- file.path(PPI_DIR, matrix)
 
-ppi_ls <- dir(PPI_DIR, pattern = paste0('*_', TASK_NM, '.txt'))
-roi_ls <- c()
+ppi_ls  <- dir(PPI_DIR, pattern = paste0('*_', TASK_NM, '.txt'))
+roi_ls  <- c()
+subj_nm <- strsplit(PPI_DIR, '/')[[1]][ length(strsplit(PPI_DIR, '/')[[1]]) - 2 ]
 
 dir.create(OUT_DIR)
 
@@ -43,7 +44,7 @@ colfunc <- colorRampPalette(c('#426DED', '#EDE742', '#ED4242')) # the colours de
 heat_cols <- colfunc(100)  #  gradient of 100 colours b/w the 3 key colours defined above
 
 heatmap.2(clus_avg,
-          main = paste0(TASK_NM, ' : whole-brain task FC'),
+          main = paste0(TASK_NM, , ' - subj ', subj_nm,   ' : whole-brain FC'),
           trace = 'none',
           Rowv = F,
           Colv = F,
