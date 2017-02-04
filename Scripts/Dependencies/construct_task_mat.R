@@ -24,17 +24,17 @@ dimnames(ppi_mat) <- list(roi_ls, roi_ls)
 
 COUNT <- 0
 for(roi_1 in roi_ls) {
-    COUNT <- COUNT + 1
+	COUNT <- COUNT + 1
 
-    tmp_row_vec <- c()
+	tmp_row_vec <- c()
 
-    for(roi_2 in roi_ls) {
-        filename    <- paste0('roi', roi_1, '_roi', roi_2, '_', TASK_NM, '.txt')
-        roi_1x2_val <- as.numeric(read.table(file = file.path(PPI_DIR, filename)))
-        tmp_row_vec <- c(tmp_row_vec, roi_1x2_val)
-    }
+	for(roi_2 in roi_ls) {
+		filename    <- paste0('roi', roi_1, '_roi', roi_2, '_', TASK_NM, '.txt')
+		roi_1x2_val <- as.numeric(read.table(file = file.path(PPI_DIR, filename)))
+		tmp_row_vec <- c(tmp_row_vec, roi_1x2_val)
+	}
 
-    ppi_mat[COUNT,] <- tmp_row_vec
+	ppi_mat[COUNT,] <- tmp_row_vec
 }
 
 write.csv(x = ppi_mat, file = file.path(OUT_DIR, paste0(TASK_NM, '_', length(roi_ls), 'x', length(roi_ls), '.csv')) )
@@ -47,19 +47,19 @@ colfunc <- colorRampPalette(c('#426DED', '#EDE742', '#ED4242')) # the colours de
 heat_cols <- colfunc(100)  #  gradient of 100 colours b/w the 3 key colours defined above
 
 heatmap.2(ppi_mat,
-          main = paste0(TASK_NM, ' - subj ', subj_nm,   ' : whole-brain FC'),
-          trace = 'none',
-          Rowv = F,
-          Colv = F,
-          scale = 'none',
-          key = T,
-          density.info = 'none',
-          dendrogram = 'none',
-          key.xlab = NA,
-          key.title = NA,
-          # labRow = labels,
-          # labCol = labels,
-          col = heat_cols)
+		  main = paste0(TASK_NM, ' - subj ', subj_nm,   ' : whole-brain FC'),
+		  trace = 'none',
+		  Rowv = F,
+		  Colv = F,
+		  scale = 'none',
+		  key = T,
+		  density.info = 'none',
+		  dendrogram = 'none',
+		  key.xlab = NA,
+		  key.title = NA,
+		  # labRow = labels,
+		  # labCol = labels,
+		  col = heat_cols)
 
 dev.off()
 
