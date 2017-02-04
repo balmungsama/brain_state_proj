@@ -61,7 +61,7 @@ for subj in $subj_dirs; do
 			roi_nm=$(basename -s '.nii.gz' $roi )
 			echo "	+ Extracting ROI time course - $roi_nm ... "
 
-			fslmeants -i $TOP_DIR/$run -m $ROI_DIR/$roi -o $TOP_DIR/$subj/tmp_roi_tcourse.txt
+			# fslmeants -i $TOP_DIR/$run -m $ROI_DIR/$roi -o $TOP_DIR/$subj/tmp_roi_tcourse.txt
 			ROI_TSERIES=$subj/tmp_roi_tcourse.txt
 
 			cp $FSF_TEMPLATE $subj/task_data/
@@ -101,7 +101,7 @@ for subj in $subj_dirs; do
 		done
 
 		mkdir $TOP_DIR/$subj/ppi_results/contrsuct_matrix
-		for ppi_out in $(ls $TOP_DIR/$subj/ppi_results/*$TASK_NM.nii.gz); do 
+		for ppi_out in $(ls $TOP_DIR/$subj/ppi_results/*$TASK_NM.nii.gz); do
 			ppi_nm=$(basename $ppi_out)
 			ppi_nm=($(echo $ppi_nm | tr "_" "\n"))
 			ppi_nm=${ppi_nm[0]}
@@ -112,7 +112,9 @@ for subj in $subj_dirs; do
 			done
 		done
 
-		Rscript construct_task_mat.R $TASK_NM $TOP_DIR/$subj/ppi_results/contrsuct_matrix
+		Rscript /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/construct_task_mat.R "$TASK_NM" "$TOP_DIR/$subj/ppi_results/contrsuct_matrix"
 
 	done
 done
+
+rm $TOP_DIR/Rplots.pdf
