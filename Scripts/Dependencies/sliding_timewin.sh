@@ -49,7 +49,7 @@ elif [[ $mode == "group" ]]; then
 			for roi in $(ls $ROI_DIR); do
 				# echo $roi
 				roi=${roi%'.nii.gz'*}
-				fslstats -t ../fun/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
+				fslmeants -i ../fun/s_norm*.nii.gz -m $ROI_DIR/$roi'.nii.gz' -o $roi'_tcourse.txt'
 			done
 
 			cd $path

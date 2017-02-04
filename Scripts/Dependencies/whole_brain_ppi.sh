@@ -108,7 +108,7 @@ for subj in $subj_dirs; do
 
 			for roi in $(ls $ROI_DIR); do
 				roi_nm=$(basename -s '.nii.gz' $roi )
-				fslstats $ppi_out -k $ROI_DIR/$roi -M > $TOP_DIR/$subj/ppi_results/contrsuct_matrix/$ppi_nm'_'$roi_nm'_'$TASK_NM.txt
+				fslmeants -i $ppi_out -m $ROI_DIR/$roi -o $TOP_DIR/$subj/ppi_results/contrsuct_matrix/$ppi_nm'_'$roi_nm'_'$TASK_NM.txt
 			done
 		done
 
