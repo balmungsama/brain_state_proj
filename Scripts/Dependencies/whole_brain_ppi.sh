@@ -38,6 +38,10 @@ fi
 
 for subj in $subj_dirs; do
 
+	if [ "$subj" == "task_ppi_matrices" ]; then 
+		continue
+	fi
+
 	subj_nm=$(basename $subj)
 	tot_runs=$subj/task_data/s_norm_m_$TASK_NM.nii.gz
 	mkdir $subj/ppi_results
@@ -118,3 +122,12 @@ for subj in $subj_dirs; do
 done
 
 rm $TOP_DIR/Rplots.pdf
+
+mkdir -p $TOP_DIR/task_ppi_matrices
+
+for subj in $subj_dirs; do
+	subj_nm=$(basename $subj)
+	cp $subj/ppi_results/construct_matrix/matrix/$TASK_NM*.csv $TOP_DIR/task_ppi_matrices/$subj_nm'_'$TASK_NM.csv
+done
+
+Rscript /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/avg_ppi_mat.R $TOP_DIR $TASK_NM
