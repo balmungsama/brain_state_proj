@@ -7,7 +7,7 @@ if [ "$1" == "--help" ]; then
 	exit 0
 fi
 
-clear
+clear all
 
 TOP_DIR='/media/member/Data1/Thalia/brain_variability_osu_data/resting_cp_john' # master directory containing group data
 TEMPLATE=              # file for the standardized template. If not specified, default to MNI152 2mm T1
