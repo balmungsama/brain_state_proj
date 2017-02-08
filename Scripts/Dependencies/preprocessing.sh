@@ -10,7 +10,7 @@ clear
 
 TOP_DIR='/home/hpc3586/OSU_data/first20' # master directory containing group data
 TEMPLATE='/home/hpc3586/MNI_templates/MNI152_T1_1mm_brain.nii.gz'              # file for the standardized template. If not specified, default to MNI152 2mm T1
-TMP_DIR=$TOP_DIR/../qsub_$(basename $TOP_DIR)
+TMP_DIR=$TOP_DIR/../qsub_preproc_$(basename $TOP_DIR)
 
 mkdir $TMP_DIR
 
