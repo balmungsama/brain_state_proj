@@ -1,33 +1,29 @@
-# while getopts mode:path:task:roi:del:high: option
-# do
-# 	case "${option}"
-# 		in
-# 		mode) TYPE=${OPTARG};;
-# 		path) TOP_DIR=${OPTARG};;
-# 		task) TASK_NM=${OPTARG};;
-# 		roi) ROI_DIR=${OPTARG};;
-# 		del) DEL_VOLs=${OPTARG};;
-# 		high) HIGH_PASS=${OPTARG};;
-# 	esac
-# done
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -M hpc3586@localhost
+#$ -m be
+#$ -o STD.out
+#$ -e STD.err
 
-TYPE=$1
-TOP_DIR=$2
-TASK_NM=$3
-ROI_DIR=$4
-DEL_VOLs=$5
-HIGH_PASS=$6
 
-echo ' '
+TYPE='group'
+TOP_DIR='/home/hpc3586/OSU_data/first100'
+TASK_NM='GoNogo'
+ROI_DIR='/home/hpc3586/OSU_data/roi_dir'
+DEL_VOLs=0
+HIGH_PASS=0
 
-# template_fsf=$FSF_TEMPLATE  # make this relative to wherever this package is located
 FSF_TEMPLATE='/media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/req_files/ppi_feat_template.fsf'
 NUM_ROIS=$(expr $(ls $ROI_DIR -l | wc -l) - 1)
 
-cd $TOP_DIR
+TMP_DIR=$TOP_DIR/../qsub_preproc_$(basename $TOP_DIR)
+
+mkdir -p $TOP_DIR/task_ppi_matrices
+mkdir -p $TMP_DIR
 
 if [ "$TYPE" == 'group' ]; then
-	subj_dirs=$(ls)
+	subj_dirs=$(ls -d $TOP_DIR/*)
 else
 	if [ "$TYPE" == 'subj' ]; then
 		subj_dirs='/'
@@ -37,6 +33,8 @@ else
 fi
 
 for subj in $subj_dirs; do
+
+	echo subj is $subj
 
 	if [ "$subj" == "task_ppi_matrices" ]; then 
 		continue
@@ -51,83 +49,97 @@ for subj in $subj_dirs; do
 	COUNT=0
 	for run in $tot_runs; do
 
-		run_nm=$(basename $run)
+		run_nm=$(basename '.nii.gz' $run)
 
-		FS_info=($(fslinfo $run))
+		IND_FILE=$TMP_DIR/s_$subj_nm'_'$run_nm.sh ### FILL THIS OUT ###
+		touch $IND_FILE
 
-		TR_in_sec=${FS_info[19]}
-		NUM_VOLs=${FS_info[9]}
+		echo "#!/bin/bash" >> $IND_FILE
+		echo "#$ -S /bin/bash" >> $IND_FILE
+		echo "#$ -cwd" >> $IND_FILE
+		echo "#$ -M hpc3586@localhost" >> $IND_FILE
+		echo "#$ -m be" >> $IND_FILE
+		echo "#$ -o $TMP_DIR/STD.out" >> $IND_FILE
+		echo "#$ -e $TMP_DIR/STD.err" >> $IND_FILE
 
-		TASK_ls=$subj/behav_ons/$TASK_NM.txt # adapt this so it works with multiple runs
+		echo ' ' >> $IND_FILE
 
-		for roi in $(ls $ROI_DIR); do
+		echo TYPE=$TYPE >> $IND_FILE
+		echo TOP_DIR=$TOP_DIR >> $IND_FILE
+		echo TASK_NM=$TASK_NM >> $IND_FILE
+		echo ROI_DIR=$ROI_DIR >> $IND_FILE
+		echo DEL_VOLs=$DEL_VOLs >> $IND_FILE
+		echo HIGH_PASS=$HIGH_PASS >> $IND_FILE
 
-			roi_nm=$(basename -s '.nii.gz' $roi )
-			echo "	+ Extracting ROI time course - $roi_nm ... "
+		echo ' ' >> $IND_FILE
 
-			# fslmeants -i $TOP_DIR/$run -m $ROI_DIR/$roi -o $TOP_DIR/$subj/tmp_roi_tcourse.txt
-			ROI_TSERIES=$subj/tmp_roi_tcourse.txt
+		echo "FS_info=($(fslinfo $run))" >> $IND_FILE
+		echo TR_in_sec=${FS_info[19]} >> $IND_FILE
+		echo NUM_VOLs=${FS_info[9]} >> $IND_FILE
 
-			cp $FSF_TEMPLATE $subj/task_data/
-			mv $subj/task_data/ppi_feat_template.fsf $subj/task_data/ppi_task.fsf
+		echo ' ' >> $IND_FILE
 
-			### NEED TO CREATE THE ROI TIME SERIES
+		echo "for roi in $(ls $ROI_DIR); do" >> $IND_FILE
+ 
+		echo 	roi_nm=$(basename '.nii.gz' $roi ) >> $IND_FILE
+		echo 	echo "	+ Extracting ROI time course - $roi_nm ... " >> $IND_FILE
+ 
+		echo 	ROI_TSERIES=$subj/tmp_roi_tcourse.txt >> $IND_FILE
+ 
+		echo 	cp $FSF_TEMPLATE $subj/task_data/ >> $IND_FILE
+		echo 	mv $subj/task_data/ppi_feat_template.fsf $subj/task_data/ppi_task.fsf >> $IND_FILE
+  
+		echo 	sed -ie 's#\*\*\*OUTPUT_DIR#"'$subj/task_data'"#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*TR_in_sec#'$TR_in_sec'#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*NUM_VOLs#'$NUM_VOLs'#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*DEL_VOLs#'$DEL_VOLs'#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*FUN_DATA#"'$run'"#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*TASK_TSERIES#"'$subj/behav_ons/$subj_nm'_'$TASK_NM'.txt"#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*ROI_TSERIES#"'$TOP_DIR/$ROI_TSERIES'"#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	sed -ie 's#\*\*\*HIGH_PASS#'$HIGH_PASS'#g' $subj/task_data/ppi_task.fsf >> $IND_FILE
+ 
+		echo 	echo "	+ Running PPI ... " >> $IND_FILE
+		echo 	feat $subj/task_data/ppi_task.fsf >> $IND_FILE
+		echo 	mv $subj/task_data.feat/stats/zstat3.nii.gz $TOP_DIR/$subj/ppi_results/$roi_nm'_'$subj_nm'_'$TASK_NM.nii.gz >> $IND_FILE
+ 
+		echo 	rm -r $subj/task_data.feat >> $IND_FILE
+		echo 	rm $subj/task_data/ppi_task.fsf >> $IND_FILE
+		echo 	rm $TOP_DIR/$ROI_TSERIES >> $IND_FILE
+ 
+		echo 	COUNT=$(( $COUNT + 1 )) >> $IND_FILE
+ 
+		echo done >> $IND_FILE
+ 
+		echo ' ' >> $IND_FILE
 
-			sed -ie 's#\*\*\*OUTPUT_DIR#"'$TOP_DIR/$subj/task_data'"#g' $subj/task_data/ppi_task.fsf
+		echo mkdir $subj/ppi_results/contrsuct_matrix >> $IND_FILE
+		echo "for ppi_out in $(ls $subj/ppi_results/*$TASK_NM.nii.gz); do" >> $IND_FILE
+		echo 	ppi_nm=$(basename $ppi_out) >> $IND_FILE
+		echo "	ppi_nm=($(echo $ppi_nm | tr "_" "\n"))" >> $IND_FILE
+		echo 	ppi_nm=${ppi_nm[0]} >> $IND_FILE
 
-			sed -ie 's#\*\*\*TR_in_sec#'$TR_in_sec'#g' $subj/task_data/ppi_task.fsf
+		echo '~~~~~~~~~~~~~~~~~~~ line 130 ~~~~~~~~~~~~~~~~~~~'
+ 
+		echo "	for roi in $(ls $ROI_DIR); do" >> $IND_FILE
+		echo 		roi_nm=$(basename -s '.nii.gz' $roi ) >> $IND_FILE
+		echo 		fslmeants -i $ppi_out -m $ROI_DIR/$roi -o $subj/ppi_results/contrsuct_matrix/$ppi_nm'_'$roi_nm'_'$TASK_NM.txt >> $IND_FILE
+		echo 	done >> $IND_FILE
+		echo done >> $IND_FILE
 
-			sed -ie 's#\*\*\*NUM_VOLs#'$NUM_VOLs'#g' $subj/task_data/ppi_task.fsf
+		echo Rscript.bak /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/construct_task_mat.R "$TASK_NM" "$subj/ppi_results/contrsuct_matrix" >> $IND_FILE
 
-			sed -ie 's#\*\*\*DEL_VOLs#'$DEL_VOLs'#g' $subj/task_data/ppi_task.fsf
+		echo ' ' >> $IND_FILE
 
-			sed -ie 's#\*\*\*FUN_DATA#"'$TOP_DIR/$run'"#g' $subj/task_data/ppi_task.fsf
-
-			sed -ie 's#\*\*\*TASK_TSERIES#"'$TOP_DIR/$subj/behav_ons/$subj_nm'_'$TASK_NM'.txt"#g' $subj/task_data/ppi_task.fsf
-
-			sed -ie 's#\*\*\*ROI_TSERIES#"'$TOP_DIR/$ROI_TSERIES'"#g' $subj/task_data/ppi_task.fsf
-
-			sed -ie 's#\*\*\*HIGH_PASS#'$HIGH_PASS'#g' $subj/task_data/ppi_task.fsf
-
-			echo "	+ Running PPI ... "
-			feat $TOP_DIR/$subj/task_data/ppi_task.fsf
-			mv $TOP_DIR/$subj/task_data.feat/stats/zstat3.nii.gz $TOP_DIR/$subj/ppi_results/$roi_nm'_'$subj_nm'_'$TASK_NM.nii.gz
-
-			rm -r $TOP_DIR/$subj/task_data.feat
-			rm $TOP_DIR/$subj/task_data/ppi_task.fsf
-			rm $TOP_DIR/$ROI_TSERIES
-
-			COUNT=$(( $COUNT + 1 ))
-
-			echo "	  Done ROI # $COUNT/$NUM_ROIS"
-			echo " "
-
-		done
-
-		mkdir $TOP_DIR/$subj/ppi_results/contrsuct_matrix
-		for ppi_out in $(ls $TOP_DIR/$subj/ppi_results/*$TASK_NM.nii.gz); do
-			ppi_nm=$(basename $ppi_out)
-			ppi_nm=($(echo $ppi_nm | tr "_" "\n"))
-			ppi_nm=${ppi_nm[0]}
-
-			for roi in $(ls $ROI_DIR); do
-				roi_nm=$(basename -s '.nii.gz' $roi )
-				fslmeants -i $ppi_out -m $ROI_DIR/$roi -o $TOP_DIR/$subj/ppi_results/contrsuct_matrix/$ppi_nm'_'$roi_nm'_'$TASK_NM.txt
-			done
-		done
-
-		Rscript /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/construct_task_mat.R "$TASK_NM" "$TOP_DIR/$subj/ppi_results/contrsuct_matrix"
-
+		echo subj_nm=$(basename $subj) >> $IND_FILE
+		echo cp $subj/ppi_results/construct_matrix/matrix/$TASK_NM*.csv $TOP_DIR/task_ppi_matrices/$subj_nm'_'$TASK_NM.csv >> $IND_FILE
 	done
 done
 
-rm $TOP_DIR/Rplots.pdf
-
-mkdir -p $TOP_DIR/task_ppi_matrices
-
-for subj in $subj_dirs; do
-	subj_nm=$(basename $subj)
-	cp $subj/ppi_results/construct_matrix/matrix/$TASK_NM*.csv $TOP_DIR/task_ppi_matrices/$subj_nm'_'$TASK_NM.csv
-done
-
-Rscript /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/avg_ppi_mat.R $TOP_DIR $TASK_NM
+# Rscript.bak /media/member/Data1/Thalia/brain_variability_osu_data/priv_john_proj/brain_state_proj/Scripts/Dependencies/avg_ppi_mat.R $TOP_DIR $TASK_NM

@@ -1,8 +1,8 @@
 rm(list=ls())
-library(gplots)
-library(grDevices)
+require(gplots)
+require(grDevices)
 
-TOP_DIR <- '/media/member/Data1/Thalia/brain_variability_osu_data/resting_cp_john'
+TOP_DIR <- '/home/hpc3586/OSU_data/all_233'
 t_win   <- 15
 t_skip  <- 5
 

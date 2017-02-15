@@ -1,0 +1,12 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Bash-Debug (hardcoded script name)",
+			"type": "bashdb",
+			"request": "launch",
+			"scriptPath": "${workspaceRoot}/path/to/script.sh",
+			"commandLineArguments": ""
+		}
+	]
+}
