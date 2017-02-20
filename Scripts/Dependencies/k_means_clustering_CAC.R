@@ -14,6 +14,8 @@ require(R.matlab)
 require(psych)
 require(ggplot2)
 
+print('hello world')
+
 TYPE        <- "group"
 TOP_DIR     <- "/home/hpc3586/OSU_data/all_233"
 ROI_LABELS  <- "/home/hpc3586/OSU_data/roi_labels.csv"
