@@ -1,0 +1,8 @@
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 55
+Execution halted
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3108ZL/fun/preproc/tmp/*Resting* for reading!

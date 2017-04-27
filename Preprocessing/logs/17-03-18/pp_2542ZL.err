@@ -1,0 +1,99 @@
+++ 3dTshift: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+*+ WARNING:   If you are performing spatial transformations on an oblique dset, 
+  such as /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/Resting.nii,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/Resting.nii is 1.099851 degrees from plumb.
+*+ WARNING: some value in tpattern is outside range 0..TR=2
+*+ WARNING: ==>> output dataset is just a copy of input dataset
+++ 3dAFNItoNIFTI: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+*+ WARNING:   If you are performing spatial transformations on an oblique dset, 
+  such as /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/t_Resting+orig.BRIK,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/t_Resting+orig.BRIK is 1.099851 degrees from plumb.
+mkdir: cannot create directory `/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc': File exists
+++ 3dvolreg: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+++ Authored by: RW Cox
+*+ WARNING:   If you are performing spatial transformations on an oblique dset, 
+  such as /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/t_Resting.nii,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/t_Resting.nii is 1.099851 degrees from plumb.
+++ Max displacement in automask = 2.86 (mm) at sub-brick 132
+** Warning: overwriting file /home/hpc3586/OSU_data/rotman_conf/2542ZL/MPEs/Resting.1D
+++ 3dAFNItoNIFTI: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+*+ WARNING:   If you are performing spatial transformations on an oblique dset, 
+  such as /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/mt_Resting+orig.BRIK,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/mt_Resting+orig.BRIK is 1.099851 degrees from plumb.
+mkdir: cannot create directory `/home/hpc3586/OSU_data/rotman_conf/2542ZL/anatom/mats': File exists
+mkdir: cannot create directory `/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/mats': File exists
+rm: cannot remove `/home/hpc3586/OSU_data/rotman_conf/2542ZL/anatom/l_brain_Mprage.nii.gz': No such file or directory
+++ No '-bucket' option given ==> using '-bucket Decon'
+++ 3dDeconvolve: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+++ Authored by: B. Douglas Ward, et al.
+++ current memory malloc-ated = 47,381 bytes (about 47 thousand [kilo])
+++ loading dataset /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/snlmt_Resting.nii
+++ current memory malloc-ated = 48,557 bytes (about 49 thousand [kilo])
+++ STAT automask has 215095 voxels (out of 902629 = 23.8%)
+++ Skipping check for initial transients
+*+ WARNING: Input polort=1; Longest run=360.0 s; Recommended minimum polort=3
+++ Number of time points: 144 (no censoring)
+ + Number of parameters:  8 [8 baseline ; 0 signal]
+++ Memory required for output bricks = 1,043,439,124 bytes (about 1.0 billion [giga])
+++ Wrote matrix values to file Decon.xmat.1D
+++ ========= Things you can do with the matrix file =========
+++ (a) Linear regression with ARMA(1,1) modeling of serial correlation:
+
+3dREMLfit -matrix Decon.xmat.1D -input /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/snlmt_Resting.nii \
+ -Rbuck Decon_REML -Rvar Decon_REMLvar -Rfitts /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/fmt_Resting_REML \
+ -Rerrts /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/emt_Resting_REML -verb
+ 
+++ N.B.: 3dREMLfit command above written to file Decon.REML_cmd
+++ (b) Visualization/analysis of the matrix via ExamineXmat.R
+++ (c) Synthesis of sub-model datasets using 3dSynthesize
+++ ==========================================================
+++ ----- Signal+Baseline matrix condition [X] (144x8):  4.10945  ++ VERY GOOD ++
+++ ----- Baseline-only matrix condition [X] (144x8):  4.10945  ++ VERY GOOD ++
+++ ----- stim_base-only matrix condition [X] (144x6):  3.74337  ++ VERY GOOD ++
+++ ----- polort-only matrix condition [X] (144x2):  1  ++ VERY GOOD ++
+++ +++++ Matrix inverse average error = 4.70769e-15  ++ VERY GOOD ++
+++ Matrix setup time = 0.24 s
+++ current memory malloc-ated = 1,044,594,902 bytes (about 1.0 billion [giga])
+++ Calculations starting; elapsed time=3.910
+++ voxel loop:0123456789.0123456789.0123456789.0123456789.0123456789.
+++ Calculations finished; elapsed time=17.386
+** ERROR: output dataset name 'Decon' conflicts with existing file
+** ERROR: dataset NOT written to disk!
+++ Wrote bucket dataset into ./Decon_AA1+tlrc.BRIK
+++ Wrote 3D+time dataset into /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/fmt_Resting+tlrc.BRIK
+++ Wrote 3D+time dataset into /home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/emt_Resting+tlrc.BRIK
+++ #Flops=3.23648e+10  Average Dot Product=13.805
+++ 3dAFNItoNIFTI: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+++ 3dAFNItoNIFTI: AFNI version=AFNI_2011_12_21_1014 (Aug 27 2013) [64-bit]
+mkdir: cannot create directory `/home/hpc3586/OSU_data/rotman_conf/2542ZL/fun/preproc/tmp': File exists
+Error in file(file, "rt") : cannot open the connection
+Calls: read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '/home/hpc3586/OSU_data/rotman_conf/2542ZL/mot_analysis/DVARS.csv': No such file or directory
+Execution halted
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(MOVE_TAB$FD)) > voxel_size) { : 
+  missing value where TRUE/FALSE needed
+Execution halted

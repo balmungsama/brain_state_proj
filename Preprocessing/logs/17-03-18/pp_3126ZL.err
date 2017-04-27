@@ -1,0 +1,24 @@
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(cFD$FD)) > max_disp.FD) { : 
+  missing value where TRUE/FALSE needed
+Execution halted
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3126ZL/fun/preproc/snlmt_Resting for reading!
+ls: cannot access /home/hpc3586/OSU_data/rotman_conf/3126ZL/fun/preproc/tmp/Resting*: No such file or directory
+cat: /home/hpc3586/OSU_data/rotman_conf/3126ZL/fun/preproc/tmp/DVARS.txt: No such file or directory
+Error in file(file, "rt") : cannot open the connection
+Calls: read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '/home/hpc3586/OSU_data/rotman_conf/3126ZL/mot_analysis/DVARS.csv': No such file or directory
+Execution halted
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(MOVE_TAB$FD)) > voxel_size) { : 
+  missing value where TRUE/FALSE needed
+Execution halted
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(mpe[, c("roll", "pitch", "yaw")])) > max_disp) { : 
+  missing value where TRUE/FALSE needed
+Execution halted

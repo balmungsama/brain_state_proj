@@ -1,0 +1,23 @@
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 20
+Execution halted
+Warning message:
+Removed 2 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3094ZL/fun/preproc/tmp/*Resting* for reading!
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 20
+Execution halted
+Warning message:
+Removed 2 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3094ZL/fun/preproc/tmp/*Resting* for reading!
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(cFD$FD)) > max_disp.FD) { : 
+  missing value where TRUE/FALSE needed
+Execution halted
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 20
+Execution halted
+Warning message:
+Removed 2 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3094ZL/fun/preproc/tmp/*Resting* for reading!

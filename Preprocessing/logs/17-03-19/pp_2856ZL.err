@@ -1,0 +1,30 @@
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘gtable’
+Error: package or namespace load failed for ‘ggplot2’
+Execution halted
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘gtable’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘gtable’
+Error: could not find function "ggplot"
+Execution halted
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘gtable’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘gtable’
+Error: could not find function "ggplot"
+Execution halted
+Warning message:
+In out.DVARS * out.FD :
+  longer object length is not a multiple of shorter object length
+Warning message:
+In out.DVARS + out.FD :
+  longer object length is not a multiple of shorter object length
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Image Exception : #22 :: ERROR: Could not open image 2.500000
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'

@@ -1,0 +1,14 @@
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2793ZL/fun/preproc/tmp/*Resting* for reading!
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2793ZL/fun/preproc/tmp/*Resting* for reading!
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(cFD$FD)) > max_disp.FD) { : 
+  missing value where TRUE/FALSE needed
+Execution halted
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2793ZL/fun/preproc/tmp/*Resting* for reading!

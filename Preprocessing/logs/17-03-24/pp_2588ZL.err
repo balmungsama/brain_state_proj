@@ -1,0 +1,44 @@
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Warning message:
+In out.DVARS * out.FD :
+  longer object length is not a multiple of shorter object length
+Warning message:
+In out.DVARS + out.FD :
+  longer object length is not a multiple of shorter object length
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2588ZL/fun/preproc/tmp/*Resting* for reading!
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Warning message:
+In out.DVARS * out.FD :
+  longer object length is not a multiple of shorter object length
+Warning message:
+In out.DVARS + out.FD :
+  longer object length is not a multiple of shorter object length
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2588ZL/fun/preproc/tmp/*Resting* for reading!
+Warning message:
+NAs introduced by coercion 
+Error in if (max(abs(cFD$FD)) > max_disp.FD) { : 
+  missing value where TRUE/FALSE needed
+Execution halted
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Warning message:
+In out.DVARS * out.FD :
+  longer object length is not a multiple of shorter object length
+Warning message:
+In out.DVARS + out.FD :
+  longer object length is not a multiple of shorter object length
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume NA for reading!
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/2588ZL/fun/preproc/tmp/*Resting* for reading!

@@ -1,0 +1,6 @@
+Warning message:
+Removed 1 rows containing missing values (geom_path). 
+Warning message:
+Removed 69 rows containing missing values (geom_path). 
+Image Exception : #22 :: ERROR: Could not open image /home/hpc3586/OSU_data/rotman_conf/2608ZL/fun/preproc/tmp/Resting_DVARS.csv
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'

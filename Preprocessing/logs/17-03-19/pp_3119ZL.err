@@ -1,0 +1,14 @@
+Warning message:
+package ‘ggplot2’ was built under R version 3.3.2 
+Warning message:
+package ‘ggplot2’ was built under R version 3.3.2 
+Warning message:
+package ‘gridExtra’ was built under R version 3.3.2 
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 22
+Execution halted
+Warning message:
+package ‘ggplot2’ was built under R version 3.3.2 
+Warning message:
+package ‘gridExtra’ was built under R version 3.3.2 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3119ZL/fun/preproc/tmp/*Resting* for reading!

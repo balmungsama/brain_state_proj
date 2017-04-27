@@ -1,0 +1,6 @@
+Error in data.frame(FD = FD[, 1], DVARS = c(NA, DVARS[, 1])) : 
+  arguments imply differing number of rows: 144, 20
+Execution halted
+Warning message:
+Removed 2 rows containing missing values (geom_path). 
+Cannot open volume /home/hpc3586/OSU_data/rotman_conf/3094ZL/fun/preproc/tmp/*Resting* for reading!
