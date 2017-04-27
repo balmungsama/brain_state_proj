@@ -6,11 +6,11 @@
 #$ -o logs/grp_STD.out
 #$ -e logs/grp_STD.err
 
-TOP_DIR=$1
-COND=$2
-FD=$3
-DVARS=$4
-RM=$5
+TOP_DIR=$1 						# here you enter in the group directory
+COND=$2    						# enter the condition name
+FD=$3      						# enter frame-wise displacement threshold
+DVARS=$4   						# enter DVARS threshold
+RM=$5      						# use "UNION" or "INTERSECT" of FD & DVARS
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
