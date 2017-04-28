@@ -31,6 +31,8 @@ case $DATA in
 		read path
 		echo -n "Enter the directory containing ROI files:  "
 		read roi
+		echo -n "Enter the name of the condition being analyzed:  "
+		read cond
 		echo -n "Size of the time windows (in TR):  "
 		read t_win
 		echo -n "Size of the time skip (in TR):  "
