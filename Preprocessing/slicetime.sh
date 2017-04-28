@@ -4,6 +4,8 @@
 SUBJ_DIR=$1
 COND=$2
 
+echo '	slice-time correction...'
+
 TR=$(3dinfo -tr $SUBJ_DIR/task_data/$COND.nii*)
 
 3dTshift -TR $TR's' -prefix $SUBJ_DIR/task_data/preproc/t_$COND $SUBJ_DIR/task_data/$COND.nii*

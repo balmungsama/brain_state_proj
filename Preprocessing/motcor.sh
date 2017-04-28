@@ -11,6 +11,8 @@ PREPROC=$3
 mkdir $SUBJ_DIR/task_data/preproc
 NIFTI_file=$SUBJ_DIR/task_data/preproc/t_$COND.nii*
 
+echo '	motion correction...'
+
 3dvolreg -base 0 -prefix $SUBJ_DIR/task_data/preproc/mt_$COND -1Dfile $SUBJ_DIR/MPEs/$COND.1D $NIFTI_file
 3dAFNItoNIFTI -prefix $SUBJ_DIR/task_data/preproc/mt_$COND $SUBJ_DIR/task_data/preproc/mt_$COND+orig.HEAD
 rm $SUBJ_DIR/task_data/preproc/mt_$COND+orig.*

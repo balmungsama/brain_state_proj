@@ -1,6 +1,8 @@
 args        <- commandArgs(trailingOnly = TRUE)
 unused_args <- NULL
 
+print(' scrubbing timeseries...')
+
 for (arg in args) {
   arg <- strsplit(arg, split = '=')[[1]]
   if (arg[1] == '--PATH') {

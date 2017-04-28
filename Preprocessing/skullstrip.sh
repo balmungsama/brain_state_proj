@@ -4,4 +4,6 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
+echo '	skull-stripping...' 
+
 bet $SUBJ_DIR/anatom/Mprage.nii* $SUBJ_DIR/anatom/brain_Mprage -R

@@ -10,6 +10,8 @@ NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
 # 	NUM_CORES=1
 # fi 
 
+echo '	motion regression...'
+
 3dDeconvolve                                                       \
 	-input $SUBJ_DIR/task_data/preproc/snlmt_$COND.nii*                                 \
 																																	 \

@@ -27,6 +27,8 @@ if (length(unused_args) > 0) {
 
 library(ggplot2)
 
+print(' computing framewise displacement...')
+
 output_path <- file.path(PATH, 'mot_analysis')
 fig_path    <- file.path(output_path, 'plots')
 dir.create(fig_path, recursive = T, showWarnings = F)

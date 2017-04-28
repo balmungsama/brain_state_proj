@@ -1,6 +1,8 @@
 args        <- commandArgs(trailingOnly = TRUE)
 unused_args <- NULL
 
+print(' converting degrees to mm...')
+
 for (arg in args) {
   arg <- strsplit(arg, split = '=')[[1]]
   if (arg[1] == '--PATH') {

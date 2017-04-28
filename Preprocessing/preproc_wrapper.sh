@@ -11,6 +11,8 @@ DVARS=$4
 RM=$5
 PREPROC='/home/hpc3586/brain_state_proj/Preprocessing'
 
+echo INITIALIZING PREPROCESSING --------------------
+
 bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
