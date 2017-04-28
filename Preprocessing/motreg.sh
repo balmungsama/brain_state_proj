@@ -12,4 +12,4 @@ NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
 
 echo '	motion regression...'
 
-fsl_glm -i $SUBJ_DIR/task_data/preproc/snlmt_$COND.nii* -d $SUBJ_DIR/MPEs/$COND.1D --out_res=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND.nii*
+fsl_glm -i $SUBJ_DIR/task_data/preproc/snlmt_$COND.nii* -d $SUBJ_DIR/MPEs/$COND.1D --out_res=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
