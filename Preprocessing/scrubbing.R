@@ -36,7 +36,7 @@ if (length(unused_args) > 0) {
 
 #### data organization ####
 print('scrubbing the time series....')
-NIFTI_PATH <- file.path(PATH, 'fun', 'preproc', 'tmp')
+NIFTI_PATH <- file.path(PATH, 'task_data', 'preproc', 'tmp')
 NIFTI_LS   <- list.files(NIFTI_PATH, pattern = paste0(COND, '*.nii*'), full.names = T)
 print(NIFTI_LS)
 print(paste0('number of NIFTI files is ', length(NIFTI_LS) ) )
@@ -121,13 +121,13 @@ for (nifti in nifti.rm) {
 
 #### merge remaining TRs ####
 
-cmd.tr    <- paste0('3dinfo -tr ', PATH, '/fun/', COND, '.nii*')
+cmd.tr    <- paste0('3dinfo -tr ', PATH, '/task_data/', COND, '.nii*')
 TR        <- system(cmd.tr, intern = T, wait = T)
 
 cmd.merge <- paste0('fslmerge -t ', 
-                    paste0(PATH, '/fun/preproc/scrub_snlmt_', COND), 
+                    paste0(PATH, '/task_data/preproc/scrub_snlmt_', COND), 
                     ' ', 
-                    paste0(PATH, '/fun/preproc/tmp/*', COND, '*'),
+                    paste0(PATH, '/task_data/preproc/tmp/*', COND, '*'),
                     ' ', 
                     TR)
 
@@ -135,6 +135,6 @@ cmd.merge <- paste0('fslmerge -t ',
 system(cmd.merge, wait = T)
 
 # if ( length(NIFTI_LS) > 0 ) {
-#   system(paste0('rm -r ', PATH, '/fun/preproc/tmp'))
+#   system(paste0('rm -r ', PATH, '/task_data/preproc/tmp'))
 # }
 

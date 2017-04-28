@@ -11,7 +11,7 @@ NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
 # fi 
 
 3dDeconvolve                                                       \
-	-input $SUBJ_DIR/fun/preproc/snlmt_$COND.nii*                                 \
+	-input $SUBJ_DIR/task_data/preproc/snlmt_$COND.nii*                                 \
 																																	 \
 	-num_stimts 6                                                    \
 	-stim_file 1 $SUBJ_DIR/MPEs/$COND.1D'[0]' -stim_base 1 -stim_label 1 roll  \
@@ -21,14 +21,14 @@ NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
 	-stim_file 5 $SUBJ_DIR/MPEs/$COND.1D'[4]' -stim_base 5 -stim_label 5 dL    \
 	-stim_file 6 $SUBJ_DIR/MPEs/$COND.1D'[5]' -stim_base 6 -stim_label 6 dP    \
 	                                                                 \
-	-fitts $SUBJ_DIR/fun/preproc/fmt_$COND                                                 \
-	-errts $SUBJ_DIR/fun/preproc/emt_$COND                                                 \
+	-fitts $SUBJ_DIR/task_data/preproc/fmt_$COND                                                 \
+	-errts $SUBJ_DIR/task_data/preproc/emt_$COND                                                 \
   # -tout                                                            \
   # -x1D $COND.xmat.1D                                               \
 	# -xjpeg $COND.jpg                                                 \
   # -jobs $NUM_CORES
 
-3dAFNItoNIFTI -prefix $SUBJ_DIR/fun/preproc/emt_$COND $SUBJ_DIR/fun/preproc/emt_$COND+*.HEAD
-3dAFNItoNIFTI -prefix $SUBJ_DIR/fun/preproc/fmt_$COND $SUBJ_DIR/fun/preproc/fmt_$COND+*.HEAD
-rm $SUBJ_DIR/fun/preproc/emt_$COND+*.*
-rm $SUBJ_DIR/fun/preproc/fmt_$COND+*.*
+3dAFNItoNIFTI -prefix $SUBJ_DIR/task_data/preproc/emt_$COND $SUBJ_DIR/task_data/preproc/emt_$COND+*.HEAD
+3dAFNItoNIFTI -prefix $SUBJ_DIR/task_data/preproc/fmt_$COND $SUBJ_DIR/task_data/preproc/fmt_$COND+*.HEAD
+rm $SUBJ_DIR/task_data/preproc/emt_$COND+*.*
+rm $SUBJ_DIR/task_data/preproc/fmt_$COND+*.*

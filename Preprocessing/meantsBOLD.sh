@@ -6,11 +6,11 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
-NIFTI_FILE=$SUBJ_DIR/fun/preproc/snlmt_$COND
+NIFTI_FILE=$SUBJ_DIR/task_data/preproc/snlmt_$COND
 
 nvols=$(fslnvols $NIFTI_FILE)
 
-TMP_DIR=$SUBJ_DIR/fun/preproc/tmp
+TMP_DIR=$SUBJ_DIR/task_data/preproc/tmp
 mkdir $TMP_DIR
 fslsplit $NIFTI_FILE $TMP_DIR/$COND'_'
 

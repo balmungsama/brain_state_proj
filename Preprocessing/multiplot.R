@@ -36,7 +36,7 @@ dir.create(fig_path, recursive = T, showWarnings = F)
 #### Main Body ####
 
 head_rad   <- 50 # distance from center for brain to cortex, in mm
-sys_cmd    <- paste0('3dinfo -adi -adj -adk ', file.path(PATH, 'fun'),  '/', COND, '.nii*' )
+sys_cmd    <- paste0('3dinfo -adi -adj -adk ', file.path(PATH, 'task_data'),  '/', COND, '.nii*' )
 print(sys_cmd)
 
 voxel_size <- system(sys_cmd, intern = T)
