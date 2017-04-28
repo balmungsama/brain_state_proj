@@ -19,6 +19,7 @@ t_win=$2
 t_skip=$3
 path=$4
 ROI_DIR=$5
+cond=$6
 
 if [[ $mode == "subj" ]]; then
 
@@ -32,7 +33,7 @@ if [[ $mode == "subj" ]]; then
 	for roi in $(ls $ROI_DIR); do
 		roi=${roi%'.nii.gz'*}
 
-		fslstats -t ../fun/s_norm*.nii.gz -k $ROI_DIR/$roi'.nii.gz' -M > $roi'_tcourse.txt'
+		fslmeants -i ../task_data/preproc/snlmt_$cond.nii -m $ROI_DIR/$roi'.nii'* -o $roi'_tcourse.txt'
 
 	done
 
@@ -49,7 +50,7 @@ elif [[ $mode == "group" ]]; then
 			for roi in $(ls $ROI_DIR); do
 				# echo $roi
 				roi=${roi%'.nii.gz'*}
-				fslmeants -i ../fun/s_norm*.nii.gz -m $ROI_DIR/$roi'.nii.gz' -o $roi'_tcourse.txt'
+				fslmeants -i ../task_data/preproc/snlmt_$cond.nii -m $ROI_DIR/$roi'.nii'* -o $roi'_tcourse.txt'
 			done
 
 			cd $path
