@@ -13,7 +13,7 @@ fslmaths $ATLAS -bin $OUT_DIR/tmp/bin_mask
 
 range=($(fslstats $ATLAS -k $OUT_DIR/tmp/bin_mask -R))
 
-echo ${range[@]}
+# echo ${range[@]}
 
 for roi in $(seq ${range[0]} ${range[1]}); do
 	roi=${roi%.*}                # convert float to integer
