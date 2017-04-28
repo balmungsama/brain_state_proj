@@ -5,6 +5,21 @@ ATLAS_DIR='/usr/share/data/harvard-oxford-atlases/HarvardOxford'
 
 #######################
 
+mkdir $OUT_DIR/tmp
+
 ATLAS=$ATLAS_DIR/$ATLAS
 
-fslstats $ATLAS -r
+fslmaths $ATLAS -bin $OUT_DIR/tmp/bin_mask
+
+range=($(fslstats $ATLAS -k $OUT_DIR/tmp/bin_mask -R))
+
+echo ${range[@]}
+
+for roi in $(seq ${range[0]} ${range[1]}); do
+	roi=${roi%.*}                # convert float to integer
+	
+	fslmaths $ATLAS -thr $roi -uthr $roi $OUT_DIR/roi_$roi
+
+done
+
+rm -r $OUT_DIR/tmp
