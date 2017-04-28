@@ -5,6 +5,7 @@ ATLAS_DIR='/usr/share/data/harvard-oxford-atlases/HarvardOxford'
 
 #######################
 
+mkdir $OUT_DIR
 mkdir $OUT_DIR/tmp
 
 ATLAS=$ATLAS_DIR/$ATLAS
@@ -19,6 +20,12 @@ for roi in $(seq ${range[0]} ${range[1]}); do
 	roi=${roi%.*}                # convert float to integer
 	
 	fslmaths $ATLAS -thr $roi -uthr $roi $OUT_DIR/roi_$roi
+	fslmaths $OUT_DIR/roi_$roi -bin $OUT_DIR/roi_$roi
+	
+	out_max=($(fslstats $OUT_DIR/roi_$roi -R))
+	out_max=${out_max[1]}
+
+	# echo $roi: $out_max
 
 done
 
