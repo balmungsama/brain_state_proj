@@ -38,7 +38,7 @@ case $DATA in
 
 		clear
 		echo "Creating ROI time courses..."
-		./Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi
+		./Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
 		# echo $mode
 		echo "Finished."
 		;;
