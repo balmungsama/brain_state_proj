@@ -29,7 +29,7 @@ case $DATA in
 		read mode
 		echo -n "Enter the $mode directory:  "
 		read path
-		echo -n "Enter the directory for ROI files:  "
+		echo -n "Enter the directory containing ROI files:  "
 		read roi
 		echo -n "Size of the time windows (in TR):  "
 		read t_win
