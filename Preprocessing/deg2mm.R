@@ -27,7 +27,7 @@ if (length(unused_args) > 0) {
 radius <- 50 # approximate radius of cortex to skull, in mm
 
 MPEs           <- read.table(file.path(PATH, 'MPEs', paste0(COND, '.1D')))
-colnames(MPEs) <- c('roll', 'pitch', 'yaw', 'dS', 'dL', 'dP')
+colnames(MPEs) <- c('dS', 'dL', 'dP', 'roll', 'pitch', 'yaw')
 
 
 circum <- 2 * pi * radius
