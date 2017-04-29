@@ -17,6 +17,8 @@ echo '	motion correction...'
 
 mcflirt -in $NIFTI_file -o $SUBJ_DIR/task_data/preproc/mt_$COND -refvol 1 -plots
 
+mv $SUBJ_DIR/task_data/preproc/mt_$COND.par $SUBJ_DIR/MPEs/$COND.1D
+
 # 3dvolreg -base 0 -prefix $SUBJ_DIR/task_data/preproc/mt_$COND -1Dfile $SUBJ_DIR/MPEs/$COND.1D $NIFTI_file
 # 3dAFNItoNIFTI -prefix $SUBJ_DIR/task_data/preproc/mt_$COND $SUBJ_DIR/task_data/preproc/mt_$COND+orig.HEAD
 # rm $SUBJ_DIR/task_data/preproc/mt_$COND+orig.*
