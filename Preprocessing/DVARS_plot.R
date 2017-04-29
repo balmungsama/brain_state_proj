@@ -33,7 +33,7 @@ output_path <- file.path(PATH, 'mot_analysis')
 fig_path    <- file.path(output_path, 'plots')
 dir.create(fig_path, recursive = T, showWarnings = F)
 
-DVARS <- read.csv( file.path(output_path, 'DVARS.csv'), header = T, row.names = 1 )
+DVARS <- read.csv( file.path(output_path, paste0(COND, '_DVARS.csv')), header = T, row.names = 1 )
 
 DVARS.mean <- mean(DVARS$DVARS)
 DVARS.mae  <- mean( abs( DVARS$DVARS - DVARS.mean ) )
