@@ -6,7 +6,7 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
-NIFTI_FILE=$SUBJ_DIR/task_data/preproc/snlmt_$COND
+NIFTI_FILE=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
 
 nvols=$(fslnvols $NIFTI_FILE)
 
