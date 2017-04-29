@@ -19,8 +19,8 @@ echo INITIALIZING PREPROCESSING --------------------
 # bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
 # bash $PREPROC/motreg.sh $SUBJ_DIR $COND $PREPROC
 # Rscript $PREPROC/deg2mm.R --PATH=$SUBJ_DIR --COND=$COND
-Rscript $PREPROC/framewise_disp.R --PATH=$SUBJ_DIR --COND=$COND
-# bash $PREPROC/meantsBOLD.sh $SUBJ_DIR $COND $PREPROC
+# Rscript $PREPROC/framewise_disp.R --PATH=$SUBJ_DIR --COND=$COND
+bash $PREPROC/meantsBOLD.sh $SUBJ_DIR $COND $PREPROC
 # Rscript $PREPROC/multiplot.R --PATH=$SUBJ_DIR --COND=$COND
 # Rscript $PREPROC/mot_summ.R --PATH=$SUBJ_DIR --COND=$COND
 # Rscript $PREPROC/scrubbing.R --PATH=$SUBJ_DIR --COND=$COND --FD=$FD --DVARS=$DVARS --RM=$RM
