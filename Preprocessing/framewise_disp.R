@@ -61,6 +61,9 @@ cFD <- data.frame(
   FD = abs(cFD)
   )
 
+print(paste0('voxel size: ', voxel_size))
+print(paste0('head rad  : ', head_rad))
+
 max_disp.FD    <- c(0.5 * voxel_size * 360 / (2 * pi * head_rad), 0.5 * voxel_size)
 print(paste0('line 64: ', max_disp.FD))
 max_disp.FD    <- max( max_disp.FD )
