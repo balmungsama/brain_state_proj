@@ -62,12 +62,12 @@ cFD <- data.frame(
   )
 
 max_disp.FD    <- c(0.5 * voxel_size * 360 / (2 * pi * head_rad), 0.5 * voxel_size)
-print('line 64')
+print('line 64: ', max_disp.FD)
 max_disp.FD    <- max( max_disp.FD )
-print('line 66')
+print('line 66: ' max_disp.FD)
 
-print(paste0('ALERT!: max_disp.FD is', max_disp.FD, '.'))
-print(paste0('ALERT!: max( abs(cFD$FD) ) is', max( abs(cFD$FD) ), '.'))
+print(paste0('ALERT!: max_disp.FD is ', max_disp.FD, '.'))
+print(paste0('ALERT!: max( abs(cFD$FD) ) is ', max( abs(cFD$FD) ), '.'))
 
 if( max( abs(cFD$FD), na.rm = T ) > max_disp.FD ) {
   max_disp.FD  <- max( max( abs(cFD$FD) ) )
