@@ -42,7 +42,7 @@ voxel_size <- as.numeric(voxel_size)
 voxel_size <- min(voxel_size)
 
 mpe_mm <- read.table( file.path( PATH, 'MPEs', paste0('mm_', COND, '.1D') ) )
-colnames(mpe_mm) <- c('roll', 'pitch', 'yaw', 'mmS', 'mmL', 'mmP')
+colnames(mpe_mm) <- c('mmS', 'mmL', 'mmP', 'roll', 'pitch', 'yaw')
 
 nrows <- dim(mpe_mm)[1]
 
