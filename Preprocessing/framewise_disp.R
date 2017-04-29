@@ -34,7 +34,7 @@ fig_path    <- file.path(output_path, 'plots')
 dir.create(fig_path, recursive = T, showWarnings = F)
 
 head_rad   <- 50 # distance from center for brain to cortex, in mm
-sys_cmd    <- paste0('3dinfo -adi -adj -adk ', file.path(PATH, 'task_data', 'preproc'),  '/snlmt_', COND, '.nii*' )
+sys_cmd    <- paste0('3dinfo -adi -adj -adk ', file.path(PATH, 'task_data', 'preproc'),  '/motreg_snlmt_', COND, '.nii*' )
 
 voxel_size <- system(sys_cmd, intern = T)
 voxel_size <- strsplit(voxel_size, split = '\t')[[1]]
