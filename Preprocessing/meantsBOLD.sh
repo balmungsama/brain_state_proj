@@ -6,6 +6,8 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
+echo '	computing DVARS... (this could take a while)'
+
 NIFTI_FILE=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
 
 nvols=$(fslnvols $NIFTI_FILE)
