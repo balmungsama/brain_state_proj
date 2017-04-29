@@ -63,7 +63,7 @@ cFD <- data.frame(
 
 max_disp.FD    <- c(0.5 * voxel_size * 360 / (2 * pi * head_rad), 0.5 * voxel_size)
 max_disp.FD    <- max( max_disp.FD )
-if( max( abs(cFD$FD) ) > max_disp.FD ) {
+if( max( abs(cFD$FD), na.rm = T ) > max_disp.FD ) {
   max_disp.FD  <- max( max( abs(cFD$FD) ) )
 }
 max_disp.scale <- 1
