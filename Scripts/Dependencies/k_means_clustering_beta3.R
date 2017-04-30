@@ -92,6 +92,7 @@ if(missing_requirements > 0) {
 	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
 	  }
 	  
+	  print(file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'))
 	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats') ) 
 	  
 	  win_start <- 1
