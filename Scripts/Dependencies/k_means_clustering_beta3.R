@@ -31,7 +31,7 @@ require(ggplot2)
 
 TYPE        <- 'group'
 TOP_DIR     <- '/home/hpc3586/OSU_data/all_233'
-ROI_LABELS  <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/ROIs/labels/HarvardOxford.txt'
+ROI_LABELS  <- '/home/hpc3586/brain_state_proj/ROIs/labels/HarvardOxford.txt'
 lateralized <- T
 kk          <- 7
 kk_reps     <- 1
