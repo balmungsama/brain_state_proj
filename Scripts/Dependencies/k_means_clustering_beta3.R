@@ -15,6 +15,7 @@ require(gplots)
 require(R.matlab)
 require(psych)
 require(ggplot2)
+require(stringr)
 
 # TYPE        <- args[6]
 # TOP_DIR     <- args[7]
@@ -113,7 +114,7 @@ if(missing_requirements > 0) {
 	    roi_cormat <- cor(roi_cormat)
 	    
 	    print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ) )
-	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ), row.names = T, col.names = T )
+	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), '_', str_pad(win_start + win_sz, dim(roi_tcourses)[1], pad = 0), '.csv') ), row.names = T, col.names = T )
 	    
 	    win_start <- win_start + 1
 	  }
