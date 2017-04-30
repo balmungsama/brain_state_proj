@@ -93,7 +93,7 @@ if(missing_requirements > 0) {
 	    if ( roi == 1 ) {
 	      roi_tcourses <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
 	      print(roi_tcourses)
-	      roi_tcourses <- matrix(data = as.numeric(roi_tcourses), ncol = 1)
+	      roi_tcourses <- matrix(data = roi_tcourses[,1], ncol = 1)
 	      print(roi_tcourses)
 	    } else {
 	      roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
