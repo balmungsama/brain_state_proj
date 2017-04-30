@@ -34,8 +34,8 @@ if (length(unused_args) > 0) {
 
 ##### import regression matrices of DVARS & FD #####
 
-DVARS <- read.table(file.path(PATH, paste0(COND, '_DVARS.par')) )
-FD    <- read.table(file.path(PATH, paste0(COND, '_FD.par'   )) )
+DVARS <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.par')) )
+FD    <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_FD.par'   )) )
 
 ##### combine regression matrices according to RM mode #####
 
