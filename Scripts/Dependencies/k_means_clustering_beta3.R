@@ -87,7 +87,7 @@ if(missing_requirements > 0) {
 		
 	  ##### create FC matrices #####
 	  
-	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F, pattern = '*_tcourse.txt$')
+	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F, pattern = '_tcourse.txt')
 	  for ( roi in 1:length(roi_files) ) {
 	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_twindows', paste0('roi_', roi, '_tcourse.txt') ) )
 	  }
