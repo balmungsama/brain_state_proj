@@ -77,6 +77,8 @@ if(missing_requirements > 0) {
 	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_twindows', paste0('roi_', roi, '_tcourse.txt') ) )
 	  }
 	  
+	  dir.create(path = file.path(TOP_DIR, subj, 'roi_twindows', 'cor_mats') ) 
+	  
 	  win_start <- 1
 	  while ( win_start < length(roi_files) ) {
 	    browser()
