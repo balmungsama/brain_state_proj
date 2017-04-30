@@ -48,7 +48,7 @@ elif [[ $mode == "group" ]]; then
 			cd roi_tcourses
 
 			for roi in $(ls $ROI_DIR); do
-				# echo $roi
+				echo $roi
 				roi=${roi%'.nii.gz'*}
 				fslmeants -i ../task_data/preproc/scrubbed_motreg_snlmt_$cond.nii -m $ROI_DIR/$roi'.nii'* -o $roi'_tcourse.txt'
 			done
