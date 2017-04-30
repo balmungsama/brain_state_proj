@@ -5,6 +5,7 @@ RM=$RM
 
 echo '	computing DVARS...'
 
+mkdir $SUBJ_DIR/mot_analysis
 mkdir $SUBJ_DIR/mot_analysis/plots
 
 NIFTI_FILE=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
