@@ -45,11 +45,13 @@ case $DATA in
 
 		##### to submit the jobs #####
 
+		mkdir -p $script_path/logs 
+
 		if [[ $mode == "subj" ]]; then
 
 			subj=$path
 
-			mkdir $subj/roi_tcourses
+			mkdir -p $subj/roi_tcourses
 
 			qsub -q abaqus.q $script_path/Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
 
@@ -58,7 +60,7 @@ case $DATA in
 				for subj in $(ls $path); do
 
 
-					mkdir $path/$subj/roi_tcourses
+					mkdir -p $path/$subj/roi_tcourses
 
 					qsub -q abaqus.q -N pp_$subj -o $script_path/logs/$DATE/pp_$subj.out -e $script_path/logs/$DATE/pp_$subj.err $script_path/Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path/$subj $roi $cond 
 
