@@ -106,7 +106,7 @@ if(missing_requirements > 0) {
 	  
 	  print(dim(roi_tcourses)[1])
 	  win_start <- 1
-	  while ( win_start < dim(roi_tcourses)[1] ) {
+	  while ( win_start + win_sz <= dim(roi_tcourses)[1] ) {
 	    # browser()
 	    
 	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
@@ -115,7 +115,7 @@ if(missing_requirements > 0) {
 	    print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ) )
 	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ), row.names = T, col.names = T )
 	    
-	    win_start <- win_start + win_sz
+	    win_start <- win_start + 1
 	  }
 	  
 	  ##### read matrices #####
