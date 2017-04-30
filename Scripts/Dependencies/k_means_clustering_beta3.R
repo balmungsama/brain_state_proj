@@ -104,7 +104,7 @@ if(missing_requirements > 0) {
 	  
 	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'), showWarnings = F ) 
 	  
-	  length(roi_files)
+	  print(length(roi_files))
 	  win_start <- 1
 	  while ( win_start < length(roi_files) ) {
 	    # browser()
