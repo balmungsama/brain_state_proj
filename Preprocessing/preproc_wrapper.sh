@@ -20,7 +20,7 @@ echo INITIALIZING PREPROCESSING --------------------
 # bash $PREPROC/motreg.sh $SUBJ_DIR $COND $PREPROC
 # Rscript $PREPROC/deg2mm.R --PATH=$SUBJ_DIR --COND=$COND
 # Rscript $PREPROC/framewise_disp.R --PATH=$SUBJ_DIR --COND=$COND
-# bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC
+bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC
 Rscript $PREPROC/mk_reg_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 # bash $PREPROC/meantsBOLD.sh $SUBJ_DIR $COND $PREPROC
 # Rscript $PREPROC/multiplot.R --PATH=$SUBJ_DIR --COND=$COND
