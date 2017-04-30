@@ -30,9 +30,9 @@ cat('  Creating confound matrix...')
 
 ##### values for testing script #####
 
-# PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing/tmp_data'
-# COND <- 'Resting'
-# RM   <- 'UNION'
+PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing'
+COND <- 'Resting'
+RM   <- 'UNION'
 
 ##### import regression matrices of DVARS & FD #####
 
@@ -54,7 +54,9 @@ if (RM == 'UNION') {
     rm.col <- c( rm.col, which(CONFOUND.row == 1)[2] )
   }
   
-  CONFOUND <- CONFOUND[, -rm.col]
+  if (length(rm.col) > 0) {
+    CONFOUND <- CONFOUND[, -rm.col]
+  }
   
 } else if (RM == 'INTERSECT') {
   CONFOUND <- cbind(DVARS, FD)
@@ -68,11 +70,22 @@ if (RM == 'UNION') {
     keep.col <- c( keep.col, which(CONFOUND.row == 1)[2] )
   }
   
-  CONFOUND <- CONFOUND[, keep.col]
+  if (length(keep.col) > 0) {
+    CONFOUND <- CONFOUND[, keep.col]
+  } else {
+    
+    CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
+  
+    }
+  
 } else if (RM == 'FD') {
+  
   CONFOUND <- FD
+
 } else if (RM == 'DVARS') {
+  
   CONFOUND <- DVARS
+  
 }
 
 ##### save the confound matrix #####
