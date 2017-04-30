@@ -30,9 +30,9 @@ cat('  Creating confound matrix...')
 
 ##### values for testing script #####
 
-PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing'
-COND <- 'Resting'
-RM   <- 'UNION'
+# PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing'
+# COND <- 'Resting'
+# RM   <- 'UNION'
 
 ##### import regression matrices of DVARS & FD #####
 
