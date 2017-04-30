@@ -26,6 +26,8 @@ if (length(unused_args) > 0) {
   print(paste('WARNING: unused arguments ', unused_args))
 }
 
+cat('  Creating confound matrix...')
+
 ##### values for testing script #####
 
 # PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing/tmp_data'
