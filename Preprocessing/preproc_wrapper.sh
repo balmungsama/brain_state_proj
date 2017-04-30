@@ -26,3 +26,4 @@ Rscript $PREPROC/mk_reg_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 # Rscript $PREPROC/multiplot.R --PATH=$SUBJ_DIR --COND=$COND
 # Rscript $PREPROC/mot_summ.R --PATH=$SUBJ_DIR --COND=$COND
 # Rscript $PREPROC/scrubbing.R --PATH=$SUBJ_DIR --COND=$COND --FD=$FD --DVARS=$DVARS --RM=$RM
+bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC

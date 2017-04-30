@@ -1,7 +1,7 @@
 SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
-RM=$RM
+RM=$4
 
 echo '	computing DVARS...'
 
