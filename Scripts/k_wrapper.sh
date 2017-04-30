@@ -73,8 +73,7 @@ case $DATA in
 
 		echo "Finished."
 		;;
-	2)
-		echo "FC Matrices & K-means clustering"
+	2)	echo "FC Matrices & K-means clustering"
 		echo "--------------------------------"
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
@@ -94,10 +93,14 @@ case $DATA in
 		echo -n "Number of iterations used to synthesize representative clusters:  < NOT CURRENTLY WORKING >"
 		read kk_pool
 		kk_pool=1 ####### to remove once this if fixed
+		echo -n "Size of the time window (in TRs):	"
+		read win_sz
+		echo -n "Size of the time skip (in TRs):	"
+		read tskip
 
 		clear
 		echo 'Computing correlation matrices...'
-		Rscript Dependencies/k_means_clustering_beta3.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool
+		Rscript Dependencies/k_means_clustering_beta3.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool $win_sz $tskip
 		echo 'Finished.'
 		;;
 	3)

@@ -5,6 +5,8 @@
 ## 
 ## Move the code computing the correlations to behavioural performance to new script.
 
+#TODO add win_sz and tskip to variable list
+#TODO add hierchical clustering
 
 # rm(list=ls())
 require(stats)
@@ -22,15 +24,20 @@ kk          <- args[10]
 kk_reps     <- args[11]
 conf_lvl    <- args[12]
 kk_pool     <- args[13]
+win_sz      <- args[14]
+tskip       <- args[15]
 
 ## stop the function if any of these variables are missing
 required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl')
 missing_requirements <- 0
+
 for(req_var in required_variables) {
 	missing_requirements <- as.numeric(!exists(req_var)) + missing_requirements
 }
-if(missing_requirements > 0) {stop} 
-else {
+
+if(missing_requirements > 0) {
+  stop
+} else {
 
 	#### import brain roi labels ####
 	labels  <- read.csv(ROI_LABELS, header = F)
@@ -58,11 +65,32 @@ else {
 	}
 
 	for(subj in subj_dirs) {
-		if(!dir.exists(file.path(TOP_DIR, subj, 'roi_twindows'))) {
+		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F) ) == 0 ) {
 			print(paste0('		Subject ', subj, ' does not have any time-window correlation matrices.'))
 			next
 		}       # check if correlation matrices for each time window exist. If it doesn't exist, skip to next participant
 		
+	  ##### create FC matrices #####
+	  
+	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F, pattern = '*_tcourse.txt$')
+	  for ( roi in 1:length(roi_files) ) {
+	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_twindows', paste0('roi_', roi, '_tcourse.txt') ) )
+	  }
+	  
+	  win_start <- 1
+	  while ( win_start < length(roi_files) ) {
+	    browser()
+	    
+	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
+	    roi_cormat <- cor(roi_cormat)
+	    
+	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_twindows', 'cor_mats', paste0('win_', win_start, '_', win_start + win_sz, '.csv') ), row.names = T, col.names = T )
+	    
+	    win_start <- win_start + win_sz
+	  }
+	  
+	  ##### read matrices #####
+	  
 		mat_files <- dir(path = file.path(TOP_DIR, subj, 'roi_twindows')) # list all of the files contained within the roi timewindows folder
 		
 		### This loop is to read into R all time window matrices for all subjects
