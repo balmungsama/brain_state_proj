@@ -27,8 +27,13 @@ kk_pool     <- args[13]
 win_sz      <- args[14]
 tskip       <- args[15]
 
+##### test values #####
+
+TOP_DIR    <- '/home/hpc3586/OSU_data/all_233'
+ROI_LABELS <- 
+
 ## stop the function if any of these variables are missing
-required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl')
+required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl', 'win_sz', 'tskip')
 missing_requirements <- 0
 
 for(req_var in required_variables) {
