@@ -80,19 +80,19 @@ if(missing_requirements > 0) {
 	}
 
 	for(subj in subj_dirs) {
-		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F) ) == 0 ) {
+		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
 			print(paste0('		Subject ', subj, ' does not have any time-window correlation matrices.'))
 			next
 		}       # check if correlation matrices for each time window exist. If it doesn't exist, skip to next participant
 		
 	  ##### create FC matrices #####
 	  
-	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_twindows'), recursive = F, pattern = '_tcourse.txt')
+	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F, pattern = '_tcourse.txt')
 	  for ( roi in 1:length(roi_files) ) {
-	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_twindows', paste0('roi_', roi, '_tcourse.txt') ) )
+	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
 	  }
 	  
-	  dir.create(path = file.path(TOP_DIR, subj, 'roi_twindows', 'cor_mats') ) 
+	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats') ) 
 	  
 	  win_start <- 1
 	  while ( win_start < length(roi_files) ) {
@@ -101,20 +101,20 @@ if(missing_requirements > 0) {
 	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
 	    roi_cormat <- cor(roi_cormat)
 	    
-	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_twindows', 'cor_mats', paste0('win_', win_start, '_', win_start + win_sz, '.csv') ), row.names = T, col.names = T )
+	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', win_start + win_sz, '.csv') ), row.names = T, col.names = T )
 	    
 	    win_start <- win_start + win_sz
 	  }
 	  
 	  ##### read matrices #####
 	  
-		mat_files <- dir(path = file.path(TOP_DIR, subj, 'roi_twindows')) # list all of the files contained within the roi timewindows folder
+		mat_files <- dir(path = file.path(TOP_DIR, subj, 'roi_tcourses')) # list all of the files contained within the roi timewindows folder
 		
 		### This loop is to read into R all time window matrices for all subjects
 		for(mat in mat_files) {
 			mat <- strsplit(mat, split = '.csv')[[1]][1]                                       # get the name of the time window for orgazational purposes
 			assign(x = paste0(subj, '_', mat),                                                 # create a variable names after the subject and the corel matrix of the time window of interest
-						 read.csv(file.path(TOP_DIR, subj, 'roi_twindows', (paste0(mat, '.csv'))),   # populate the variable with the correlation matrix collected for the time window of interest
+						 read.csv(file.path(TOP_DIR, subj, 'roi_tcourses', (paste0(mat, '.csv'))),   # populate the variable with the correlation matrix collected for the time window of interest
 											row.names = 1, 
 											header = T, 
 											check.names = F) )
