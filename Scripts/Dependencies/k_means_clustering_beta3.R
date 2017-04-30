@@ -103,7 +103,7 @@ if(missing_requirements > 0) {
 	  colnames(roi_tcourses) <- 1:length(roi_files)
 	  
 	  print(file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'))
-	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats') ) 
+	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'), showWarnings = F ) 
 	  
 	  win_start <- 1
 	  while ( win_start < length(roi_files) ) {
