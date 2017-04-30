@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 
-# export FSF_TEMPLATE='Dependencies/req_files/ppi_feat_template.fsf'
+script_path='/home/hpc3586/brain_state_proj/Scripts'
 
 clear
 echo "WELCOME TO THE BRAIN STATE"
@@ -51,16 +51,16 @@ case $DATA in
 
 			mkdir $subj/roi_tcourses
 
-			qsub -q abaqus.q Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
+			qsub -q abaqus.q $script_path/Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
 
 		elif [[ $mode == "group" ]]; then
-				cd $path
+
 				for subj in $(ls $path); do
 
 
 					mkdir $path/$subj/roi_tcourses
 
-					qsub -q abaqus.q Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path/$subj $roi $cond 
+					qsub -q abaqus.q -N pp_$subj -o $script_path/logs/$DATE/pp_$subj.out -e $script_path/logs/$DATE/pp_$subj.err $script_path/Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path/$subj $roi $cond 
 
 
 				done
