@@ -29,8 +29,18 @@ tskip       <- args[15]
 
 ##### test values #####
 
-TOP_DIR    <- '/home/hpc3586/OSU_data/all_233'
-ROI_LABELS <- 
+TYPE        <- 'group'
+TOP_DIR     <- '/home/hpc3586/OSU_data/all_233'
+ROI_LABELS  <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/ROIs/labels/HarvardOxford.txt'
+lateralized <- T
+kk          <- 7
+kk_reps     <- 1
+conf_lvl    <- 0.95
+kk_pool     <- 1
+win_sz      <- 15
+tskip       <- 1
+
+##### main body #####
 
 ## stop the function if any of these variables are missing
 required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl', 'win_sz', 'tskip')
