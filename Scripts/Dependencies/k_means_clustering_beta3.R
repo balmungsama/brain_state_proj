@@ -107,7 +107,7 @@ if(missing_requirements > 0) {
 	  
 	  win_start <- 1
 	  while ( win_start < length(roi_files) ) {
-	    browser()
+	    # browser()
 	    
 	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
 	    roi_cormat <- cor(roi_cormat)
