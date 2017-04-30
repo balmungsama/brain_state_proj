@@ -96,9 +96,11 @@ if(missing_requirements > 0) {
 	      roi_tcourses <- matrix(data = roi_tcourses[,1], ncol = 1)
 	      print(roi_tcourses)
 	    } else {
-	      roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
+	      roi_tcourses <- cbind(roi_tcourses, read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) ))
 	    }
 	  }
+	  
+	  colnames(roi_tcourses) <- 1:length(roi_files)
 	  
 	  print(file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'))
 	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats') ) 
