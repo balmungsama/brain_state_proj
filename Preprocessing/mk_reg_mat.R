@@ -36,8 +36,20 @@ RM   <- 'UNION'
 
 ##### import regression matrices of DVARS & FD #####
 
-DVARS <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.par')) )
-FD    <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_FD.par'   )) )
+vals.DVARS <- read.table( file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.val')) )
+
+if ( file.exists(file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.par')) ) ) {
+  DVARS <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.par')) )
+} else {
+  DVARS <- matrix(data = 0, ncol = 1, nrow = dim(vals.DVARS)[1] )
+}
+
+if ( file.exists(file.path(PATH, 'mot_analysis', paste0(COND, '_FD.par'   )) ) ) {
+  FD    <- read.table(file.path(PATH, 'mot_analysis', paste0(COND, '_FD.par'   )) )
+} else {
+  FD    <- matrix(data = 0, ncol = 1, nrow = dim(vals.DVARS)[1] )
+}
+
 
 ##### combine regression matrices according to RM mode #####
 
@@ -86,6 +98,10 @@ if (RM == 'UNION') {
   
   CONFOUND <- DVARS
   
+}
+
+if( sum(CONFOUND) == 0 ) {
+  CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
 }
 
 ##### save the confound matrix #####
