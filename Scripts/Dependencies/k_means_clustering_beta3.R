@@ -104,9 +104,9 @@ if(missing_requirements > 0) {
 	  
 	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'), showWarnings = F ) 
 	  
-	  print(length(roi_files))
+	  print(dim(roi_tcourses)[1])
 	  win_start <- 1
-	  while ( win_start < length(roi_files) ) {
+	  while ( win_start < dim(roi_tcourses)[1] ) {
 	    # browser()
 	    
 	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
