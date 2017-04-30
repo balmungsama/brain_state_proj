@@ -40,8 +40,35 @@ case $DATA in
 
 		clear
 		echo "Creating ROI time courses..."
-		bash Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
+		# qsub -q abaqus.q Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
 		# echo $mode
+
+		##### to submit the jobs #####
+
+		if [[ $mode == "subj" ]]; then
+
+			subj=$path
+
+			mkdir $subj/roi_tcourses
+
+			qsub -q abaqus.q Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path $roi $cond 
+
+		elif [[ $mode == "group" ]]; then
+				cd $path
+				for subj in $(ls $path); do
+
+
+					mkdir $path/$subj/roi_tcourses
+
+					qsub -q abaqus.q Dependencies/sliding_timewin.sh $mode $t_win $t_skip $path/$subj $roi $cond 
+
+
+				done
+
+		else
+				echo "Please enter either 'subj' or 'group'"
+		fi
+
 		echo "Finished."
 		;;
 	2)
