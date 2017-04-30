@@ -112,7 +112,8 @@ if(missing_requirements > 0) {
 	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
 	    roi_cormat <- cor(roi_cormat)
 	    
-	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', win_start + win_sz, '.csv') ), row.names = T, col.names = T )
+	    print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ) )
+	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', win_start, '_', (win_start + win_sz), '.csv') ), row.names = T, col.names = T )
 	    
 	    win_start <- win_start + win_sz
 	  }
