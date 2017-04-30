@@ -89,7 +89,13 @@ if(missing_requirements > 0) {
 	  
 	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F, pattern = '_tcourse.txt')
 	  for ( roi in 1:length(roi_files) ) {
-	    roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
+	    
+	    if ( roi == 1 ) {
+	      roi_tcourses <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
+	      roi_tcourses <- matrix(data = roi_tcourses, ncol = 1)
+	    } else {
+	      roi_tcourses[, roi] <- read.table( file.path(TOP_DIR, subj, 'roi_tcourses', paste0('roi_', roi, '_tcourse.txt') ) )
+	    }
 	  }
 	  
 	  print(file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'))
