@@ -6,6 +6,8 @@ COND=$2
 
 echo '	slice-time correction...'
 
+mkdir $SUBJ_DIR/task_data/preproc
+
 TR=$(3dinfo -tr $SUBJ_DIR/task_data/$COND.nii*)
 
 slicetimer -i $SUBJ_DIR/task_data/$COND -o $SUBJ_DIR/task_data/preproc/t_$COND -r $TR

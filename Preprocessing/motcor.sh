@@ -8,7 +8,6 @@ COND=$2   		 # name of condition
 PREPROC=$3
 
 
-mkdir $SUBJ_DIR/task_data/preproc
 mkdir $SUBJ_DIR/MPEs
 
 NIFTI_file=$SUBJ_DIR/task_data/preproc/t_$COND.nii*
