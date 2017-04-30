@@ -16,16 +16,16 @@ require(R.matlab)
 require(psych)
 require(ggplot2)
 
-TYPE        <- args[6]
-TOP_DIR     <- args[7]
-ROI_LABELS  <- args[8]
-lateralized <- args[9]
-kk          <- args[10]
-kk_reps     <- args[11]
-conf_lvl    <- args[12]
-kk_pool     <- args[13]
-win_sz      <- args[14]
-tskip       <- args[15]
+# TYPE        <- args[6]
+# TOP_DIR     <- args[7]
+# ROI_LABELS  <- args[8]
+# lateralized <- args[9]
+# kk          <- args[10]
+# kk_reps     <- args[11]
+# conf_lvl    <- args[12]
+# kk_pool     <- args[13]
+# win_sz      <- args[14]
+# tskip       <- args[15]
 
 ##### test values #####
 
