@@ -84,7 +84,7 @@ if(missing_requirements > 0) {
 		stop
 	}
 
-	subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
+	# subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
 	
 	for(subj in subj_dirs) {
 		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
@@ -376,28 +376,28 @@ if(missing_requirements > 0) {
 	row.cormat <- read.csv(file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = NULL, header = F)
 	
 	distance.matrix      <- dist( row.cormat, method = "euclidean" )**2
-	hierarchical.cluster <- hclust( distance.matrix, method = "ward.D" )
-	
-	cbind( hierarchical.cluster$merge,
-	       hierarchical.cluster$height)
-	
-	png(filename = file.path(TOP_DIR, '..', 'kmeans', 'hierarchy.png' ))
-	par(cex = 1)
-	plot( hierarchical.cluster, 
-	      xlab = 'Individual Undergrad',
-	      ylab = 'Distance')
-	dev.off()
-	
-	png(filename = file.path(TOP_DIR, '..', 'kmeans', 'scree.png' ))
-	par(cex = 1)
-	plot( hierarchical.cluster$height, 
-	      ylab = 'Distance between combined clusters',
-	      xlab = 'Agglomeration Step') 
-	dev.off()
+	# hierarchical.cluster <- hclust( distance.matrix, method = "ward.D" )
+	# 
+	# cbind( hierarchical.cluster$merge,
+	#        hierarchical.cluster$height)
+	# 
+	# png(filename = file.path(TOP_DIR, '..', 'kmeans', 'hierarchy.png' ))
+	# par(cex = 1)
+	# plot( hierarchical.cluster, 
+	#       xlab = 'Individual Undergrad',
+	#       ylab = 'Distance')
+	# dev.off()
+	# 
+	# png(filename = file.path(TOP_DIR, '..', 'kmeans', 'scree.png' ))
+	# par(cex = 1)
+	# plot( hierarchical.cluster$height, 
+	#       ylab = 'Distance between combined clusters',
+	#       xlab = 'Agglomeration Step') 
+	# dev.off()
 	
 	cluster.membership <- cutree( hierarchical.cluster, k = 9 )
 	
-	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen', centers = 9 )
+	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen', centers = 7 )
 	
 	writeMat( file.path(TOP_DIR, '..', 'kmeans', 'kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
 	
