@@ -126,7 +126,7 @@ if(missing_requirements > 0) {
 	    
 	    roi_cormat      <- cor(roi_cormat)
 	    
-	    if ( win_start == 1 ) {
+	    if ( !exists('row.cormat') ) {
 	      row.cormat <- c(roi_cormat)
 	    } else {
 	      row.cormat <- rbind(row.cormat, c(roi_cormat) )
@@ -359,7 +359,7 @@ if(missing_requirements > 0) {
 	
 	cluster.membership <- cutree( hierarchical.cluster, k = 9 )
 	
-	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen' )
+	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen', centers = 9 )
 	
 	writeMat( file.path(TOP_DIR, '..', 'kmeans', 'kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
 	
