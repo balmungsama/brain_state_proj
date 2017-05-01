@@ -82,7 +82,7 @@ if(missing_requirements > 0) {
 
 	for(subj in subj_dirs) {
 		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
-			print(paste0('		Subject ', subj, ' does not have any time-window correlation matrices.'))
+		  cat( paste0(' - ', subj, ' * no time-window correlation matrices', '\n') )
 			next
 		}       # check if correlation matrices for each time window exist. If it doesn't exist, skip to next participant
 		
@@ -137,8 +137,8 @@ if(missing_requirements > 0) {
 	                               paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
 	                                      '_', 
 	                                      str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
-	              row.names = F, 
-	              col.names = F )
+	              row.names = labels, 
+	              col.names = labels )
 	    
 	    win_start <- win_start + 1
 	  }
@@ -331,6 +331,8 @@ if(missing_requirements > 0) {
 		# }
 ##### end of comment block #####
 	}
+	
+	dir.create( file.path(TOP_DIR, '..', 'kmeans'), showWarnings = F )
 	
 	##### distance matrix calculation #####
 	
