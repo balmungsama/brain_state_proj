@@ -126,12 +126,11 @@ if(missing_requirements > 0) {
 	    
 	    roi_cormat      <- cor(roi_cormat)
 	    
-	    
-	    # print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
-	    #                  paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
-	    #                         '_', 
-	    #                         str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), 
-	    #                         '.csv') ) )
+	    if ( win_start == 1 ) {
+	      row.cormat <- c(roi_cormat)
+	    } else {
+	      row.cormat <- rbind(row.cormat, c(roi_cormat) )
+	    }
 	    
 	    write.csv(roi_cormat, 
 	              file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
@@ -143,6 +142,8 @@ if(missing_requirements > 0) {
 	    
 	    win_start <- win_start + 1
 	  }
+	  
+	  
 	  
 	  ##### read matrices #####
 	  
@@ -327,7 +328,7 @@ if(missing_requirements > 0) {
 	# 							labRow = labels,
 	# 							labCol = labels,
 	# 							col = heat_cols)
-		}
+		# }
 	}
 }
 
