@@ -155,24 +155,25 @@ if(missing_requirements > 0) {
 	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'), append = T)
 	        
 	        
+	      } else {
+	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
 	      }
 	      
 	      # if ( sum(row.cormat > 1) > 0) {
 	      #   print('some values are greaater than one')
 	      # }
 	      
-	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
 	    }
 	    
-	    if( sum(is.na(row.cormat) ) == 0) {
-	      write.csv(roi_cormat, 
-	                file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
-	                                 paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
-	                                        '_', 
-	                                        str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
-	                row.names = labels, 
-	                col.names = labels )
-	    }
+	    
+	    write.csv(roi_cormat, 
+	              file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
+	                               paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	                                      '_', 
+	                                      str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
+	              row.names = labels, 
+	              col.names = labels )
+	    
 	    
 	  }
 	  
