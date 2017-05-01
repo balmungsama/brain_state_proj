@@ -84,7 +84,7 @@ if(missing_requirements > 0) {
 		stop
 	}
 
-	subj_dirs <- subj_dirs[1:50]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
+	subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
 	
 	for(subj in subj_dirs) {
 		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
