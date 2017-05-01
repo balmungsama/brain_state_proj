@@ -130,16 +130,16 @@ if(missing_requirements > 0) {
 	    
 	    if ( !exists('row.cormat') ) {
 	      row.cormat <- c(roi_cormat)
-	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv') )
+	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F )
 	      
-	      print('it works fine')
+	      # print('it works fine')
 	      
 	    } else {
 	      
-	      print('something is wrong')
+	      # print('something is wrong')
 	      
 	      row.cormat <- c(roi_cormat)
-	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T )
+	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F )
 	    }
 	    
 	    write.csv(roi_cormat, 
@@ -343,6 +343,8 @@ if(missing_requirements > 0) {
 	}
 	
 	##### distance matrix calculation #####
+	
+	row.cormat <- read.csv(file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = NULL, header = F)
 	
 	distance.matrix      <- dist( row.cormat, method = "euclidean" )**2
 	hierarchical.cluster <- hclust( distance.matrix, method = "ward.D" )
