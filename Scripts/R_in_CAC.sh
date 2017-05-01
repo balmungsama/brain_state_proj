@@ -7,4 +7,4 @@
 
 rscript=$1
 
-Rscript $1
+Rscript $rscript
