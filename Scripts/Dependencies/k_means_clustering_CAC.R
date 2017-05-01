@@ -133,7 +133,8 @@ if(missing_requirements > 0) {
 	    if ( subj_count == 0 ) {
 	      row.cormat <- c(roi_cormat)
 	      row.cormat <- matrix(data = row.cormat, nrow = 1)
-	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F )
+	      
+	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F)
 	      
 	      # print('it works fine')
 	      
@@ -143,6 +144,11 @@ if(missing_requirements > 0) {
 	      
 	      row.cormat <- c(roi_cormat)
 	      row.cormat <- matrix(data = row.cormat, nrow = 1)
+	      
+	      if ( sum(row.cormat > 1) > 0) {
+	        print('some values are greaater than one')
+	      }
+	      
 	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F )
 	    }
 	    
