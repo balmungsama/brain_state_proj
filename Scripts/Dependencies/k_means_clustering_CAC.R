@@ -55,6 +55,8 @@ if(missing_requirements > 0) {
   stop
 } else {
 
+  dir.create( file.path(TOP_DIR, '..', 'kmeans'), showWarnings = F )
+  
 	#### import brain roi labels ####
 	labels  <- read.csv(ROI_LABELS, header = F)
 	labels2 <- NULL
@@ -124,12 +126,14 @@ if(missing_requirements > 0) {
 	    
 	    # print(roi_cormat)
 	    
-	    roi_cormat      <- cor(roi_cormat)
+	    roi_cormat <- cor(roi_cormat)
 	    
 	    if ( !exists('row.cormat') ) {
 	      row.cormat <- c(roi_cormat)
+	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv') )
 	    } else {
-	      row.cormat <- rbind(row.cormat, c(roi_cormat) )
+	      row.cormat <- c(roi_cormat)
+	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T )
 	    }
 	    
 	    write.csv(roi_cormat, 
@@ -331,9 +335,6 @@ if(missing_requirements > 0) {
 		# }
 ##### end of comment block #####
 	}
-	
-	dir.create( file.path(TOP_DIR, '..', 'kmeans'), showWarnings = F )
-	write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv') )
 	
 	##### distance matrix calculation #####
 	
