@@ -333,6 +333,7 @@ if(missing_requirements > 0) {
 	}
 	
 	dir.create( file.path(TOP_DIR, '..', 'kmeans'), showWarnings = F )
+	write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv') )
 	
 	##### distance matrix calculation #####
 	
@@ -355,6 +356,12 @@ if(missing_requirements > 0) {
 	      ylab = 'Distance between combined clusters',
 	      xlab = 'Agglomeration Step') 
 	dev.off()
+	
+	cluster.membership <- cutree( hierarchical.cluster, k = 9 )
+	
+	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen' )
+	
+	writeMat( file.path(TOP_DIR, '..', 'kmeans', 'kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
 	
 }
 
