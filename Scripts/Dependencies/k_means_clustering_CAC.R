@@ -395,8 +395,9 @@ if(missing_requirements > 0) {
 	#       xlab = 'Agglomeration Step') 
 	# dev.off()
 	
-	cluster.membership <- cutree( hierarchical.cluster, k = 9 )
+	# cluster.membership <- cutree( hierarchical.cluster, k = 9 )
 	
+	cat('Running k-means clustering...\n')
 	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen', centers = 7 )
 	
 	writeMat( file.path(TOP_DIR, '..', 'kmeans', 'kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
