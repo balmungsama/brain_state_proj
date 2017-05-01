@@ -110,11 +110,20 @@ if(missing_requirements > 0) {
 	  while ( win_start + win_sz <= dim(roi_tcourses)[1] ) {
 	    # browser()
 	    
-	    roi_cormat <- roi_tcourses[ win_start:(win_start + win_sz) , ]
-	    roi_cormat <- cor(roi_cormat)
+	    roi_cormat      <- roi_tcourses[ win_start:(win_start + win_sz) , ]
+	    roi_cormat.zero <- c(which(roi_cormat == 0, arr.ind = T)[, 'row'])
+	    roi_cormat.zero <- unique(roi_cormat.zero)
+	    roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
+	    roi_cormat      <- cor(roi_cormat)
 	    
-	    print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), '_', str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ) )
-	    write.csv(roi_cormat, file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), '_', str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), row.names = T, col.names = T )
+	    # print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), '_', str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ) )
+	    write.csv(roi_cormat, 
+	              file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
+	                               paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	                                      '_', 
+	                                      str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
+	              row.names = F, 
+	              col.names = F )
 	    
 	    win_start <- win_start + 1
 	  }
