@@ -88,6 +88,8 @@ if(missing_requirements > 0) {
 		
 	  ##### create FC matrices #####
 	  
+	  print( paste0(' - ', subj) )
+	  
 	  roi_files <- list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F, pattern = '_tcourse.txt')
 	  for ( roi in 1:length(roi_files) ) {
 	    
@@ -105,7 +107,7 @@ if(missing_requirements > 0) {
 	  
 	  dir.create(path = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats'), showWarnings = F ) 
 	  
-	  print(dim(roi_tcourses)[1])
+	  # print(dim(roi_tcourses)[1])
 	  win_start <- 1
 	  while ( win_start + win_sz <= dim(roi_tcourses)[1] ) {
 	    # browser()
