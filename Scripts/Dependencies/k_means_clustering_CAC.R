@@ -47,6 +47,8 @@ tskip       <- 1
 required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl', 'win_sz', 'tskip')
 missing_requirements <- 0
 
+subj_count <- 0
+
 for(req_var in required_variables) {
 	missing_requirements <- as.numeric(!exists(req_var)) + missing_requirements
 }
@@ -128,7 +130,7 @@ if(missing_requirements > 0) {
 	    
 	    roi_cormat <- cor(roi_cormat)
 	    
-	    if ( !exists('row.cormat') ) {
+	    if ( subj_count == 0 ) {
 	      row.cormat <- c(roi_cormat)
 	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F )
 	      
@@ -153,7 +155,7 @@ if(missing_requirements > 0) {
 	    win_start <- win_start + 1
 	  }
 	  
-	  
+	  subj_count <- subj_count + 1
 	  
 ##### read matrices #####
 	  
