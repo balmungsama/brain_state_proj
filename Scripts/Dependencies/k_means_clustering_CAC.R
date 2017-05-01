@@ -131,7 +131,13 @@ if(missing_requirements > 0) {
 	    if ( !exists('row.cormat') ) {
 	      row.cormat <- c(roi_cormat)
 	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv') )
+	      
+	      print('it works fine')
+	      
 	    } else {
+	      
+	      print('something is wrong')
+	      
 	      row.cormat <- c(roi_cormat)
 	      write.csv( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T )
 	    }
