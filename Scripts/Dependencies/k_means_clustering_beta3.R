@@ -113,6 +113,7 @@ if(missing_requirements > 0) {
 	    roi_cormat      <- roi_tcourses[ win_start:(win_start + win_sz) , ]
 	    roi_cormat.zero <- c(which(roi_cormat == 0, arr.ind = T)[, 'row'])
 	    roi_cormat.zero <- unique(roi_cormat.zero)
+	    print(paste0('the zero rows are', roi_cormat.zero))
 	    roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
 	    
 	    print(roi_cormat)
@@ -120,11 +121,12 @@ if(missing_requirements > 0) {
 	    roi_cormat      <- cor(roi_cormat)
 	    
 	    
-	    print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
-	                     paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
-	                            '_', 
-	                            str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), 
-	                            '.csv') ) )
+	    # print( file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
+	    #                  paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	    #                         '_', 
+	    #                         str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), 
+	    #                         '.csv') ) )
+	    
 	    write.csv(roi_cormat, 
 	              file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
 	                               paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
