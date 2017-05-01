@@ -143,7 +143,10 @@ if(missing_requirements > 0) {
 	      # print('something is wrong')
 	      
 	      row.cormat <- c(roi_cormat)
+	      row.cormat <- c(roi_cormat, 5)
 	      row.cormat <- matrix(data = row.cormat, nrow = 1)
+	      
+	      
 	      
 	      if ( sum(row.cormat > 1) > 0) {
 	        print('some values are greaater than one')
