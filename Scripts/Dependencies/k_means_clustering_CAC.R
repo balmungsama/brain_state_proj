@@ -152,7 +152,10 @@ if(missing_requirements > 0) {
 	                                                                         '_', 
 	                                                                         str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)) ,
 	                                                                  NULL), nrow = 1 )
-	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'))
+	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'), append = T)
+	        
+	        next
+	        
 	      }
 	      
 	      # if ( sum(row.cormat > 1) > 0) {
