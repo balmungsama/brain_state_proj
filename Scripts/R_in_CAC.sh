@@ -10,4 +10,6 @@
 
 rscript=$1
 
+echo $rscript
+
 Rscript $rscript
