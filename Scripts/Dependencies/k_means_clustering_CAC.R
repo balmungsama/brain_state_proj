@@ -114,65 +114,65 @@ if(missing_requirements > 0) {
 	  # print(dim(roi_tcourses)[1])
 	  win_start <- 1
 	  while ( win_start + win_sz <= dim(roi_tcourses)[1] ) {
-	    # # browser()
-	    # 
-	    # roi_cormat      <- roi_tcourses[ win_start:(win_start + win_sz) , ]
-	    # roi_cormat.zero <- c(which(roi_cormat == 0, arr.ind = T)[, 'row'])
-	    # roi_cormat.zero <- unique(roi_cormat.zero)
-	    # # print(paste0('the zero rows are ', paste0(roi_cormat.zero)))
-	    # 
-	    # if (length(roi_cormat.zero) > 0 ) {
-	    #   roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
-	    # }
-	    # 
-	    # 
-	    # # print(roi_cormat)
-	    # 
-	    # roi_cormat <- cor(roi_cormat)
-	    # 
-	    # if ( subj_count == 0 && exists('row.cormat') == T ) {
-	    #   row.cormat <- c(roi_cormat)
-	    #   row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
-	    #   
-	    #   write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F, sep = ',')
-	    #   
-	    #   # print('it works fine')
-	    #   
-	    # } else {
-	    #   
-	    #   # print('something is wrong')
-	    #   
-	    #   row.cormat <- c(roi_cormat)
-	    #   row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
-	    #   
-	    #   if( sum(is.na(row.cormat) ) > 0) {
-	    #     invalid.row <- matrix(data = row.cormat, dimnames = list( paste0(subj, 
-	    #                                                                      '_', 
-	    #                                                                      str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
-	    #                                                                      '_', 
-	    #                                                                      str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)) ,
-	    #                                                               NULL), nrow = 1 )
-	    #     write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'), append = T)
-	    #     
-	    #     
-	    #   } else {
-	    #     write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
-	    #   }
-	    #   
-	    #   # if ( sum(row.cormat > 1) > 0) {
-	    #   #   print('some values are greaater than one')
-	    #   # }
-	    #   
-	    #  
-	    # }
-	    # 
-	    # write.csv(roi_cormat, 
-	    #           file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
-	    #                            paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
-	    #                                   '_', 
-	    #                                   str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
-	    #           row.names = labels, 
-	    #           col.names = labels )
+	    # browser()
+	    
+	    roi_cormat      <- roi_tcourses[ win_start:(win_start + win_sz) , ]
+	    roi_cormat.zero <- c(which(roi_cormat == 0, arr.ind = T)[, 'row'])
+	    roi_cormat.zero <- unique(roi_cormat.zero)
+	    # print(paste0('the zero rows are ', paste0(roi_cormat.zero)))
+	    
+	    if (length(roi_cormat.zero) > 0 ) {
+	      roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
+	    }
+	    
+	    
+	    # print(roi_cormat)
+	    
+	    roi_cormat <- cor(roi_cormat)
+	    
+	    if ( subj_count == 0 && exists('row.cormat') == T ) {
+	      row.cormat <- c(roi_cormat)
+	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
+	      
+	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F, sep = ',')
+	      
+	      # print('it works fine')
+	      
+	    } else {
+	      
+	      # print('something is wrong')
+	      
+	      row.cormat <- c(roi_cormat)
+	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
+	      
+	      if( sum(is.na(row.cormat) ) > 0) {
+	        invalid.row <- matrix(data = row.cormat, dimnames = list( paste0(subj, 
+	                                                                         '_', 
+	                                                                         str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	                                                                         '_', 
+	                                                                         str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)) ,
+	                                                                  NULL), nrow = 1 )
+	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'), append = T)
+	        
+	        
+	      } else {
+	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
+	      }
+	      
+	      # if ( sum(row.cormat > 1) > 0) {
+	      #   print('some values are greaater than one')
+	      # }
+	      
+	     
+	    }
+	    
+	    write.csv(roi_cormat, 
+	              file = file.path(TOP_DIR, subj, 'roi_tcourses', 'cor_mats', 
+	                               paste0('win_', str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	                                      '_', 
+	                                      str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0), '.csv') ), 
+	              row.names = labels, 
+	              col.names = labels )
 	    
 	    
 	    
