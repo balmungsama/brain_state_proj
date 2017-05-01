@@ -174,10 +174,13 @@ if(missing_requirements > 0) {
 	              row.names = labels, 
 	              col.names = labels )
 	    
-	    win_start <- win_start + 1
+	    
+	    
+	    
+	    win_start <- win_start + 1 # UPDATE THE LOOP @ WINDOW LEVEL
 	  }
 	  
-	  subj_count <- subj_count + 1
+	  subj_count <- subj_count + 1 # UPDATE THE LOOP @ SUBJECT LEVEL
 	  
 ##### read matrices #####
 	  
