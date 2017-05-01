@@ -113,8 +113,12 @@ if(missing_requirements > 0) {
 	    roi_cormat      <- roi_tcourses[ win_start:(win_start + win_sz) , ]
 	    roi_cormat.zero <- c(which(roi_cormat == 0, arr.ind = T)[, 'row'])
 	    roi_cormat.zero <- unique(roi_cormat.zero)
-	    print(paste0('the zero rows are', roi_cormat.zero))
-	    roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
+	    print(paste0('the zero rows are ', paste0(roi_cormat.zero)))
+	    
+	    if (length(roi_cormat.zero) > 0 ) {
+	      roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
+	    }
+	    
 	    
 	    # print(roi_cormat)
 	    
