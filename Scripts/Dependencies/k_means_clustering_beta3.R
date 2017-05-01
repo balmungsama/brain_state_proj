@@ -116,7 +116,7 @@ if(missing_requirements > 0) {
 	    print(paste0('the zero rows are', roi_cormat.zero))
 	    roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
 	    
-	    print(roi_cormat)
+	    # print(roi_cormat)
 	    
 	    roi_cormat      <- cor(roi_cormat)
 	    
