@@ -17,6 +17,7 @@ kmeans.out <- kmeans.out[,,1]
 kmeans.cluster <- kmeans.out$cluster
 
 roi.labels <- read.table(ROI_labels, header = F, row.names = NULL, colClasses = 'character')
+roi.labels <- roi.labels$V1
 
 ##### lateralize the roi labels #####
 
@@ -26,7 +27,7 @@ if (rois.lateralized == T) {
 	roi.labels.lat <- NULL
 	
 	for (roi in 1:length(roi.labels)) {
-		roi <- roi.labels$V1[roi]
+		roi <- roi.labels[roi]
 		roi <- as.character(roi)
 		roi.labels.lat <- c(roi.labels.lat, roi, roi)
 	}
