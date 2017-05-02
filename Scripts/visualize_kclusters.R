@@ -106,7 +106,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	assign(x = paste0('clustermat_', kk), value = tmp.mat )
 	
-	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ), width = 1000, height = 1200, units = 'px' )
+	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ), width = 2000, height = 2100, units = 'px' )
 	corrplot(corr = get(paste0('clustermat_', kk)) , 
 					 diag = F, 
 					 title = paste0('Cluster ', kk), 
