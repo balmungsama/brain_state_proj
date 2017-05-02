@@ -32,7 +32,7 @@ if (rois.lateralized == T) {
 		roi.labels.lat <- c(roi.labels.lat, roi, roi)
 	}
 	
-	roi.labels <- roi.labels.lat
+	roi.labels <- paste(lat.sides, roi.labels.lat)
 	print(roi.labels)
 	
 }
