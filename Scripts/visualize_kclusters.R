@@ -2,8 +2,11 @@ require(data.table)
 require(R.matlab)
 require(corrplot)
 
+rois.lateralized <- T
+
 kmeans_dir <- "/home/hpc3586/OSU_data/kmeans"
 group_dir  <- "/home/hpc3586/OSU_data/all_233"
+ROI_labels <- '/home/hpc3586/brain_state_proj/ROIs/labels/HarvardOxford.txt'
 
 subj_wins  <- fread(file = file.path(kmeans_dir, '20correl_rows.csv'), sep=",", select = 1)
 kmeans.out <- readMat(file.path(kmeans_dir, '20kmeans_out.mat'))
@@ -12,6 +15,8 @@ kmeans.out <- kmeans.out$kmeans.output
 kmeans.out <- kmeans.out[,,1]
 
 kmeans.cluster <- kmeans.out$cluster
+
+roi.labels <- read.table(ROI_labels, header = F, row.names = NULL)
 
 for (row in 1:dim(subj_wins)[1]) {
 	
@@ -69,6 +74,25 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	assign(x = paste0('clustermat_', kk), value = data.matrix( get(paste0('clustermat_', kk)) / kk_count ) )
 	
 	print('number six')
+	
+	tmp.mat <- get( paste0('clustermat_', kk) )
+	
+	if (rois.lateralized == T) {
+		lat.sides <- c('L.', 'R.')
+		
+		roi.labels.tmp <- NULL
+		
+		for (roi in roi.labels) {
+			roi.labels.tmp <- c(roi.labels.tmp, roi, roi)
+		}
+		
+		roi.labels <- paste(lat.sides, roi.labels.tmp)
+		
+		print(roi.labels)
+		
+	}
+	
+	colnames(tmp.mat) <- 
 	
 	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
 	corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
