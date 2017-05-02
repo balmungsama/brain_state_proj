@@ -84,9 +84,25 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	tmp.mat <- get( paste0('clustermat_', kk) )
 	
-	##### lateralize the matrices here
+	row.names(tmp.mat) <- roi.labels
+	colnames( tmp.mat)  <- roi.labels
 	
-	colnames(tmp.mat) <- 
+	if (rois.lateralized == T) {
+		
+		quad_top_left  <- tmp.mat[which(startsWith(roi.labels, prefix = 'L. ')), which(startsWith(roi.labels, prefix = 'L. '))]  
+		quad_bot_right <- tmp.mat[which(startsWith(roi.labels, prefix = 'R. ')), which(startsWith(roi.labels, prefix = 'R. '))]
+		quad_top_right <- tmp.mat[which(startsWith(roi.labels, prefix = 'L. ')), which(startsWith(roi.labels, prefix = 'R. '))]
+		quad_bot_left  <- tmp.mat[which(startsWith(roi.labels, prefix = 'R. ')), which(startsWith(roi.labels, prefix = 'L. '))]
+
+		tmp_mat_subj_top   <- cbind(quad_top_left, quad_top_right)
+		tmp_mat_subj_bot   <- cbind(quad_bot_left, quad_bot_right)
+
+		tmp.mat       <- rbind(tmp_mat_subj_top, tmp_mat_subj_bot)
+		
+	}
+	
+	
+	assign(x = paste0('clustermat_', kk), value = tmp.mat )
 	
 	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
 	corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
