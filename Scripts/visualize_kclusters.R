@@ -28,7 +28,7 @@ if (rois.lateralized == T) {
 	for (roi in 1:length(roi.labels)) {
 		roi <- roi.labels$V1[roi]
 		roi <- as.character(roi)
-		roi.labels.lat <- c(roi.labels.tmp, roi, roi)
+		roi.labels.lat <- c(roi.labels.lat, roi, roi)
 	}
 	
 	roi.labels <- roi.labels.lat
