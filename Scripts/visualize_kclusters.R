@@ -52,6 +52,8 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 		FCmat.tmp    <- read.csv(file = file.path(group_dir, win_IDs.kk.tmp$subjID[window], 'roi_tcourses', 'cor_mats', FCmat.tmp.nm), row.names = NULL, header = T )
 		
+		print(head(FCmat.tmp))
+		
 		print('number four.two')
 		
 		if ( exists( paste0('clustermat_', kk) ) == F ) {
