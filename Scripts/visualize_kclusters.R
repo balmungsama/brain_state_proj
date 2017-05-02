@@ -66,13 +66,13 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	}
 	
 	print('number five')
-	assign(x = paste0('clustermat_', kk), value = get(paste0('clustermat_', kk)) / kk_count )
+	assign(x = paste0('clustermat_', kk), value = data.matrix( get(paste0('clustermat_', kk)) / kk_count ) )
 	
 	print('number six')
 	
-	# png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
-	# corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
-	# dev.off()
+	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
+	corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
+	dev.off()
 	
 	write.csv(x = get( paste0('clustermat_', kk) ), file = file.path(kmeans_dir, paste0('clustermat_', kk, '.csv') ), row.names = F )
 	
