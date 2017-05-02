@@ -51,7 +51,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		print('number four.one')
 		
 		FCmat.tmp    <- read.csv(file = file.path(group_dir, win_IDs.kk.tmp$subjID[window], 'roi_tcourses', 'cor_mats', FCmat.tmp.nm), row.names = NULL, header = T )
-		
+		FCmat.tmp    <- FCmat.tmp[, -1]
 		print(head(FCmat.tmp))
 		
 		print('number four.two')
