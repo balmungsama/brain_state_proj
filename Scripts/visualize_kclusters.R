@@ -33,7 +33,7 @@ if (rois.lateralized == T) {
 	}
 	
 	roi.labels <- paste(lat.sides, roi.labels.lat)
-	print(roi.labels)
+	# print(roi.labels)
 	
 }
 
@@ -58,6 +58,8 @@ for (row in 1:dim(subj_wins)[1]) {
 win_IDs$cluster <- kmeans.cluster
 
 for (kk in sort(unique(kmeans.cluster)) ) {
+	
+	cat(paste0('Cluster ', kk, '...\n'))
 	
 	win_IDs.kk.tmp <- win_IDs[which(win_IDs$cluster == kk),]
 	
@@ -104,11 +106,11 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	assign(x = paste0('clustermat_', kk), value = tmp.mat )
 	
-	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
+	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ), width = 1000, height = 1200, units = 'px' )
 	corrplot(corr = get(paste0('clustermat_', kk)) , 
 					 diag = F, 
 					 title = paste0('Cluster ', kk), 
-					 tl.cex = 0.6, 
+					 tl.cex = 0.4, 
 					 tl.col = 'black' ,
 					 col = colorRampPalette(c("blue","white","red"))(200)
 					 )
@@ -118,5 +120,6 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 }
 
+cat('DONE\n')
 
 
