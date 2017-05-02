@@ -112,7 +112,8 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 					 title = paste0('Cluster ', kk), 
 					 tl.cex = 0.9, 
 					 tl.col = 'black' ,
-					 col = colorRampPalette(c("blue","white","red"))(200)
+					 col = colorRampPalette(c("blue","white","red"))(200), 
+					 method = "color"
 					 )
 	dev.off()
 	
