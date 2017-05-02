@@ -2,7 +2,7 @@ require(data.table)
 require(R.matlab)
 require(corrplot)
 
-kmeans_dir <- "/mnt/c/Users/john/Desktop/tmp_kmeans"
+kmeans_dir <- "/home/hpc3586/OSU_data/kmeans"
 group_dir  <- "/home/hpc3586/OSU_data/all_233"
 
 subj_wins  <- fread(file = file.path(kmeans_dir, '20correl_rows.csv'), sep=",", select = 1)
