@@ -84,7 +84,7 @@ if(missing_requirements > 0) {
 		stop
 	}
 
-	# subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
+	subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
 	
 	for(subj in subj_dirs) {
 		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
@@ -136,7 +136,7 @@ if(missing_requirements > 0) {
 	      row.cormat <- c(roi_cormat)
 	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
 	      
-	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = F, col.names = F, sep = ',')
+	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), row.names = F, col.names = F, sep = ',')
 	      
 	      # print('it works fine')
 	      
@@ -154,11 +154,11 @@ if(missing_requirements > 0) {
 	                                                                         '_', 
 	                                                                         str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)) ,
 	                                                                  NULL), nrow = 1 )
-	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', 'invalid_rows.csv'), append = T)
+	        write.csv(x = invalid.row, file = file.path(TOP_DIR, '..', 'kmeans', '20invalid_rows.csv'), append = T)
 	        
 	        
 	      } else {
-	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
+	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
 	      }
 	      
 	      # if ( sum(row.cormat > 1) > 0) {
@@ -373,7 +373,7 @@ if(missing_requirements > 0) {
 	
 	##### distance matrix calculation #####
 	
-	row.cormat <- read.csv(file = file.path(TOP_DIR, '..', 'kmeans', 'correl_rows.csv'), row.names = NULL, header = F)
+	row.cormat <- read.csv(file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), row.names = NULL, header = F)
 	
 	distance.matrix      <- dist( row.cormat, method = "euclidean" )**2
 	# hierarchical.cluster <- hclust( distance.matrix, method = "ward.D" )
@@ -400,7 +400,29 @@ if(missing_requirements > 0) {
 	cat('Running k-means clustering...\n')
 	kmeans.cluster <- kmeans( row.cormat, algorithm = 'MacQueen', centers = 7 )
 	
-	writeMat( file.path(TOP_DIR, '..', 'kmeans', 'kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
+	writeMat( file.path(TOP_DIR, '..', 'kmeans', '20kmeans_out.mat' ), kmeans_output = kmeans.cluster, matVersion = "5")
+	
+	write.table(x = kmeans.cluster$centers, file = file.path(TOP_DIR, '..', 'kmeans', '20kmeans_center.txt'  ))
+	write.table(x = kmeans.cluster$cluster, file = file.path(TOP_DIR, '..', 'kmeans', '20kmeans_cluster.txt' ))
+	
+	cat('totss: \n\n')
+	print(kmeans.cluster$totss)
+	cat('\n')
+	
+	cat('withinss: \n\n')
+	print(kmeans.cluster$withinss)
+	cat('\n')
+	
+	cat('tot.withinsss: \n\n')
+	print(kmeans.cluster$tot.withinss)
+	cat('\n')
+	
+	cat('betweenss: \n\n')
+	print(kmeans.cluster$betweenss)
+	cat('\n')
+	
+	
+	
 	
 }
 
