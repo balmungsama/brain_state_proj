@@ -33,15 +33,10 @@ for (row in 1:dim(subj_wins)[1]) {
 	
 }
 
-print('number one')
 
 win_IDs$cluster <- kmeans.cluster
 
-print('number two')
-
 for (kk in sort(unique(kmeans.cluster)) ) {
-	
-	print('number three')
 	
 	win_IDs.kk.tmp <- win_IDs[which(win_IDs$cluster == kk),]
 	
@@ -49,16 +44,10 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	for (window in 1:dim(win_IDs.kk.tmp)[1] ) {
 		
-		print('number four')
-		
 		FCmat.tmp.nm <- paste0('win_', win_IDs.kk.tmp$winStart[window], '_', win_IDs.kk.tmp$winEnd[window], '.csv')
-		
-		print('number four.one')
 		
 		FCmat.tmp    <- read.csv(file = file.path(group_dir, win_IDs.kk.tmp$subjID[window], 'roi_tcourses', 'cor_mats', FCmat.tmp.nm), row.names = NULL, header = T )
 		FCmat.tmp    <- FCmat.tmp[, -1]
-		
-		print('number four.two')
 		
 		if ( exists( paste0('clustermat_', kk) ) == F ) {
 			assign(x = paste0('clustermat_', kk), value = FCmat.tmp)
@@ -70,10 +59,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 	}
 	
-	print('number five')
 	assign(x = paste0('clustermat_', kk), value = data.matrix( get(paste0('clustermat_', kk)) / kk_count ) )
-	
-	print('number six')
 	
 	tmp.mat <- get( paste0('clustermat_', kk) )
 	
@@ -82,7 +68,8 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 		roi.labels.tmp <- NULL
 		
-		for (roi in roi.labels) {
+		for (roi in 1:length(roi.labels)) {
+			roi <- as.character(roi.labels[roi])
 			roi.labels.tmp <- c(roi.labels.tmp, roi, roi)
 		}
 		
