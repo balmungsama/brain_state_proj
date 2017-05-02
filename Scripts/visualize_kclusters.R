@@ -15,11 +15,9 @@ kmeans.cluster <- kmeans.out$cluster
 
 for (row in 1:dim(subj_wins)[1]) {
 	
-	# cat(paste0(row, '\n'))
 	
 	win_IDs.tmp <- strsplit(as.character(subj_wins[row]), split = '_')[[1]]
 	
-	# print(win_IDs.tmp)
 	
 	if ( exists('win_IDs') ) {
 		win_IDs.tmp <- data.frame(subjID = win_IDs.tmp[1], winStart = win_IDs.tmp[2], winEnd = win_IDs.tmp[3])
@@ -30,15 +28,23 @@ for (row in 1:dim(subj_wins)[1]) {
 	
 }
 
+print('number one')
+
 win_IDs$cluster <- kmeans.cluster
 
+print('number two')
+
 for (kk in sort(unique(kmeans.cluster)) ) {
+	
+	print('number three')
 	
 	win_IDs.kk.tmp <- win_IDs[which(win_IDs$cluster == kk),]
 	
 	kk_count <- 0
 	
 	for (window in 1:dim(win_IDs.kk.tmp)[1] ) {
+		
+		print('number four')
 		
 		FCmat.tmp.nm <- paste0('win_', win_IDs.kk.tmp$winStart[window], '_', win_IDs.kk.tmp$winEnd[window], '.csv')
 		
@@ -54,6 +60,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 	}
 	
+	print('number five')
 	assign(x = paste0('clustermat_', kk), value = get(paste0('clustermat_', kk)) / kk_count )
 	
 	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
