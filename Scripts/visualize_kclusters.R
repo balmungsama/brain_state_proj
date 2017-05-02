@@ -48,7 +48,11 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 		FCmat.tmp.nm <- paste0('win_', win_IDs.kk.tmp$winStart[window], '_', win_IDs.kk.tmp$winEnd[window], '.csv')
 		
+		print('number four.one')
+		
 		FCmat.tmp    <- read.csv(file = file.path(group_dir, win_IDs.kk.tmp$subjID[window], 'roi_tcourses', 'cor_mats', FCmat.tmp.nm), row.names = 1, header = T )
+		
+		print('number four.two')
 		
 		if ( exists( paste0('clustermat_', kk) ) == F ) {
 			assign(x = paste0('clustermat_', kk), value = FCmat.tmp)
