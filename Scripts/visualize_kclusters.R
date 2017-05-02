@@ -105,7 +105,13 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	assign(x = paste0('clustermat_', kk), value = tmp.mat )
 	
 	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
-	corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
+	corrplot(corr = get(paste0('clustermat_', kk)) , 
+					 diag = F, 
+					 title = paste0('Cluster ', kk), 
+					 tl.cex = 0.6, 
+					 tl.col = 'black' ,
+					 col = colorRampPalette(c("blue","white","red"))(200)
+					 )
 	dev.off()
 	
 	write.csv(x = get( paste0('clustermat_', kk) ), file = file.path(kmeans_dir, paste0('clustermat_', kk, '.csv') ), row.names = F )
