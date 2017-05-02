@@ -16,7 +16,7 @@ kmeans.out <- kmeans.out[,,1]
 
 kmeans.cluster <- kmeans.out$cluster
 
-roi.labels <- read.table(ROI_labels, header = F, row.names = NULL)
+roi.labels <- read.table(ROI_labels, header = F, row.names = NULL, colClasses = 'character')
 
 for (row in 1:dim(subj_wins)[1]) {
 	
@@ -68,8 +68,9 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 		roi.labels.tmp <- NULL
 		
-		for (roi in 1:length(roi.labels)) {
-			roi <- as.character(roi.labels[roi])
+		for (roi in 1:dim(roi.labels)[1]) {
+			roi <- roi.labels$V1[roi]
+			roi <- as.character(roi)
 			roi.labels.tmp <- c(roi.labels.tmp, roi, roi)
 		}
 		
