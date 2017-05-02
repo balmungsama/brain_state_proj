@@ -110,7 +110,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	corrplot(corr = get(paste0('clustermat_', kk)) , 
 					 diag = F, 
 					 title = paste0('Cluster ', kk), 
-					 tl.cex = 0.4, 
+					 tl.cex = 0.9, 
 					 tl.col = 'black' ,
 					 col = colorRampPalette(c("blue","white","red"))(200)
 					 )
