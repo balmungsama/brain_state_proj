@@ -18,6 +18,26 @@ kmeans.cluster <- kmeans.out$cluster
 
 roi.labels <- read.table(ROI_labels, header = F, row.names = NULL, colClasses = 'character')
 
+##### lateralize the roi labels #####
+
+if (rois.lateralized == T) {
+	lat.sides <- c('L.', 'R.')
+	
+	roi.labels.lat <- NULL
+	
+	for (roi in 1:length(roi.labels)) {
+		roi <- roi.labels$V1[roi]
+		roi <- as.character(roi)
+		roi.labels.lat <- c(roi.labels.tmp, roi, roi)
+	}
+	
+	roi.labels <- roi.labels.lat
+	print(roi.labels)
+	
+}
+
+##### generate a correlation matrix and figure for each cluster #####
+
 for (row in 1:dim(subj_wins)[1]) {
 	
 	
@@ -63,22 +83,7 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	tmp.mat <- get( paste0('clustermat_', kk) )
 	
-	if (rois.lateralized == T) {
-		lat.sides <- c('L.', 'R.')
-		
-		roi.labels.tmp <- NULL
-		
-		for (roi in 1:dim(roi.labels)[1]) {
-			roi <- roi.labels$V1[roi]
-			roi <- as.character(roi)
-			roi.labels.tmp <- c(roi.labels.tmp, roi, roi)
-		}
-		
-		roi.labels <- paste(lat.sides, roi.labels.tmp)
-		
-		print(roi.labels)
-		
-	}
+	##### lateralize the matrices here
 	
 	colnames(tmp.mat) <- 
 	
