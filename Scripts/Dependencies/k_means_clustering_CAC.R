@@ -134,9 +134,15 @@ if(missing_requirements > 0) {
 	    
 	    if ( subj_count == 0 && exists('row.cormat') == T ) {
 	      row.cormat <- c(roi_cormat)
-	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
+	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = list(paste0(subj, 
+	      																																				 '_', 
+	      																																				 str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	      																																				 '_', 
+	      																																				 str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)),
+	      																																	NULL) 
+	      										 )
 	      
-	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), row.names = F, col.names = F, sep = ',')
+	      write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), row.names = T, col.names = F, sep = ',')
 	      
 	      # print('it works fine')
 	      
@@ -145,7 +151,13 @@ if(missing_requirements > 0) {
 	      # print('something is wrong')
 	      
 	      row.cormat <- c(roi_cormat)
-	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = NULL)
+	      row.cormat <- matrix(data = row.cormat, nrow = 1, dimnames = list(paste0(subj, 
+	      																																				 '_', 
+	      																																				 str_pad(win_start, nchar(dim(roi_tcourses)[1]), pad = 0), 
+	      																																				 '_', 
+	      																																				 str_pad((win_start + win_sz), nchar(dim(roi_tcourses)[1]), pad = 0)),
+	      																																	NULL)
+	      										 )
 	      
 	      if( sum(is.na(row.cormat) ) > 0) {
 	        invalid.row <- matrix(data = row.cormat, dimnames = list( paste0(subj, 
@@ -158,7 +170,7 @@ if(missing_requirements > 0) {
 	        
 	        
 	      } else {
-	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), append = T, row.names = F, col.names = F, sep = ',' )
+	        write.table( x = row.cormat, file = file.path(TOP_DIR, '..', 'kmeans', '20correl_rows.csv'), append = T, row.names = T, col.names = F, sep = ',' )
 	      }
 	      
 	      # if ( sum(row.cormat > 1) > 0) {
