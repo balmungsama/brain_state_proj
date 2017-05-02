@@ -52,7 +52,6 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 		
 		FCmat.tmp    <- read.csv(file = file.path(group_dir, win_IDs.kk.tmp$subjID[window], 'roi_tcourses', 'cor_mats', FCmat.tmp.nm), row.names = NULL, header = T )
 		FCmat.tmp    <- FCmat.tmp[, -1]
-		print(head(FCmat.tmp))
 		
 		print('number four.two')
 		
@@ -68,6 +67,8 @@ for (kk in sort(unique(kmeans.cluster)) ) {
 	
 	print('number five')
 	assign(x = paste0('clustermat_', kk), value = get(paste0('clustermat_', kk)) / kk_count )
+	
+	print('number six')
 	
 	png(filename = file.path(kmeans_dir, paste0('cluster_', kk, '.png') ) )
 	corrplot(corr = get(paste0('clustermat_', kk)) , diag = F, title = paste0('Cluster ', kk) )
