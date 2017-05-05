@@ -1,7 +1,8 @@
+require(data.table)
 require(R.matlab)
+require(ggplot2)
 
-kmeans_dir <- "/home/hpc3586/OSU_data/kmeans"
-group_dir  <- "/home/hpc3586/OSU_data/all_233"
+kmeans_dir <- "/mnt/c/Users/john/Desktop/tmp_kmeans"
 behav_dir  <- "/mnt/c/Users/john/Desktop/tmp_kmeans/behav"
 
 task       <- "GoNogo"
