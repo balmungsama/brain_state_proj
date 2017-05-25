@@ -1,3 +1,5 @@
+# TODO: add in option for automatic threshold detection if no value specified
+
 SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
