@@ -5,6 +5,7 @@
 #$ -m be
 #$ -o logs/grp_STD.out
 #$ -e logs/grp_STD.err
+#$ -q abaqus.q
 
 TOP_DIR=$1 						# here you enter in the group directory
 COND=$2    						# enter the condition name
