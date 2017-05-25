@@ -17,8 +17,8 @@ bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC
-Rscript $PREPROC/mk_reg_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
+bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
+Rscript $PREPROC/mk_reg_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM 
 bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
 
 #### TO FIX ####
