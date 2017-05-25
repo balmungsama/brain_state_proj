@@ -3,13 +3,14 @@
 #$ -cwd
 #$ -M hpc3586@localhost
 #$ -m be
+#$ -q abaqus.q
 
 SUBJ_DIR=$1
 COND=$2
 FD=$3
 DVARS=$4
 RM=$5
-PREPROC='/home/hpc3586/brain_state_proj/Preprocessing'
+PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 echo INITIALIZING PREPROCESSING --------------------
 
