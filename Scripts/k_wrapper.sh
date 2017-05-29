@@ -3,6 +3,8 @@
 
 script_path='/home/hpc3586/JE_packages/brain_state_proj/Scripts'
 
+DATE=$(date +%y-%m-%d)
+
 clear
 echo "WELCOME TO THE BRAIN STATE"
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
@@ -43,7 +45,7 @@ case $DATA in
 		mkdir -p $subj/roi_tcourses
 		name=$(basename $subj)
 
-		qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
+		qsub -N roi_$name -e logs/$DATE/roi_$name -o logs/$DATE/roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
 
 		elif [[ $mode == "group" ]]; then
 
@@ -52,7 +54,7 @@ case $DATA in
 				mkdir -p $path/$subj/roi_tcourses
 				name=$(basename $subj)
 
-				qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out
+				qsub -N roi_$name -e logs/$DATE/roi_$name -o logs/$DATE/roi_$name $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out
 
 				done
 
