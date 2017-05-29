@@ -5,8 +5,6 @@ disp(['TOP_DIR = ', TOP_DIR]);
 disp(['cond = ', cond]);
 disp(['output = ', output]);
 
-addpath( genpath(script_path) );
-
 confound = fullfile(TOP_DIR, 'mot_analysis', [cond '_CONFOUND.par']);
 confound = dlmread(confound);
 confound = sum(confound, 2);
