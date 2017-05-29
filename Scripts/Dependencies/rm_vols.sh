@@ -15,8 +15,9 @@ output=$3
 mTOP_DIR=$(echo "TOP_DIR='$TOP_DIR'")
 mCOND=$(echo "cond='$cond'")
 mOUT=$(echo "output='$output'")
+mRM_VOLS=$(echo "run('rm_vols.m')")
 
-mCOMMANDS=$(echo "$mTOP_DIR;$mCOND;$mOUT"	)
+mCOMMANDS=$(echo "$mTOP_DIR;$mCOND;$mOUT;$mRM_VOLS"	)
 
-matlab -r rm_vols.m "$mCOMMANDS" -nosplash -nodesktop -nosoftwareopengl -wait
+matlab -r "$mCOMMANDS" -nosplash -nodesktop -nosoftwareopengl -wait
 
