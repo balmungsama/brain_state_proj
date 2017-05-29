@@ -18,5 +18,5 @@ mOUT=$(echo "output='$output'")
 
 mCOMMANDS=$(echo "$mTOP_DIR;$mCOND;$mOUT"	)
 
-matlab -r "$mCOMMANDS" -nosplash -nodesktop -nosoftwareopengl -wait
+matlab -r rm_vols.m "$mCOMMANDS" -nosplash -nodesktop -nosoftwareopengl -wait
 
