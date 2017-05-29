@@ -9,10 +9,11 @@ echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo ' '
 echo "What would you like to do?"
 echo ' '
-echo '1. Compute sliding time windows for a set of ROIs (subj or group).'
-echo '2. Compute brain states.'
-echo '3. Find relations between frequency of brain states and behavioural performance.'
-echo '4. Perform a whole-brain PPI to find FC patterns associated with behavioural performance.'
+echo '1. Compute group-specific ROIs using an ICA analysis.'
+echo '2. Compute sliding time windows for a set of ROIs (subj or group).'
+echo '3. Compute brain states.'
+echo '4. Find relations between frequency of brain states and behavioural performance.'
+echo '5. Perform a whole-brain PPI to find FC patterns associated with behavioural performance.'
 echo ' '
 echo -n 'Pick a number:  '
 read DATA
@@ -22,7 +23,42 @@ echo ' '
 
 case $DATA in
 
-	1)	echo "Sliding time windows"
+	1) echo "ROI - Independent Components Analysis"
+	  echo "--------------------"
+		echo " "
+		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
+		read mode
+		echo -n "Enter the $mode directory:  "
+		read path
+		echo -n "Enter the name of the condition being analyzed:  "
+		read cond
+		echo -n "Enter the output directory for the ROIs:  "
+		read output
+
+		mkdir -p $script_path/logs 
+
+		if [[ $mode == "subj" ]]; then
+
+		subj=$path
+		mkdir -p $subj/roi_tcourses
+
+		qsub $script_path/Dependencies/rm_vols.sh $subj $cond $out
+
+		elif [[ $mode == "group" ]]; then
+
+				for subj in $(ls $path); do
+				
+				mkdir -p $subj/roi_tcourses
+
+				qsub $script_path/Dependencies/rm_vols.sh $subj $cond $out
+
+				done
+
+		else
+				echo "Please enter either 'subj' or 'group'"
+		fi
+	;;
+	2)	echo "Sliding time windows"
 		echo "--------------------"
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
@@ -73,7 +109,7 @@ case $DATA in
 
 		echo "Finished."
 		;;
-	2)	echo "FC Matrices & K-means clustering"
+	3)	echo "FC Matrices & K-means clustering"
 		echo "--------------------------------"
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
@@ -103,11 +139,11 @@ case $DATA in
 		Rscript Dependencies/k_means_clustering_beta3.R $TYPE $TOP_DIR $ROI_LABELS $lateralized $kk $kk_reps $conf_lvl $kk_pool $win_sz $tskip
 		echo 'Finished.'
 		;;
-	3)
+	4)
 		echo "Correlate brain state frequency with behavioural performance"
 		;;
 
-	4)
+	5)
 		echo "Whole-brain PPI analysis"
 		echo "------------------------"
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
