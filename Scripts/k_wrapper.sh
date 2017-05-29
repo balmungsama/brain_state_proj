@@ -46,7 +46,7 @@ case $DATA in
 		mkdir -p logs/$DATE
 		name=$(basename $subj)
 
-		qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $out
+		qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output
 
 		elif [[ $mode == "group" ]]; then
 
@@ -56,7 +56,7 @@ case $DATA in
 				mkdir -p logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out
+				qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output
 
 				done
 
