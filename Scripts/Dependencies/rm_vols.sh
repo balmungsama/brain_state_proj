@@ -16,7 +16,7 @@ script_path=$4
 mTOP_DIR=$(echo "TOP_DIR='$TOP_DIR'")
 mCOND=$(echo "cond='$cond'")
 mOUT=$(echo "output='$output'")
-mSCRIPT=$(echo "script_path='$script_path'")
+mSCRIPT=$(echo "addpath( genpath('$script_path') )")
 mRM_VOLS=$(echo "run('rm_vols.m')")
 
 mCOMMANDS=$(echo "$mTOP_DIR;$mCOND;$mOUT;$mSCRIPT;$mRM_VOLS"	)
