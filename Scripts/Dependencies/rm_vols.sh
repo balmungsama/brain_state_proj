@@ -14,7 +14,7 @@ output=$3
 
 mTOP_DIR=$(echo "TOP_DIR='$TOP_DIR'")
 mCOMD=$(echo "cond='$cond'")
-mOUT=$(echo "output=$output")
+mOUT=$(echo "output='$output'")
 
 mCOMMANDS=$(echo "$mTOP_DIR;$mCOND;$mOUT"	)
 
