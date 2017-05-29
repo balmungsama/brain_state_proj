@@ -52,7 +52,7 @@ case $DATA in
 				mkdir -p $subj/roi_tcourses
 				name=$(basename $subj)
 
-				qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
+				qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out
 
 				done
 
