@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 
-script_path='/home/hpc3586/brain_state_proj/Scripts'
+script_path='/home/hpc3586/JE_packages/brain_state_proj/Scripts'
 
 clear
 echo "WELCOME TO THE BRAIN STATE"
