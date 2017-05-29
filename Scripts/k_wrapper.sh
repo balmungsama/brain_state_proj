@@ -49,7 +49,7 @@ case $DATA in
 
 				for subj in $(ls $path); do
 				
-				mkdir -p $subj/roi_tcourses
+				mkdir -p $path/$subj/roi_tcourses
 				name=$(basename $subj)
 
 				qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out

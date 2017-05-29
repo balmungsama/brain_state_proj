@@ -1,4 +1,8 @@
 
+disp(['TOP_DIR = ', TOP_DIR]);
+disp(['cond = ', cond]);
+disp(['output = ', output]);
+
 confound = fullfile(TOP_DIR, 'mot_analysis', [cond '_CONFOUND.par']);
 confound = dlmread(confound);
 confound = sum(confound, 2);
