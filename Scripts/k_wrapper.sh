@@ -41,16 +41,18 @@ case $DATA in
 
 		subj=$path
 		mkdir -p $subj/roi_tcourses
+		name=$(basename $subj)
 
-		qsub $script_path/Dependencies/rm_vols.sh $subj $cond $out
+		qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
 
 		elif [[ $mode == "group" ]]; then
 
 				for subj in $(ls $path); do
 				
 				mkdir -p $subj/roi_tcourses
+				name=$(basename $subj)
 
-				qsub $script_path/Dependencies/rm_vols.sh $subj $cond $out
+				qsub -N roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
 
 				done
 
