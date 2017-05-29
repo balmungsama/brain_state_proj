@@ -43,6 +43,7 @@ case $DATA in
 
 		subj=$path
 		mkdir -p $subj/roi_tcourses
+		mkdir -p logs/$DATE
 		name=$(basename $subj)
 
 		qsub -N roi_$name -e logs/$DATE/roi_$name -o logs/$DATE/roi_$name $script_path/Dependencies/rm_vols.sh $subj $cond $out
@@ -52,6 +53,7 @@ case $DATA in
 				for subj in $(ls $path); do
 				
 				mkdir -p $path/$subj/roi_tcourses
+				mkdir -p logs/$DATE
 				name=$(basename $subj)
 
 				qsub -N roi_$name -e logs/$DATE/roi_$name -o logs/$DATE/roi_$name $script_path/Dependencies/rm_vols.sh $path/$subj $cond $out
