@@ -34,6 +34,8 @@ if [[ line_count == 1 ]]; then
 	done
 
 	mkdir -o $output/$cond
-	
+
 	melodic -i $list -o $output/$cond/
 fi
+
+rm $subj'_job_list.txt'
