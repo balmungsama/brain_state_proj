@@ -47,6 +47,7 @@ elif [[ $mode == 'subj' ]]; then
 
 	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
 
+	name=$(basename $TOP_DIR)
 	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI #--Opca
 
 fi

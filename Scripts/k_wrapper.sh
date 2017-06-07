@@ -48,23 +48,23 @@ case $DATA in
 			subj=$path
 			name=$(basename $subj)
 			mkdir -p $subj/roi_tcourses
-			mkdir -p $output/$cond'_'$name/logs/$DATE
+			mkdir -p $output/$cond/logs/$DATE
 
-			qsub -N roi_$name -e $output/$cond'_'$name/logs/$DATE/roi_$name.err -o $output/$cond'_'$name/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
-			qsub -N ICA_$cond -e $output/$cond'_'$name/logs/$DATE/ica_$name.err -o $output/$cond'_'$name/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
+			qsub -N roi_$name -e $output/$cond/logs/$DATE/roi_$name.err -o $output/$cond/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI $mode
+			qsub -N ICA_$cond -e $output/$cond/logs/$DATE/ica_$name.err -o $output/$cond/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
 		elif [[ $mode == "group" ]]; then
 
 			for subj in $(ls $path); do
 
 				mkdir -p $path/$subj/roi_tcourses
-				mkdir -p $output/logs/$DATE
+				mkdir -p $output/$cond/logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e $output/logs/$DATE/roi_$name.err -o $output/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI
+				qsub -N roi_$name -e $output/$cond/logs/$DATE/roi_$name.err -o $output/logs/$cond/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI $mode
 
 			done
 
-			qsub -N ICA_$cond -e $output/logs/$DATE/ica_$cond.err -o $output/logs/$DATE/ica_$cond.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
+			qsub -N ICA_$cond -e $output/$cond/logs/$DATE/ica_$cond.err -o $output/$cond/logs/$DATE/ica_$cond.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
 
 		else
 				echo "Please enter either 'subj' or 'group'"
