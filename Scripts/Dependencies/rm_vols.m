@@ -17,6 +17,6 @@ cfmri.img(:,:,:,confound) = [];
 cfmri.hdr.dime.dim(5)     = size(cfmri.img, 4);
 
 disp('Saving the new nifti file...');
-save_nii(cfmri, fullfile(TOP_DIR, 'task_data', 'preproc', ['rm_' cond '.nii']) )
+save_nii(cfmri, fullfile(TOP_DIR, 'task_data', 'preproc', ['ica_' cond '.nii']) )
 
 disp('DONE');

@@ -36,29 +36,36 @@ case $DATA in
 		read cond
 		echo -n "Enter the output directory for the ROIs:  "
 		read output
+		echo -n "How many ROIs would you like? (leave blank if you want this to not be fixed a-priori):  "
+		read nROI
 
 		mkdir -p $script_path/logs 
 
+		if [[ ${#nROI} == 0 ]]; then nROI='default'; fi
+
 		if [[ $mode == "subj" ]]; then
 
-		subj=$path
-		mkdir -p $subj/roi_tcourses
-		mkdir -p logs/$DATE
-		name=$(basename $subj)
+			subj=$path
+			mkdir -p $subj/roi_tcourses
+			mkdir -p logs/$DATE
+			name=$(basename $subj)
 
-		qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path
+			qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
 
 		elif [[ $mode == "group" ]]; then
 
-				for subj in $(ls $path); do
-				
+			subj_count=($(ls $path))
+			subj_count=${#subj_count[@]}
+
+			for subj in $(ls $path); do
+
 				mkdir -p $path/$subj/roi_tcourses
 				mkdir -p logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e logs/$DATE/roi_$name.err -o logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path
+				qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/ICA_ROI.sh $path/$subj $cond $output $script_path $nROI $subj_count
 
-				done
+			done
 
 		else
 				echo "Please enter either 'subj' or 'group'"

@@ -44,16 +44,16 @@ tskip       <- 1
 ##### main body #####
 
 ## stop the function if any of these variables are missing
-required_variables  <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl', 'win_sz', 'tskip')
+required_variables   <- c('TOP_DIR', 'ROI_LABELS', 'lateralized', 'kk', 'kk_reps', 'conf_lvl', 'win_sz', 'tskip')
 missing_requirements <- 0
 
 subj_count <- 0
 
-for(req_var in required_variables) {
+for (req_var in required_variables) {
 	missing_requirements <- as.numeric(!exists(req_var)) + missing_requirements
 }
 
-if(missing_requirements > 0) {
+if (missing_requirements > 0) {
   stop
 } else {
 
@@ -84,7 +84,7 @@ if(missing_requirements > 0) {
 		stop
 	}
 
-	subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
+	# subj_dirs <- subj_dirs[1:20]   # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to only look at 50 subjects
 	
 	for(subj in subj_dirs) {
 		if ( length( list.files(file.path(TOP_DIR, subj, 'roi_tcourses'), recursive = F) ) == 0 ) {
@@ -127,9 +127,7 @@ if(missing_requirements > 0) {
 	      roi_cormat      <- roi_cormat[-roi_cormat.zero, ]
 	    }
 	    
-	    
 	    # print(roi_cormat)
-	    
 	    roi_cormat <- cor(roi_cormat)
 	    
 	    if ( subj_count == 0 && exists('row.cormat') == T ) {
