@@ -26,15 +26,15 @@ TR=$(3dinfo -tr $TOP_DIR/$cond.nii*)
 
 if [[ $mode == 'group' ]]; then
 
-	files=$(ls $TOP_DIR/../*/task_data/preproc/ica_$cond.nii)
+	files=$(ls $TOP_DIR/*/task_data/preproc/ica_$cond.nii)
 
 	for file in $files; do 
-		echo $file >> $output/$cond'_files_for_ica.txt'
+		echo $file >> $output/$cond/$cond'_files_for_ica.txt'
 	done
 
 	mkdir $output/$cond
 
-	melodic -i $output/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
+	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
 
 elif [[ $mode == 'subj' ]]; then
 
