@@ -51,7 +51,7 @@ case $DATA in
 			name=$(basename $subj)
 
 			qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
-			qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
+			qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
 		elif [[ $mode == "group" ]]; then
 
 			for subj in $(ls $path); do
