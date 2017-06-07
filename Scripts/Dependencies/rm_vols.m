@@ -20,3 +20,5 @@ disp('Saving the new nifti file...');
 save_nii(cfmri, fullfile(TOP_DIR, 'task_data', 'preproc', ['ica_' cond '.nii']) )
 
 disp('DONE');
+
+exit
