@@ -12,8 +12,6 @@ script_path=$4
 nROI=$5
 mode=$6
 
-subj=$(basename $TOP_DIR)
-
 mkdir $output/$cond
 
 ##### get the ica analysis ready
@@ -24,12 +22,16 @@ else
 	nROI=$(echo -d $nROI)
 fi
 
-TR=$(3dinfo -tr $TOP_DIR/$cond.nii*)
-
 if [[ $mode == 'group' ]]; then
 
 	files=$(ls $TOP_DIR/*/task_data/preproc/ica_$cond.nii)
 	echo $files
+
+	subj=($(ls $TOP_DIR))
+	subj=${subj[1]}
+	subj=$(basename $subj)
+
+	TR=$(3dinfo -tr $TOP_DIR/$subj/task_data/$cond.nii*)
 
 	for file in $files; do 
 		echo $file >> $output/$cond/$cond'_files_for_ica.txt'
@@ -40,6 +42,8 @@ if [[ $mode == 'group' ]]; then
 	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
 
 elif [[ $mode == 'subj' ]]; then
+
+	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
 
 	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
 
