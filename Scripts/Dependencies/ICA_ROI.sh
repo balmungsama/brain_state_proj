@@ -29,6 +29,7 @@ TR=$(3dinfo -tr $TOP_DIR/$cond.nii*)
 if [[ $mode == 'group' ]]; then
 
 	files=$(ls $TOP_DIR/*/task_data/preproc/ica_$cond.nii)
+	echo $files
 
 	for file in $files; do 
 		echo $file >> $output/$cond/$cond'_files_for_ica.txt'
