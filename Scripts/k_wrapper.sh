@@ -46,9 +46,9 @@ case $DATA in
 		if [[ $mode == "subj" ]]; then
 
 			subj=$path
+			name=$(basename $subj)
 			mkdir -p $subj/roi_tcourses
 			mkdir -p $output/$cond'_'$name/logs/$DATE
-			name=$(basename $subj)
 
 			qsub -N roi_$name -e $output/$cond'_'$name/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
 			qsub -N ICA_$cond -e $output/$cond'_'$name/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
