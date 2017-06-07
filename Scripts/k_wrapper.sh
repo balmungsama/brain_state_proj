@@ -50,12 +50,9 @@ case $DATA in
 			mkdir -p logs/$DATE
 			name=$(basename $subj)
 
-			qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
-
+			qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
+			qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
 		elif [[ $mode == "group" ]]; then
-
-			subj_count=($(ls $path))
-			subj_count=${#subj_count[@]}
 
 			for subj in $(ls $path); do
 
@@ -63,7 +60,8 @@ case $DATA in
 				mkdir -p logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/ICA_ROI.sh $path/$subj $cond $output $script_path $nROI $subj_count
+				qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/ICA_ROI.sh $path/$subj $cond $output $script_path $nROI $mode
+				qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path/$subj $cond $output $script_path $nROI
 
 			done
 
