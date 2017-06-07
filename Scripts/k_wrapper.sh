@@ -47,24 +47,24 @@ case $DATA in
 
 			subj=$path
 			mkdir -p $subj/roi_tcourses
-			mkdir -p logs/$DATE
+			mkdir -p $output/$cond'_'$subj/logs/$DATE
 			name=$(basename $subj)
 
-			qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
-			qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
+			qsub -N roi_$name -e $output/$cond'_'$subj/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
+			qsub -N ICA_$cond -e $output/$cond'_'$subj/logs/$DATE/ica_$name.err -o $script_path/logs/$DATE/ica_$name.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $subj $cond $output $script_path $nROI
 		elif [[ $mode == "group" ]]; then
 
 			for subj in $(ls $path); do
 
 				mkdir -p $path/$subj/roi_tcourses
-				mkdir -p logs/$DATE
+				mkdir -p $output/logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e $script_path/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI
+				qsub -N roi_$name -e $output/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI
 
 			done
 
-			qsub -N ICA_$cond -e $script_path/logs/$DATE/ica_$cond.err -o $script_path/logs/$DATE/ica_$cond.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
+			qsub -N ICA_$cond -e $output/logs/$DATE/ica_$cond.err -o $script_path/logs/$DATE/ica_$cond.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
 
 		else
 				echo "Please enter either 'subj' or 'group'"

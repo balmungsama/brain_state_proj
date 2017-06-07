@@ -39,7 +39,7 @@ if [[ $mode == 'group' ]]; then
 
 	mkdir $output/$cond
 
-	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
+	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI #--Opca 
 
 	rm $output/$cond/$cond'_files_for_ica.txt'
 
@@ -47,7 +47,7 @@ elif [[ $mode == 'subj' ]]; then
 
 	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
 
-	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
+	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI #--Opca
 
 fi
 
