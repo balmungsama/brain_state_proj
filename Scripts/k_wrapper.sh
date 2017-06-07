@@ -47,7 +47,7 @@ case $DATA in
 
 			subj=$path
 			mkdir -p $subj/roi_tcourses
-			mkdir -p $output/$cond'_'$subj/logs/$DATE
+			mkdir -p $output/$cond'_'$name/logs/$DATE
 			name=$(basename $subj)
 
 			qsub -N roi_$name -e $output/$cond'_'$name/logs/$DATE/roi_$name.err -o $script_path/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $subj $cond $output $script_path $nROI
