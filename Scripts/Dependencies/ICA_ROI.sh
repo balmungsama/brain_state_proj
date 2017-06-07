@@ -41,6 +41,8 @@ if [[ $mode == 'group' ]]; then
 
 	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat --Opca -v $nROI
 
+	$output/$cond/$cond'_files_for_ica.txt'
+
 elif [[ $mode == 'subj' ]]; then
 
 	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
