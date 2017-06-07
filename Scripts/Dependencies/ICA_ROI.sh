@@ -14,6 +14,8 @@ mode=$6
 
 subj=$(basename $TOP_DIR)
 
+mkdir $output/$cond
+
 ##### get the ica analysis ready
 
 if [[ $nROI == 'default' ]]; then
