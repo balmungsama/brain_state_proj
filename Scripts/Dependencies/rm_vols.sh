@@ -10,7 +10,6 @@ cond=$2
 output=$3
 script_path=$4
 nROI=$5
-subj_count=$6
 
 ##### prep arguments for passage into Matlab #####
 subj=$(basename $TOP_DIR)
