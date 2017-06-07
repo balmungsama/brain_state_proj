@@ -45,6 +45,8 @@ if [[ $mode == 'group' ]]; then
 
 elif [[ $mode == 'subj' ]]; then
 
+	echo HELLO WORLD
+
 	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
 
 	name=$(basename $TOP_DIR)
