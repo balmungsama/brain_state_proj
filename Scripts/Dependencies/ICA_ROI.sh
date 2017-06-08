@@ -39,18 +39,18 @@ if [[ $mode == 'group' ]]; then
 
 	mkdir $output/$cond
 
-	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI #--Opca 
+	melodic -i $output/$cond/$cond'_files_for_ica.txt' -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI --nobet --bgthreshold=10 --mmthresh=0.5 #--Opca 
 
 	rm $output/$cond/$cond'_files_for_ica.txt'
 
 elif [[ $mode == 'subj' ]]; then
 
-	echo HELLO WORLD
+	echo running subj ICA
 
 	TR=$(3dinfo -tr $TOP_DIR/task_data/$cond.nii*)
 
 	name=$(basename $TOP_DIR)
-	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI #--Opca
+	melodic -i $TOP_DIR/task_data/preproc/ica_$cond.nii -o $output/$cond/ --tr=$TR --report --Ostats -a concat -v $nROI --nobet --bgthreshold=10 --mmthresh=0.5 #--Opca
 
 fi
 
