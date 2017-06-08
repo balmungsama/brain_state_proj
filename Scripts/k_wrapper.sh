@@ -60,7 +60,7 @@ case $DATA in
 				mkdir -p $output/$cond/logs/$DATE
 				name=$(basename $subj)
 
-				qsub -N roi_$name -e $output/$cond/logs/$DATE/roi_$name.err -o $output/logs/$cond/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI $mode
+				qsub -N roi_$name -e $output/$cond/logs/$DATE/roi_$name.err -o $output/$cond/logs/$DATE/roi_$name.out $script_path/Dependencies/rm_vols.sh $path/$subj $cond $output $script_path $nROI $mode
 
 			done
 
