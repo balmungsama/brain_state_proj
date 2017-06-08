@@ -25,9 +25,8 @@ echo ' '
 
 case $DATA in
 
-
 	1) echo "ROI - Independent Components Analysis"
-	  echo "++++++++++++++++++++++++"
+	  echo "--------------------"
 		echo " "
 		echo -n "Are you running a group or one subject? ('group' or 'subj'):  "
 		read mode
