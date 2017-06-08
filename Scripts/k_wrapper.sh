@@ -64,7 +64,7 @@ case $DATA in
 
 			done
 
-			qsub -N ICA_$cond -e $output/$cond/logs/$DATE/ica_$cond.err -o $output/$cond/logs/$DATE/ica_$cond.out -hold_jid /roi_ $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
+			qsub -N ICA_$cond -e $output/$cond/logs/$DATE/ica_$cond.err -o $output/$cond/logs/$DATE/ica_$cond.out -hold_jid 'roi_*' $script_path/Dependencies/ICA_ROI.sh $path $cond $output $script_path $nROI $mode
 
 		else
 				echo "Please enter either 'subj' or 'group'"
