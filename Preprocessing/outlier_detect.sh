@@ -1,4 +1,6 @@
 # TODO: add in option for automatic threshold detection if no value specified
+# TODO: decide if DVARS should be calculated after or before spatial smoothing.
+#  			Would this make a difference?
 
 SUBJ_DIR=$1
 COND=$2
@@ -11,7 +13,7 @@ echo '	computing DVARS...'
 mkdir $SUBJ_DIR/mot_analysis
 mkdir $SUBJ_DIR/mot_analysis/plots
 
-NIFTI_FILE=$SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
+NIFTI_FILE=$SUBJ_DIR/task_data/preproc/snlmt_$COND
 
 # DVARS
 fsl_motion_outliers -i $NIFTI_FILE -o $SUBJ_DIR/mot_analysis/$COND'_DVARS.par' -s $SUBJ_DIR/mot_analysis/$COND'_DVARS.val' -p $SUBJ_DIR/mot_analysis/plots/$COND'_DVARS' --dvars --nomoco --thresh=$DVARS
