@@ -7,11 +7,14 @@
 #$ -e logs/grp_STD.err
 #$ -q abaqus.q
 
+# TODO: integrate the TEMPLATE for normalization into the rest of the pipeline
+
 TOP_DIR=$1 						# here you enter in the group directory
 COND=$2    						# enter the condition name
 FD=$3      						# enter frame-wise displacement threshold
 DVARS=$4   						# enter DVARS threshold
 RM=$5      						# use "UNION" or "INTERSECT" of FD & DVARS
+TEMPLATE=$6           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
