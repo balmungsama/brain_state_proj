@@ -1,3 +1,5 @@
+% TODO: add a mask option
+
 disp(['subj: ', SUBJ_DIR]);
 disp(['cond: ', COND    ]);
 
@@ -6,7 +8,7 @@ NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['scrub_motreg_snlmt_' CO
 CONFOUND = fullfile( SUBJ_DIR, 'mot_analysis', [COND '_CONFOUND.par'] );
 OUTPUT   = NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interop_scrub_motreg_snlmt_' COND '.nii'] );
 
-subj      = load_nii('scrubbed_motreg_snlmt_Resting.nii');
+subj      = load_nii(NIFTI);
 subj_cp   = subj;
 
 CONFOUND  = dlmread('Resting_CONFOUND.par');
@@ -42,6 +44,5 @@ for xx = 1:size(subj_cp.img, 1)
 	end
 
 end
-
 
 save_nii(subj_cp.img, OUTPUT);
