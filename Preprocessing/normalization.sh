@@ -23,12 +23,5 @@ applywarp --ref=$TEMPLATE --in=$SUBJ_DIR/task_data/preproc/mt_$COND --out=$SUBJ_
 echo '       + Applying spatial smoothing kernel...'
 fslmaths $SUBJ_DIR/task_data/preproc/nlmt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
 
-echo '       + Cleaning up unneeded files...'
-rm $SUBJ_DIR/anatom/l_brain_Mprage.nii*
-rm $SUBJ_DIR/anatom/brain_Mprage_to_MNI152_T1_2mm_brain.log
-# rm $SUBJ_DIR/task_data/preproc/t_$COND.nii*
-rm $SUBJ_DIR/task_data/preproc/mt_$COND.nii*
-rm $SUBJ_DIR/task_data/preproc/nlmt_$COND.nii*
-
 echo 'done'
 echo '    '

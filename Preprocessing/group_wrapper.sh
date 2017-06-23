@@ -14,7 +14,10 @@ COND=$2    						# enter the condition name
 FD=$3      						# enter frame-wise displacement threshold
 DVARS=$4   						# enter DVARS threshold
 RM=$5      						# use "UNION" or "INTERSECT" of FD & DVARS
-TEMPLATE=$6           # template to be used in normalization
+LOW=$6                # low  threshold bandpass filter
+HIGH=$7               # high threshold bandpass filter
+
+TEMPLATE=$8           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
@@ -23,5 +26,5 @@ subj_ls=($(ls $TOP_DIR))
 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
-	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FD $DVARS $RM
+	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FD $DVARS $RM $LOW $HIGH
 done

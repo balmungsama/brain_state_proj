@@ -2,8 +2,10 @@
 
 SUBJ_DIR=$1
 COND=$2
-HIGH=$3
-LOW=$4
+LOW=$3
+HIGH=$4
+
+echo '	Temporal bandpass filtering... '
 
 TR=$(3dinfo -tr $SUBJ_DIR/task_data/$COND.nii*)
 

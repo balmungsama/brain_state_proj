@@ -2,7 +2,7 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
-echo '	regressing nuisance variables ...'
+echo '	Regressing nuisance variables...'
 
 mkdir $SUBJ_DIR/nuisance
 
