@@ -22,6 +22,3 @@ echo '       + Applying standardized warp to functional data...'
 applywarp --ref=$TEMPLATE --in=$SUBJ_DIR/task_data/preproc/mt_$COND --out=$SUBJ_DIR/task_data/preproc/nlmt_$COND --warp=$SUBJ_DIR/anatom/cout_nl_brain_Mprage --premat=$SUBJ_DIR/task_data/preproc/mats/func2str.mat
 echo '       + Applying spatial smoothing kernel...'
 fslmaths $SUBJ_DIR/task_data/preproc/nlmt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/motreg_snlmt_$COND
-
-echo 'done'
-echo '    '
