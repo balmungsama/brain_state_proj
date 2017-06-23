@@ -6,7 +6,7 @@ disp(['cond: ', COND    ]);
 
 NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['snlmt_' COND '.nii'] );
 CONFOUND = fullfile( SUBJ_DIR, 'mot_analysis', [COND '_CONFOUND.par'] );
-OUTPUT   = NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interop_snlmt_' COND '.nii'] );
+OUTPUT   = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interop_snlmt_' COND '.nii'] );
 
 subj      = load_nii(NIFTI);
 subj_cp   = subj;
