@@ -1,6 +1,4 @@
-# PREPROC='/mnt/c/Users/john/OneDrive/2017-2018/preprocessing' # directory of preproc scripts
-# SUBJ_DIR='/mnt/c/Users/john/Documents/sample_fmri/2357ZL'
-# COND='Retrieval'																				
+# TODO: add slice-time correction																	
 																												
 SUBJ_DIR=$1    # subject directory
 COND=$2   		 # name of condition
