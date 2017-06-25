@@ -27,10 +27,10 @@ bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
 bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND
 
-bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
+# bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
+# bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
 
-bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
+# bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
 
 # bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
 
