@@ -6,6 +6,7 @@ LOW=$3
 HIGH=$4
 
 echo '	Temporal bandpass filtering... '
+echo "		+ $LOW Hz < f < $HIGH Hz"
 
 TR=$(3dinfo -tr $SUBJ_DIR/task_data/$COND.nii*)
 
