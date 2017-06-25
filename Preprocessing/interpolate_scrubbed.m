@@ -45,6 +45,6 @@ for xx = 1:size(subj_cp.img, 1)
 
 end
 
-save_nii(subj_cp.img, OUTPUT);
+save_nii(subj_cp, OUTPUT);
 
 exit
