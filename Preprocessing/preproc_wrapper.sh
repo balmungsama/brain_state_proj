@@ -21,7 +21,7 @@ bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
-Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM --NUISSANCE=$NUISSANCE
+Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM #--NUISSANCE=$NUISSANCE
 
 bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
