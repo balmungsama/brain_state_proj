@@ -15,9 +15,9 @@ for (arg in args) {
     
     RM <- arg[2]
     
-  } else if (arg[1] == '--NUISSANCE') {
+  # } else if (arg[1] == '--NUISSANCE') {
 
-    NUISSANCE <- arg[2]
+  #   NUISSANCE <- arg[2]
 
   } else {
     
@@ -110,15 +110,15 @@ if( sum(CONFOUND) == 0 ) {
 
 ##### add in wm & csf tcourses as nuisance regressors #####
 
-if ( NUISSANCE == 'wm' | NUISSANCE == 'both' ) {
-  wm_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_wm_tcourse.txt')) )
-  CONFOUND   <- cbind(wm_tcourse, CONFOUND)
-}
+# if ( NUISSANCE == 'wm' | NUISSANCE == 'both' ) {
+#   wm_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_wm_tcourse.txt')) )
+#   CONFOUND   <- cbind(wm_tcourse, CONFOUND)
+# }
 
-if ( NUISSANCE == 'csf' | NUISSANCE == 'both' ) {
-  csf_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_csf_tcourse.txt')) )
-  CONFOUND    <- cbind(csf_tcourse, CONFOUND)
-}
+# if ( NUISSANCE == 'csf' | NUISSANCE == 'both' ) {
+#   csf_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_csf_tcourse.txt')) )
+#   CONFOUND    <- cbind(csf_tcourse, CONFOUND)
+# }
 
 ##### save the confound matrix #####
 
