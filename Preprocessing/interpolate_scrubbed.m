@@ -8,10 +8,10 @@ NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['mt_' COND '.nii'] );
 CONFOUND = fullfile( SUBJ_DIR, 'mot_analysis', [COND '_CONFOUND.par'] );
 OUTPUT   = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interop_mt_' COND '.nii'] );
 
-subj      = load_nii(NIFTI);
+subj      = load_untouch_nii(NIFTI);
 subj_cp   = subj;
 
-CONFOUND  = dlmread('Resting_CONFOUND.par');
+CONFOUND  = dlmread(CONFOUND);
 
 index     = sum(CONFOUND,2);
 index     = index > 0;
@@ -35,7 +35,7 @@ for xx = 1:size(subj_cp.img, 1)
 			val_kp  = reshape(val_kp, [1, size(val_kp, 4)]);
 			val_kp  = double(val_kp);
 
-			voxel_int = interp1(index_kp, val_kp, index_int, 'linear');
+			voxel_int = interp1(index_kp, val_kp, index_int, 'linear', 'extrap');
 
 			subj_cp.img(xx, yy, zz, index_int) = voxel_int; 
 
@@ -45,6 +45,6 @@ for xx = 1:size(subj_cp.img, 1)
 
 end
 
-save_nii(subj_cp, OUTPUT);
+save_untouch_nii(subj_cp, OUTPUT);
 
 exit
