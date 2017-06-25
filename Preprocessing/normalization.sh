@@ -10,6 +10,8 @@ TEMPLATE=$FSLDIR'/data/standard/MNI152_T1_1mm_brain.nii.gz'
 mkdir $SUBJ_DIR/anatom/mats
 mkdir $SUBJ_DIR/task_data/preproc/mats
 
+echo '	Spatial normalization...'
+
 echo '       + Linear-warping functional to structural...'
 flirt -ref $SUBJ_DIR/anatom/brain_Mprage.nii.gz -in $SUBJ_DIR/task_data/preproc/mt_$COND -omat $SUBJ_DIR/task_data/preproc/mats/func2str.mat -dof 6
 echo '       + Linear-warping structural to standard template...'
