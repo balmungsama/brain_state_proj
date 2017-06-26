@@ -30,7 +30,7 @@ if (length(unused_args) > 0) {
   print(paste('WARNING: unused arguments ', unused_args))
 }
 
-cat('  Creating confound matrix...\n')
+cat('        Creating confound matrix...\n')
 
 ##### values for testing script #####
 
