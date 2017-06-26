@@ -3,6 +3,11 @@ COND=$2
 
 echo '	Removing unecessary files...'
 
-rm $SUBJ_DIR/anatom/cout_nl_brain_Mprage.nii
-rm $SUBJ_DIR/anatom/l_brain_Mprage.nii
-rm $SUBJ_DIR/anatom/brain_Mprage_to_*.log
+rm -f $SUBJ_DIR/task_data/preproc/t_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/interop_mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/filt_interop_mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/mot_filt_interop_mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/nl_mot_filt_interop_mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/nuis_snl_mot_filt_interop_mt_$COND.nii
+rm -f $SUBJ_DIR/task_data/preproc/scrub_nuis_snl_mot_filt_interop_mt_$COND.nii

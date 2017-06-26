@@ -17,7 +17,7 @@ PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 echo INITIALIZING PREPROCESSING --------------------
 
-rm $SUBJ_DIR/PASS
+rm -f $SUBJ_DIR/PASS
 
 bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
@@ -27,6 +27,8 @@ Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
 if [ -e $SUBJ_DIR/PASS ]; then
 	PASS=TRUE
+else
+	PASS=FALSE
 fi
 
 if [ PASS != TRUE ]; then
@@ -38,6 +40,6 @@ if [ PASS != TRUE ]; then
 	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
 fi
 
-# bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
+bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
 
 echo 'FINISHED'

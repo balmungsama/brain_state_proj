@@ -15,4 +15,3 @@ LOW=$(bc -l <<< "(1 / $LOW) / $TR")
 
 fslmaths $SUBJ_DIR/task_data/preproc/interop_mt_$COND -bptf $HIGH $LOW $SUBJ_DIR/task_data/preproc/filt_interop_mt_$COND
 
-rm $SUBJ_DIR/task_data/preproc/interop_mt_$COND.nii*
