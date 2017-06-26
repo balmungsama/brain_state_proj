@@ -1,7 +1,7 @@
 % TODO: add a mask option
 
-disp(['subj: ', SUBJ_DIR]);
-disp(['cond: ', COND    ]);
+% disp(['subj: ', SUBJ_DIR]);
+% disp(['cond: ', COND    ]);
 
 
 NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['mt_' COND '.nii'] );
