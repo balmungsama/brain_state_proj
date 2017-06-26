@@ -11,5 +11,3 @@ echo '	motion correction...'
 mcflirt -in $SUBJ_DIR/task_data/preproc/t_$COND.nii* -o $SUBJ_DIR/task_data/preproc/mt_$COND -refvol 1 -plots
 
 mv $SUBJ_DIR/task_data/preproc/mt_$COND.par $SUBJ_DIR/MPEs/$COND.1D
-
-rm $SUBJ_DIR/task_data/preproc/t_$COND.nii*
