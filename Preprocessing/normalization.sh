@@ -25,7 +25,8 @@ applywarp --ref=$TEMPLATE --in=$SUBJ_DIR/task_data/preproc/mot_filt_interop_mt_$
 echo '       		+ Applying spatial smoothing kernel...'
 fslmaths $SUBJ_DIR/task_data/preproc/nl_mot_filt_interop_mt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/snl_mot_filt_interop_mt_$COND
 
-
+rm $SUBJ_DIR/task_data/preproc/mot_filt_interop_mt_$COND.nii*
+rm $SUBJ_DIR/task_data/preproc/nl_mot_filt_interop_mt_$COND.nii*
 
 ###################################################
 
