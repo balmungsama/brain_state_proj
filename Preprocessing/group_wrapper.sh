@@ -26,7 +26,7 @@ rm logs/$DATE/*
 subj_ls=($(ls $TOP_DIR))
 
 # for testing
-subj_ls=(${subj_ls[@]:0:5})
+# subj_ls=(${subj_ls[@]:0:5})
 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
