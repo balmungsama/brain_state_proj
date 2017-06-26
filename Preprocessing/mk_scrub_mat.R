@@ -120,6 +120,14 @@ if( sum(CONFOUND) == 0 ) {
 #   CONFOUND    <- cbind(csf_tcourse, CONFOUND)
 # }
 
+##### check how many vols were flagged as outliers #####
+
+CONFOUND.dim <- dim(CONFOUND)
+
+if ( CONFOUND.dim[2] / CONFOUND.dim[1] >= 0.5 ) {
+  system( paste0('touch ', file.path(PATH, 'PASS') ) )
+}
+
 ##### save the confound matrix #####
 
 write.table(CONFOUND, file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ), row.names = F, col.names = F )
