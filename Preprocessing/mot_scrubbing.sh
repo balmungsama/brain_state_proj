@@ -7,3 +7,5 @@ fsl_glm -i $SUBJ_DIR/task_data/preproc/nuis_snl_mot_filt_interop_mt_$COND -d $SU
 
 rm $SUBJ_DIR/task_data/preproc/nuis_snl_mot_filt_interop_mt_$COND.nii*
 gzip $SUBJ_DIR/task_data/preproc/scrub_nuis_snl_mot_filt_interop_mt_$COND.nii
+
+rm $SUBJ_DIR/task_data/preproc/scrub_nuis_snl_mot_filt_interop_mt_$COND.nii
