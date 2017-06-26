@@ -27,7 +27,7 @@ if [ -e $SUBJ_DIR/PASS ]; then
 fi
 
 if [ PASS != TRUE ]; then
-	Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM #--NUISSANCE=$NUISSANCE
+	Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 	bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
 	bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND
