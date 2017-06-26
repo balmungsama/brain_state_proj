@@ -17,6 +17,8 @@ PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 echo INITIALIZING PREPROCESSING --------------------
 
+rm $SUBJ_DIR/PASS
+
 bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
