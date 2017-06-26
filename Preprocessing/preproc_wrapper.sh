@@ -40,6 +40,6 @@ if [ PASS != TRUE ]; then
 	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
 fi
 
-bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
+# bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
 
 echo 'FINISHED'
