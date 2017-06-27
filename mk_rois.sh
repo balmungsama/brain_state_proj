@@ -30,3 +30,4 @@ for roi in $(seq ${range[0]} ${range[1]}); do
 done
 
 rm -r $OUT_DIR/tmp
+
