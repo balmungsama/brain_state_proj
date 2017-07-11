@@ -1,5 +1,3 @@
-# TODO: add slice-time correction																	
-																												
 SUBJ_DIR=$1    # subject directory
 COND=$2   		 # name of condition
 PREPROC=$3		 # NOTE: must use this name for behav & fmri data

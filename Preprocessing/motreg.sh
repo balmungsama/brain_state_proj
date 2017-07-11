@@ -2,7 +2,7 @@ SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
 
-NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
+# NUM_CORES=$(grep -c ^processor /proc/cpuinfo)
 
 # if (($NUM_CORES > 1)); then
 # 	NUM_CORES=2

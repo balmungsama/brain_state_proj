@@ -63,7 +63,7 @@ if (RM == 'UNION') {
   
   row.sums      <- rowSums(CONFOUND)
   row.redundant <- which(row.sums == 2)
-  
+
   rm.col <- NULL
   for (red in row.redundant) {
     CONFOUND.row <- CONFOUND[red, ]

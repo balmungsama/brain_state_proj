@@ -22,6 +22,8 @@ rm -f $SUBJ_DIR/PASS
 bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
+bash $PREPROC/intense_norm.sh $SUBJ_DIR $COND $PREPROC
+bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
@@ -32,12 +34,14 @@ else
 fi
 
 if [ PASS != TRUE ]; then
+	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND init
+	bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
-	bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND
-	bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
-	bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
-	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC
+	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND fin
+	#TODO add another scrubbing step
+	
+	# bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND
 fi
 
 # bash $PREPROC/rm_intermediate_files.sh $SUBJ_DIR $COND
