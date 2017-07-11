@@ -21,7 +21,7 @@ TEMPLATE=$8           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
-rm logs/$DATE/*
+rm -f logs/$DATE/*
 
 subj_ls=($(ls $TOP_DIR))
 
