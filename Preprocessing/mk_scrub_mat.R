@@ -108,17 +108,9 @@ if( sum(CONFOUND) == 0 ) {
   CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
 }
 
-##### add in wm & csf tcourses as nuisance regressors #####
+##### remove zero columns #####
 
-# if ( NUISSANCE == 'wm' | NUISSANCE == 'both' ) {
-#   wm_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_wm_tcourse.txt')) )
-#   CONFOUND   <- cbind(wm_tcourse, CONFOUND)
-# }
-
-# if ( NUISSANCE == 'csf' | NUISSANCE == 'both' ) {
-#   csf_tcourse <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_csf_tcourse.txt')) )
-#   CONFOUND    <- cbind(csf_tcourse, CONFOUND)
-# }
+CONFOUND <- CONFOUND[, which( as.numeric(c(colSums(CONFOUND))) == 0) ]
 
 ##### check how many vols were flagged as outliers #####
 
