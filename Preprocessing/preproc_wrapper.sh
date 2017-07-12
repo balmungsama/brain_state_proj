@@ -34,11 +34,11 @@ else
 fi
 
 if [ PASS != TRUE ]; then
-	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND init
+	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC init
 	bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
-	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND fin
+	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC fin
 	#TODO add another scrubbing step
 	
 	# bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND

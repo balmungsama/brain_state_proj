@@ -1,6 +1,7 @@
 SUBJ_DIR=$1
 COND=$2
-stage=$3
+PREPROC=$3
+stage=$4
 
 if [[ "$stage" == 'init' ]]; then
 	
