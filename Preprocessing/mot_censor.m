@@ -15,6 +15,6 @@ subj_nifti.img(:,:,:,censorFlag) = [];
 subj_nifti.hdr.dime.dim(5)          = volnum.new;
 subj_nifti.original.hdr.dime.dim(5) = volnum.new;
 
-save_nii( subj_nifti, ['task_data/preproc/censor_snl_mt_' COND '.nii'] )
+save_nii( subj_nifti, ['task_data/preproc/censor_snl_norm_mt_' COND '.nii'] )
 
 exit

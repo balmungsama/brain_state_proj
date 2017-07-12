@@ -2,7 +2,7 @@ SUBJ_DIR=$1
 COND=$2
 stage=$3
 
-if [[ "$stage" = 'init' ]]; then
+if [[ "$stage" == 'init' ]]; then
 	
 	echo '	Motion scrubbing (init) ...'
 	fsl_glm -i $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND -d $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par' --out_res=$SUBJ_DIR/task_data/preproc/scrub_snl_norm_mt_$COND
@@ -13,6 +13,6 @@ if [[ "$stage" = 'init' ]]; then
 elif [[ "$stage" == 'fin' ]]; then
 	
 	echo '	Motion scrubbing (fin) ...'
-	fsl_glm -i $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_mt_$COND -d $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par' --out_res=$SUBJ_DIR/task_data/preproc/scrub_filt_interp_nuis_snl_mt_$COND
+	fsl_glm -i $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND -d $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par' --out_res=$SUBJ_DIR/task_data/preproc/scrub_filt_interp_nuis_snl_norm_mt_$COND
 
 fi

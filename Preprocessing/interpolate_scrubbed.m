@@ -1,12 +1,11 @@
-% TODO: add a mask option
 
 % disp(['subj: ', SUBJ_DIR]);
 % disp(['cond: ', COND    ]);
 
 
-NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['nuis_snl_mt_' COND '.nii'] );
+NIFTI    = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['nuis_snl_norm_mt_' COND '.nii'] );
 CONFOUND = fullfile( SUBJ_DIR, 'mot_analysis', [COND '_CONFOUND.par'] );
-OUTPUT   = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interp_nuis_snl_mt_' COND '.nii'] );
+OUTPUT   = fullfile( SUBJ_DIR, 'task_data', 'preproc', ['interp_nuis_snl_norm_mt_' COND '.nii'] );
 
 subj      = load_untouch_nii(NIFTI);
 subj_cp   = subj;

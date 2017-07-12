@@ -15,6 +15,6 @@ end
 
 subj_nifti.img = subj_nifti.img - tmp;
 
-save_nii(subj_nifti, [ 'task_data/preproc/nuis_snl_mt_' COND '.nii' ]);
+save_nii(subj_nifti, [ 'task_data/preproc/nuis_snl_norm_mt_' COND '.nii' ]);
 
 exit
