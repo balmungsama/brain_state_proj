@@ -110,7 +110,7 @@ if( sum(CONFOUND) == 0 ) {
 
 ##### remove zero columns #####
 
-CONFOUND <- CONFOUND[, which( as.numeric(c(colSums(CONFOUND))) == 0) ]
+CONFOUND <- CONFOUND[, -which( as.numeric(c(colSums(CONFOUND))) == 0) ]
 
 ##### check how many vols were flagged as outliers #####
 
