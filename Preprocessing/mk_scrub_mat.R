@@ -1,3 +1,9 @@
+##### trouble-shooting print statement #####
+
+print('mk_scrub_mat.R')
+
+##### main script #####
+
 args        <- commandArgs(trailingOnly = TRUE)
 unused_args <- NULL
 
@@ -106,20 +112,24 @@ if (RM == 'UNION') {
 
 if( sum(CONFOUND) == 0 ) {
   CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
+  write.table(x = 'no outliers', file = 'testing.par', row.names = F, col.names = F)
+} else {
+
+  ##### remove zero columns #####
+  CONFOUND <- CONFOUND[, -which( as.numeric(c(colSums(CONFOUND))) == 0) ]
+
+  ##### check how many vols were flagged as outliers #####
+  
+  CONFOUND.dim <- dim(CONFOUND)
+
+  if ( CONFOUND.dim[2] / CONFOUND.dim[1] >= 0.5 ) {
+    system( paste0('touch ', file.path(PATH, 'PASS') ) )
+  }
+
+  ##### save the confound matrix #####
+
+  write.table(CONFOUND, file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ), row.names = F, col.names = F )
+
+  cat('\n This participant has no outlying volumes. \n')
+
 }
-
-##### remove zero columns #####
-
-CONFOUND <- CONFOUND[, -which( as.numeric(c(colSums(CONFOUND))) == 0) ]
-
-##### check how many vols were flagged as outliers #####
-
-CONFOUND.dim <- dim(CONFOUND)
-
-if ( CONFOUND.dim[2] / CONFOUND.dim[1] >= 0.5 ) {
-  system( paste0('touch ', file.path(PATH, 'PASS') ) )
-}
-
-##### save the confound matrix #####
-
-write.table(CONFOUND, file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ), row.names = F, col.names = F )

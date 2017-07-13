@@ -1,4 +1,16 @@
-cd [ SUBJ_DIR ];
+%%%%%%%%%%%%%%%%%%%%%%
+%% trouble-shooting %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+disp('mot_censor.m')
+disp( ['SUBJ_DIR = ', SUBJ_DIR ] );
+disp( ['COND = ', COND ] );
+
+%%%%%%%%%%
+%% main %%
+%%%%%%%%%%
+
+cd(SUBJ_DIR);
 
 subj_nifti = load_nii([ 'task_data/preproc/scrub_snl_norm_mt_' COND '.nii' ]);
 

@@ -1,3 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%
+%% trouble-shooting %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+disp('interpolate_scrubbed.m')
+disp( ['SUBJ_DIR = ', SUBJ_DIR ] );
+disp( ['COND = ', COND ] );
+
+%%%%%%%%%%
+%% main %%
+%%%%%%%%%%
+
 
 % disp(['subj: ', SUBJ_DIR]);
 % disp(['cond: ', COND    ]);

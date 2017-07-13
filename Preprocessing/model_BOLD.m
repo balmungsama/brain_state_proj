@@ -1,4 +1,16 @@
-cd SUBJ_DIR;
+%%%%%%%%%%%%%%%%%%%%%%
+%% trouble-shooting %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+disp('model_BOLD.m')
+disp( ['SUBJ_DIR = ', SUBJ_DIR ] );
+disp( ['COND = ', COND ] );
+
+%%%%%%%%%%
+%% main %%
+%%%%%%%%%%
+
+cd(SUBJ_DIR);
 
 BETAS      = load_nii([ 'nuisance/BETAS_' COND '.nii' ]);
 subj_nifti = load_nii([ 'task_data/preproc/snl_norm_mt_' COND '.nii' ]);
