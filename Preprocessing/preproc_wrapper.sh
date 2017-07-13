@@ -23,7 +23,7 @@ bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/intense_norm.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/normalization.sh $SUBJ_DIR $COND $PREPROC
+bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
