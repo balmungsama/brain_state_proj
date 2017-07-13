@@ -112,7 +112,7 @@ if (RM == 'UNION') {
 
 if( sum(CONFOUND) == 0 ) {
   CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
-  write.table(x = 'no outliers', file = 'testing.par', row.names = F, col.names = F)
+  write.table(x = 'no outliers', file = file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ) , row.names = F, col.names = F)
 } else {
 
   ##### remove zero columns #####
