@@ -25,7 +25,7 @@ for vol = 1:size(subj_nifti.img, 4)
 	
 end
 
-subj_nifti.img = subj_nifti.img - tmp;
+subj_nifti.img = subj_nifti.img - estim_tcourse;
 
 save_nii(subj_nifti, [ 'task_data/preproc/nuis_snl_norm_mt_' COND '.nii' ]);
 

@@ -25,10 +25,13 @@ CONFOUND <- read.table( file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.
 MPEs <- read.table( file.path(PATH, 'MPEs', paste0(COND, '.1D')), col.names = c('dS', 'dL', 'dP', 'roll', 'pitch', 'yaw'))
 NUIS <- read.table( file.path(PATH, 'nuisance', paste0(COND, '_NUISANCE.txt')) )
 
-reg.tab  <- cbind(MPEs, NUIS)
+# reg.tab  <- cbind(MPEs, NUIS)
 CONFOUND <- rowSums(CONFOUND)
 
-reg.tab <- reg.tab[-which(CONFOUND == 1), ]
+MPEs <- MPEs[-which(CONFOUND == 1), ]
+
+reg.tab  <- cbind(MPEs, NUIS)
+
 reg.tab <- scale(reg.tab)   # normalize the columns of the regressors
 
 write.table(reg.tab, file = file.path(PATH, 'nuisance', paste0(COND, '_regressors.txt')), 

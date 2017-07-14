@@ -14,9 +14,9 @@ paste $SUBJ_DIR/nuisance/$COND'_t_vent.txt' $SUBJ_DIR/nuisance/$COND'_t_wm.txt' 
 
 Rscript $PREPROC/center_nuisance.R --PATH=$SUBJ_DIR --COND=$COND
 
-fsl_glm -i $SUBJ_DIR/task_data/preproc/censor_snl_mt_$COND -d $SUBJ_DIR/nuisance/$COND'_regressors'.txt -o $SUBJ_DIR/nuisance/BETAS_$COND # --out_res=$SUBJ_DIR/task_data/preproc/nuis_snl_mot_filt_interop_mt_$COND
+fsl_glm -i $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND -d $SUBJ_DIR/nuisance/$COND'_regressors'.txt -o $SUBJ_DIR/nuisance/BETAS_$COND # --out_res=$SUBJ_DIR/task_data/preproc/nuis_snl_mot_filt_interop_mt_$COND
 
-gunzip $SUBJ_DIR/nuisance/BETAS_$COND.nii.gz
+# gunzip $SUBJ_DIR/nuisance/BETAS_$COND.nii.gz
 
 matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';run('$PREPROC/model_BOLD.m')" 
 
