@@ -1,5 +1,9 @@
 ##### trouble-shooting print statement #####
 
+PATH <- '/home/hpc3586/OSU_data/all_233/2357ZL'
+COND <- 'Resting'
+RM   <- 'UNION'
+
 print('mk_scrub_mat.R')
 
 ##### main script #####
@@ -107,12 +111,19 @@ if (RM == 'UNION') {
 print(CONFOUND)
 
 if( sum(CONFOUND) == 0 ) {
+  
   # CONFOUND <- matrix(data = 0, ncol = 1, nrow = dim(CONFOUND)[1] )
   write.table(x = 'no outliers', file = file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ) , row.names = F, col.names = F)
+
+  cat('\n This participant has no outlying volumes. \n')
+
 } else {
 
   ##### remove zero columns #####
-  CONFOUND <- CONFOUND[, -which( as.numeric(c(colSums(CONFOUND))) == 0) ]
+  if ( sum( colSums(CONFOUND) == 0) > 0 ) { 
+    CONFOUND <- CONFOUND[, -which( as.numeric(c(colSums(CONFOUND))) == 0) ]
+  }
+  
 
   ##### check how many vols were flagged as outliers #####
   
@@ -125,7 +136,5 @@ if( sum(CONFOUND) == 0 ) {
   ##### save the confound matrix #####
 
   write.table(CONFOUND, file.path(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par') ), row.names = F, col.names = F )
-
-  cat('\n This participant has no outlying volumes. \n')
 
 }

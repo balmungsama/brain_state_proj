@@ -20,12 +20,10 @@ for (arg in args) {
   }
 }
 
-setwd(PATH)
+CONFOUND <- read.table( full.file(PATH, 'mot_analysis', paste0(COND, '_CONFOUND.par')) ) 
 
-CONFOUND <- read.table( paste0('mot_analysis/', COND, '_CONFOUND.par') ) 
-
-MPEs <- read.table( paste0('MPEs/', COND, '.1D'), col.names = c('dS', 'dL', 'dP', 'roll', 'pitch', 'yaw'))
-NUIS <- read.table('nuisance/', COND, '_NUISANCE.txt')
+MPEs <- read.table( full.file(PATH, 'MPEs', paste0(COND, '.1D')), col.names = c('dS', 'dL', 'dP', 'roll', 'pitch', 'yaw'))
+NUIS <- read.table( full.file(PATH, 'nuisance', paste0(COND, '_NUISANCE.txt')) )
 
 reg.tab  <- cbind(MPEs, NUIS)
 CONFOUND <- rowSums(CONFOUND)
@@ -33,6 +31,6 @@ CONFOUND <- rowSums(CONFOUND)
 reg.tab <- reg.tab[-which(CONFOUND == 1), ]
 reg.tab <- scale(reg.tab)   # normalize the columns of the regressors
 
-write.table(reg.tab, file = file.path(getwd(), 'nuisance', paste0(COND, '_regressors.txt')), 
+write.table(reg.tab, file = file.path(PATH, 'nuisance', paste0(COND, '_regressors.txt')), 
             row.names = F, 
             col.names = F)

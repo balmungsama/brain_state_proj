@@ -6,14 +6,11 @@ echo '	Regressing nuisance variables...'
 
 mkdir $SUBJ_DIR/nuisance
 
-fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_mt_$COND -m $PREPROC/mask_vent_2mm.nii.gz        -o $SUBJ_DIR/nuisance/$COND'_t_vent.txt'
-fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_mt_$COND -m $PREPROC/mask_wm_2mm.nii.gz          -o $SUBJ_DIR/nuisance/$COND'_t_wm.txt'
-fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_mt_$COND -m $SUBJ_DIR/anatom/bin_nl_brain_Mprage -o $SUBJ_DIR/nuisance/$COND'_t_gs.txt'
+fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND -m $PREPROC/mask_vent_2mm.nii.gz        -o $SUBJ_DIR/nuisance/$COND'_t_vent.txt'
+fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND -m $PREPROC/mask_wm_2mm.nii.gz          -o $SUBJ_DIR/nuisance/$COND'_t_wm.txt'
+fslmeants -i $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND -m $SUBJ_DIR/anatom/bin_nl_brain_Mprage -o $SUBJ_DIR/nuisance/$COND'_t_gs.txt'
 
-paste $SUBJ_DIR/nuisance/$COND'_t_vent.txt' \
-			$SUBJ_DIR/nuisance/$COND'_t_wm.txt' \
-			$SUBJ_DIR/nuisance/$COND'_t_gs.txt' \ 
-			> $SUBJ_DIR/nuisance/$COND'_NUISANCE'.txt
+paste $SUBJ_DIR/nuisance/$COND'_t_vent.txt' $SUBJ_DIR/nuisance/$COND'_t_wm.txt' $SUBJ_DIR/nuisance/$COND'_t_gs.txt'  > $SUBJ_DIR/nuisance/$COND'_NUISANCE'.txt
 
 Rscript $PREPROC/center_nuisance.R --PATH=$SUBJ_DIR --COND=$COND
 
