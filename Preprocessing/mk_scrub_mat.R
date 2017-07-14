@@ -38,12 +38,6 @@ if (length(unused_args) > 0) {
 
 cat('        Creating confound matrix...\n')
 
-##### values for testing script #####
-
-# PATH <- '/mnt/c/Users/john/OneDrive/2017-2018/brain_state_proj/Preprocessing'
-# COND <- 'Resting'
-# RM   <- 'UNION'
-
 ##### import regression matrices of DVARS & FD #####
 
 vals.DVARS <- read.table( file.path(PATH, 'mot_analysis', paste0(COND, '_DVARS.val')) )
