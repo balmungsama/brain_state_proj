@@ -3,7 +3,7 @@ COND=$2
 PREPROC=$3
 stage=$4
 
-out_check=$(head -n $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par')
+out_check=$(head -n 1 $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par')
 
 if [[ "$stage" == 'init' ]]; then
 
