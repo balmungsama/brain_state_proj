@@ -18,7 +18,7 @@ LOW=$6                # low  threshold bandpass filter
 HIGH=$7               # high threshold bandpass filter
 
 INSPECT=$8
-$TEMPLATE=$8           # template to be used in normalization
+#TEMPLATE=$8           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
