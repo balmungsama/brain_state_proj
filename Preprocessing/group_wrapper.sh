@@ -17,7 +17,8 @@ RM=$5      						# use "UNION" or "INTERSECT" of FD & DVARS
 LOW=$6                # low  threshold bandpass filter
 HIGH=$7               # high threshold bandpass filter
 
-TEMPLATE=$8           # template to be used in normalization
+INSPECT=$8
+$TEMPLATE=$8           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
 mkdir -p logs/$DATE
@@ -32,5 +33,5 @@ subj_ls=($(ls $TOP_DIR))
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
-	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FD $DVARS $RM $LOW $HIGH
+	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FD $DVARS $RM $LOW $HIGH $INSPECT
 done
