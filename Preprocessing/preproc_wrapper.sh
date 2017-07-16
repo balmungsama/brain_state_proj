@@ -12,6 +12,7 @@ DVARS=$4
 RM=$5
 LOW=$6
 HIGH=$7
+INSPECT=$8
 
 PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
@@ -27,7 +28,7 @@ bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
-if [ -e $SUBJ_DIR/PASS ]; then
+if [ -e $SUBJ_DIR/PASS ] || INSPECT == 'INSPECT'; then
 	PASS=TRUE
 else
 	PASS=FALSE
