@@ -28,7 +28,7 @@ subj_ls=($(ls $TOP_DIR))
 
 ##### for testing #####
 #subj_ls=(${subj_ls[@]:0:5})
-
+#######################
 
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
