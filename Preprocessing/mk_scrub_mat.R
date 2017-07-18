@@ -1,8 +1,8 @@
 ##### trouble-shooting print statement #####
 
-PATH <- '/home/hpc3586/OSU_data/all_233/2357ZL'
-COND <- 'Resting'
-RM   <- 'UNION'
+# PATH <- '/home/hpc3586/OSU_data/all_233/2357ZL'
+# COND <- 'Resting'
+# RM   <- 'UNION'
 
 print('mk_scrub_mat.R')
 
