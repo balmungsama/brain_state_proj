@@ -37,7 +37,7 @@ bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
-if [ -e $SUBJ_DIR/PASS ] || INSPECT == 'INSPECT'; then
+if [ -e $SUBJ_DIR/PASS ] || $INSPECT == 'INSPECT'; then
 	PASS=TRUE
 	echo 'INSPECT'
 else
