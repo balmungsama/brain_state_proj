@@ -44,7 +44,7 @@ else
 	PASS=FALSE
 fi
 
-if [ PASS != TRUE ]; then
+if [ $PASS != TRUE ]; then
 	bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'init'
 	bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
 	bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
