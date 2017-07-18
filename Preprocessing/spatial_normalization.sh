@@ -26,8 +26,6 @@ echo '       		+ Applying spatial smoothing kernel...'
 fslmaths $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND
 ###################################################
 
-# echo '       		+ Creating mask in functional space...'
+##### removing intermediate files #####
 
-# vox_sz=$(3dinfo -adi $SUBJ_DIR/task_data/preproc/mot_filt_interop_mt_$COND*)
-
-# flirt -interp nearestneighbour -in $TEMPLATE -ref $TEMPLATE -applyisoxfm vox_sz -out template_in_func.nii
+rm nl_norm_mt_$COND

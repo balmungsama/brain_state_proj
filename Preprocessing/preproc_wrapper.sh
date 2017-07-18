@@ -39,7 +39,6 @@ Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
 if [ -e $SUBJ_DIR/PASS ] || [ $INSPECT == 'INSPECT' ]; then
 	PASS=TRUE
-	echo 'INSPECT'
 else
 	PASS=FALSE
 fi
