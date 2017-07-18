@@ -12,7 +12,15 @@ disp( ['COND = ', COND ] );
 
 cd(SUBJ_DIR);
 
-subj_nifti = load_nii([ 'task_data/preproc/scrub_snl_norm_mt_' COND '.nii' ]);
+if FIN == false 
+	INPUT  = [ 'task_data/preproc/scrub_snl_norm_mt_' COND '.nii' ]
+	OUTPUT = ['task_data/preproc/censor_snl_norm_mt_' COND '.nii']
+elseif FIN == true
+	INPUT  = [ 'task_data/preproc/scrub_filt_interp_nuis_snl_norm_mt_' COND '.nii' ]
+	OUTPUT = ['task_data/preproc/censor_filt_interp_nuis_snl_norm_mt_' COND '.nii']
+end
+
+subj_nifti = load_nii(INPUT);
 
 CONFOUND = importdata([ 'mot_analysis/' COND '_CONFOUND.par' ]);
 CONFOUND = sum(CONFOUND, 2);
@@ -27,6 +35,6 @@ subj_nifti.img(:,:,:,censorFlag) = [];
 subj_nifti.hdr.dime.dim(5)          = volnum.new;
 subj_nifti.original.hdr.dime.dim(5) = volnum.new;
 
-save_nii( subj_nifti, ['task_data/preproc/censor_snl_norm_mt_' COND '.nii'] )
+save_nii( subj_nifti, OUTPUT )
 
 exit

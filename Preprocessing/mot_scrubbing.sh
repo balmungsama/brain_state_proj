@@ -21,7 +21,7 @@ if [[ "$stage" == 'init' ]]; then
 		fsl_glm -i $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii -d $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par' --out_res=$SUBJ_DIR/task_data/preproc/scrub_snl_norm_mt_$COND.nii
 	
 		echo '	Motion censoring ...'
-		matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';run('$PREPROC/mot_censor.m')" 
+		matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';FIN=false;run('$PREPROC/mot_censor.m')" 
 
 	fi
 
@@ -45,7 +45,10 @@ elif [[ "$stage" == 'fin' ]]; then
 
 	##### archive final output
 
+	matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';FIN=true;run('$PREPROC/mot_censor.m')"
+
 	gzip scrub_filt_interp_nuis_snl_norm_mt_$COND.nii
+	gzip censor_filt_interp_nuis_snl_norm_mt_$COND.nii
 
 	##### removing intermediate files #####
 
