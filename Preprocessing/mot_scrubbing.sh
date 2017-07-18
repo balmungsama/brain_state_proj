@@ -25,6 +25,10 @@ if [[ "$stage" == 'init' ]]; then
 
 	fi
 
+	##### removing intermediate files #####
+
+	rm $SUBJ_DIR/task_data/preproc/scrub_snl_norm_mt_$COND.nii
+
 elif [[ "$stage" == 'fin' ]]; then
 
 	if [[ $out_check == 'no outliers' ]]; then
@@ -38,5 +42,9 @@ elif [[ "$stage" == 'fin' ]]; then
 		fsl_glm -i $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND -d $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par' --out_res=$SUBJ_DIR/task_data/preproc/scrub_filt_interp_nuis_snl_norm_mt_$COND.nii
 
 	fi
+
+	##### removing intermediate files #####
+
+	rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND
 
 fi

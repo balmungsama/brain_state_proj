@@ -25,7 +25,7 @@ echo INSPECT  = $INSPECT
 
 PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
-echo INITIALIZING PREPROCESSING --------------------
+echo 'INITIALIZING PREPROCESSING --------------------'
 
 rm -f $SUBJ_DIR/PASS
 

@@ -15,3 +15,6 @@ LOW=$(bc -l <<< "(1 / $LOW) / $TR")
 
 fslmaths $SUBJ_DIR/task_data/preproc/interp_nuis_snl_norm_mt_$COND -bptf $HIGH $LOW $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND
 
+##### removing intermediate files #####
+
+rm $SUBJ_DIR/task_data/preproc/interp_nuis_snl_norm_mt_$COND

@@ -20,4 +20,8 @@ fsl_glm -i $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND -d $SUBJ_DIR/nui
 
 matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';run('$PREPROC/model_BOLD.m')" 
 
-# rm $SUBJ_DIR/task_data/preproc/snl_mot_filt_interop_mt_$COND.nii*
+##### removing intermediate files #####
+
+rm $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND
+rm $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND
+rm $SUBJ_DIR/nuisance/BETAS_$COND
