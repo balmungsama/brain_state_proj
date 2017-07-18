@@ -14,6 +14,15 @@ LOW=$6
 HIGH=$7
 INSPECT=$8
 
+echo SUBJ_DIR = $SUBJ_DIR
+echo COND     = $COND
+echo FD       = $FD
+echo DVARS    = $DVARS
+echo RM       = $RM
+echo LOW      = $LOW
+echo HIGH     = $HIGH
+echo INSPECT  = $INSPECT
+
 PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 echo INITIALIZING PREPROCESSING --------------------
