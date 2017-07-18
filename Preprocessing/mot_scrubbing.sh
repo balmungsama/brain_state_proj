@@ -43,6 +43,10 @@ elif [[ "$stage" == 'fin' ]]; then
 
 	fi
 
+	##### archive final output
+
+	gzip scrub_filt_interp_nuis_snl_norm_mt_$COND.nii
+
 	##### removing intermediate files #####
 
 	rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND
