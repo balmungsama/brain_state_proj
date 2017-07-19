@@ -108,7 +108,7 @@ if (RM == 'UNION') {
   
 }
 
-print(CONFOUND)
+# print(CONFOUND)
 
 if( sum(CONFOUND) == 0 ) {
   

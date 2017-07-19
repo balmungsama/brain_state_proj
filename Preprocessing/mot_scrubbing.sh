@@ -52,6 +52,6 @@ elif [[ "$stage" == 'fin' ]]; then
 
 	##### removing intermediate files #####
 
-	rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND
+	rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND.nii
 
 fi
