@@ -22,4 +22,4 @@ for roi in ${roi_list[@]}; do
 
 done
 
-Rscript $PREPROC/QualityControl/FC_DMN.R --SUBJ_DIR=$SUBJ_DIR --COND=$COND --RM=$RM
+Rscript $PREPROC/QualityControl/FC_DMN.R --SUBJ_DIR=$SUBJ_DIR --COND=$COND
