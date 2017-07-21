@@ -3,8 +3,6 @@
 #$ -cwd
 #$ -M hpc3586@localhost
 #$ -m be
-#$ -o logs/grp_STD.out
-#$ -e logs/grp_STD.err
 #$ -q abaqus.q
 
 # TODO: integrate the TEMPLATE for normalization into the rest of the pipeline

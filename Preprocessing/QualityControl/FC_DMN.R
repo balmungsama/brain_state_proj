@@ -1,5 +1,3 @@
-# SUBJ_DIR <- 'C:/Users/john/Desktop/roi_tcourses'
-
 ##### load libraries #####
 
 library(corrplot)
@@ -19,7 +17,7 @@ for (arg in args) {
     
     COND <- arg[2]
     
-  }  else {
+  } else {
     
     unused_args <- c(unused_args, paste0(arg[1], '=', arg[2]))
     
@@ -50,7 +48,7 @@ FC_mat <- cor(roi_tcourses) - diag( length(roi_files) )
 
 ##### save FC matrix into text file #####
 
-write.csv(FC_mat, file = file.path(SUBJ_DIR, 'QualityControl', paste0(COND, '_DMN_FC.csv')), row.names = T)
+write.csv(FC_mat, file = file.path(SUBJ_DIR, 'QualityControl', paste0(COND, '_DMN_FC.csv')), row.names = T, col.names = T)
 
 ##### save FC matrix to .png #####
 
