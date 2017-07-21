@@ -23,5 +23,5 @@ subj_ls=($(ls $TOP_DIR))
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
-	qsub -q abaqus.q -N qc_$subj -o QualityControl/logs/$DATE/pp_$subj.out -e QualityControl/logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $PREPROC
+	qsub -q abaqus.q -N qc_$subj -o QualityControl/logs/$DATE/pp_$subj.out -e QualityControl/logs/$DATE/pp_$subj.err $PREPROC/QualityControl/qc_wrapper.sh $SUBJ_DIR $COND $PREPROC
 done
