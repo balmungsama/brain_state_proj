@@ -5,8 +5,6 @@
 #$ -m be
 #$ -q abaqus.q
 
-# TODO: integrate the TEMPLATE for normalization into the rest of the pipeline
-
 PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 TOP_DIR=$1 						# here you enter in the group directory
