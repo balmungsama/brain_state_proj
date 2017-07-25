@@ -39,4 +39,4 @@ fi
 
 ##### removing intermediate files #####
 
-rm $SUBJ_DIR/task_data/preproc/t_$COND.nii
+# rm $SUBJ_DIR/task_data/preproc/t_$COND.nii

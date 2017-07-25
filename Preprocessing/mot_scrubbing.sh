@@ -27,7 +27,7 @@ if [[ "$stage" == 'init' ]]; then
 
 	##### removing intermediate files #####
 
-	rm $SUBJ_DIR/task_data/preproc/scrub_snl_norm_mt_$COND.nii
+	# rm $SUBJ_DIR/task_data/preproc/scrub_snl_norm_mt_$COND.nii
 
 elif [[ "$stage" == 'fin' ]]; then
 
@@ -50,8 +50,9 @@ elif [[ "$stage" == 'fin' ]]; then
 	gzip $SUBJ_DIR/task_data/preproc/scrub_filt_interp_nuis_snl_norm_mt_$COND.nii
 	gzip $SUBJ_DIR/task_data/preproc/censor_filt_interp_nuis_snl_norm_mt_$COND.nii
 	gzip $SUBJ_DIR/task_data/preproc/nuis_snl_norm_mt_$COND.nii
+	
 	##### removing intermediate files #####
 
-	rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND.nii
+	# rm $SUBJ_DIR/task_data/preproc/filt_interp_nuis_snl_norm_mt_$COND.nii
 
 fi
