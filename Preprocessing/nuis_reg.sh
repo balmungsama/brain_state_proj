@@ -1,3 +1,5 @@
+#TODO: add in the 12-24 time parameter estimates 
+
 SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
