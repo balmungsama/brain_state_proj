@@ -1,4 +1,4 @@
-[status, FSLDIR] = system('echo $FSLDIR');
+% [status, FSLDIR] = system('echo $FSLDIR');
 
 %%%%%%%%%%%%%%%%%%%%%%
 %% trouble-shooting %%
