@@ -12,7 +12,7 @@ disp( ['COND = ', COND ] );
 
 cd(SUBJ_DIR);
 
-BETAS      = load_nii([ 'nuisance/2_BETAS_' COND '.nii' ]);
+BETAS      = load_nii([ 'nuisance/BETAS_' COND '.nii' ]);
 subj_nifti = load_nii([ 'task_data/preproc/snl_norm_mt_' COND '.nii' ]);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
