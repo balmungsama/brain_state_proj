@@ -22,6 +22,6 @@ matlab -nodesktop -nosplash -r "FSLDIR='$FSLDIR';SUBJ_DIR='$SUBJ_DIR';COND='$CON
 
 ##### removing intermediate files #####
 
-# rm $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii
-# rm $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND.nii
-# rm $SUBJ_DIR/nuisance/BETAS_$COND.nii
+rm $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii
+rm $SUBJ_DIR/task_data/preproc/censor_snl_norm_mt_$COND.nii
+rm $SUBJ_DIR/nuisance/BETAS_$COND.nii

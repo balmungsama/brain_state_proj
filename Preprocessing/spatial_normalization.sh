@@ -28,5 +28,5 @@ fslmaths $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND -kernel gauss 2.54798709 -
 
 ##### removing intermediate files #####
 
-# rm $SUBJ_DIR/task_data/preproc/norm_mt_$COND.nii
-# rm $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND.nii
+rm $SUBJ_DIR/task_data/preproc/norm_mt_$COND.nii
+rm $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND.nii
