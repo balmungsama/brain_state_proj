@@ -17,6 +17,10 @@ for (arg in args) {
     
     COND <- arg[2]
     
+  } else if (arg[1] == '--QC_dir') {
+
+    QC_dir <- arg[2]
+
   } else {
     
     unused_args <- c(unused_args, paste0(arg[1], '=', arg[2]))
@@ -61,6 +65,12 @@ corrplot(FC_mat, method = 'color', add = F, col = colorRampPalette(c("blue","whi
 
 
 dev.off()
+
+##### correlate with the standard DMN adjacency matrix #####
+
+DMN.ctrl <- read.csv(file.path(QC_dir, 'DMN_reference.csv'), header = T, row.names = 1)
+
+DMN.like <- cor.test(FC_mat, DMN.ctrl)
 
 
 

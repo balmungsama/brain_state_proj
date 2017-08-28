@@ -1,3 +1,7 @@
+
+# This will determine the degree to which the extracted time-
+# courses from each ROI match what would be expected of the DMN
+
 SUBJ_DIR=$1
 COND=$2
 PREPROC=$3
@@ -25,4 +29,4 @@ done
 
 echo ' + computing FC matrix...'
 
-Rscript $PREPROC/QualityControl/FC_DMN.R --SUBJ_DIR=$SUBJ_DIR --COND=$COND
+Rscript $PREPROC/QualityControl/FC_DMN.R --SUBJ_DIR=$SUBJ_DIR --COND=$COND --QC_dir=$PREPROC/QualityControl

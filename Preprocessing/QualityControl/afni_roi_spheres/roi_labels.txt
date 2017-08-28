@@ -1,0 +1,160 @@
+vmPFC
+mPFC
+aPFC
+vmPFC
+vmPFC
+vmPFC
+vmPFC
+ACC
+vlPFC
+sup frontal
+sup frontal
+inf temporal
+inf temporal
+post cingulate
+fusiform
+precuneus
+post cingulate
+inf temporal
+occipital
+post cingulate
+precuneus
+precuneus
+post cingulate
+post cingulate
+precuneus
+post cingulate
+angular gyrus
+angular gyrus
+precuneus
+IPS
+occipital
+occipital
+occipital
+occipital
+aPFC
+aPFC
+vent aPFC
+vent aPFC
+vlPFC
+dlPFC
+ACC
+dlPFC
+vPFC
+dlPFC
+dFC
+dFC
+dFC
+IPL
+IPL
+post parietal
+IPL
+IPL
+IPL
+IPS
+IPS
+aPFC
+vPFC
+ACC
+vFC
+ant insula
+dACC
+ant insula
+basal ganglia
+mFC
+vFC
+basal ganglia
+basal ganglia
+vFC
+mid insula
+thalamus
+thalamus
+thalamus
+mid insula
+mid insula
+basal ganglia
+post insula
+temporal
+post cingulate
+fusiform
+precuneus
+parietal
+temporal
+parietal
+sup temporal
+angular gyrus
+temporal
+TPJ
+occipital
+occipital
+occipital
+temporal
+occipital
+occipital
+occipital
+occipital
+occipital
+occipital
+occipital
+occipital
+occipital
+occipital
+post occipital
+post occipital
+post occipital
+post occipital
+post occipital
+post occipital
+post occipital
+post occipital
+frontal
+dFC
+vFC
+pre-SMA
+vFC
+SMA
+frontal
+precentral gyrus
+mid insula
+precentral gyrus
+parietal
+precentral gyrus
+precentral gyrus
+precentral gyrus
+parietal
+mid insula
+mid insula
+temporal
+parietal
+parietal
+parietal
+parietal
+precentral gyrus
+temporal
+parietal
+post insula
+parietal
+parietal
+parietal
+post parietal
+temporal
+temporal
+sup parietal
+lat cerebellum
+lat cerebellum
+inf cerebellum
+lat cerebellum
+med cerebellum
+inf cerebellum
+inf cerebellum
+med cerebellum
+lat cerebellum
+med cerebellum
+inf cerebellum
+med cerebellum
+inf cerebellum
+med cerebellum
+med cerebellum
+inf cerebellum
+inf cerebellum
+inf cerebellum
