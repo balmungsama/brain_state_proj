@@ -2,6 +2,14 @@
 
 library(corrplot)
 
+##### setting up ROI network membership #####
+
+network <- c( 'Default mode network', 'Frontoparietal network', 'Cingulo-opercular network', 'Occipital network', 'Sensorimotor network', 'Cerebellar network' )
+ROI_net <- c(rep(1, 34), rep(2, 21), rep(3, 32), rep(4, 22), rep(5,33), rep(6, 18))
+ROI_net <- data.frame(ROI = ROI_net)
+network <- network[ ROI_net[,1] ]
+ROI_net <- cbind(ROI_net, network)
+  
 ##### accepting arguments #####
 
 args        <- commandArgs(trailingOnly = TRUE)
@@ -68,7 +76,8 @@ dev.off()
 
 ##### correlate with the standard DMN adjacency matrix #####
 
-DMN.ctrl <- read.csv(file.path(QC_dir, 'DMN_reference.csv'), header = T, row.names = 1)
+DMN.ctrl <- matrix(data = 0, nrow = dim(ROI_net)[1], ncol = dim(ROI_net)[1] )
+DMN.ctrl[ which(ROI_net$ROI == 1), which(ROI_net$ROI == 1) ] <- 1
 
 DMN.like <- cor.test(FC_mat, DMN.ctrl)
 
