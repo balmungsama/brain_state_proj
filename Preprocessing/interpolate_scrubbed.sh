@@ -8,4 +8,4 @@ matlab -nodesktop -nosplash -r "SUBJ_DIR='$SUBJ_DIR';COND='$COND';run('$PREPROC/
 
 ##### removing intermediate files #####
 
-rm $SUBJ_DIR/task_data/preproc/nuis_snl_norm_mt_$COND
+# rm $SUBJ_DIR/task_data/preproc/nuis_snl_norm_mt_$COND

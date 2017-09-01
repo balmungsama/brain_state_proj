@@ -8,4 +8,4 @@ fslmaths $SUBJ_DIR/task_data/preproc/mt_$COND -ing 1000 $SUBJ_DIR/task_data/prep
 
 ##### removing intermediate files #####
 
-rm $SUBJ_DIR/task_data/preproc/mt_$COND.nii
+# rm $SUBJ_DIR/task_data/preproc/mt_$COND.nii

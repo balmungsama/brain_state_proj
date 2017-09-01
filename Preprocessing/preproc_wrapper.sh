@@ -56,7 +56,8 @@ fi
 
 # Quality control
 
-if [ $PASS != TRUE ]; then
-	python2.7 $PREPROC/ICA-AROMA/ICA_AROMA.py -i $SUBJ_DIR/task_data/preproc/censor_filt_interp_nuis_snl_norm_mt_$COND.nii.gz -o $SUBJ_DIR/task_data/preproc -a $SUBJ_DIR/anatom/mats/aff_str2std.mat -w $SUBJ_DIR/anatom/cout_nl_brain_Mprage.nii -mc $SUBJ_DIR/MPEs/$COND.1D
+# if [ $PASS != TRUE ]; then
+# 	python2.7 $PREPROC/ICA-AROMA/ICA_AROMA.py -i $SUBJ_DIR/task_data/preproc/censor_filt_interp_nuis_snl_norm_mt_$COND.nii.gz -o $SUBJ_DIR/task_data/preproc -a $SUBJ_DIR/anatom/mats/aff_str2std.mat -w $SUBJ_DIR/anatom/cout_nl_brain_Mprage.nii -mc $SUBJ_DIR/MPEs/$COND.1D
+# fi
 
 echo 'FINISHED'
