@@ -7,11 +7,11 @@
 
 # TODO: integrate the TEMPLATE for normalization into the rest of the pipeline
 
-TOP_DIR=$1 						# here you enter in the group directory
-COND=$2    						# enter the condition name
-FD=$3      						# enter frame-wise displacement threshold
-DVARS=$4   						# enter DVARS threshold
-RM=$5      						# use "UNION" or "INTERSECT" of FD & DVARS
+TOP_DIR=$1            # here you enter in the group directory
+COND=$2               # enter the condition name
+FD=$3                 # enter frame-wise displacement threshold
+DVARS=$4              # enter DVARS threshold
+RM=$5                 # use "UNION" or "INTERSECT" of FD & DVARS
 LOW=$6                # low  threshold bandpass filter
 HIGH=$7               # high threshold bandpass filter
 

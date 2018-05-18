@@ -23,7 +23,7 @@ echo LOW      = $LOW
 echo HIGH     = $HIGH
 echo INSPECT  = $INSPECT
 
-PREPROC='/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
+PREPROC='/global/home/hpc3586/JE_packages/brain_state_proj/Preprocessing'
 
 echo 'INITIALIZING PREPROCESSING --------------------'
 
