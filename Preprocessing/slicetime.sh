@@ -34,9 +34,3 @@ fi
 
 # run slcie-time correction
 slicetimer -i $SUBJ_DIR/task_data/$COND -o $SUBJ_DIR/task_data/preproc/t_$COND $slice_options
-
-
-
-
-
-fslhd ID4993_run4.nii
