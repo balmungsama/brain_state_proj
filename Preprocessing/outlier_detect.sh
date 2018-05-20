@@ -14,7 +14,11 @@ mkdir $SUBJ_DIR/mot_analysis
 mkdir $SUBJ_DIR/mot_analysis/plots
 
 # DVARS
-fsl_motion_outliers -i $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND -o $SUBJ_DIR/mot_analysis/$COND'_DVARS.par' -s $SUBJ_DIR/mot_analysis/$COND'_DVARS.val' -p $SUBJ_DIR/mot_analysis/plots/$COND'_DVARS' --dvars --nomoco -m $SUBJ_DIR/anatom/bin_nl_brain_Mprage --thresh=$DVARS
+fsl_motion_outliers -i $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND -s $SUBJ_DIR/mot_analysis/$COND'_DVARS.val' -p $SUBJ_DIR/mot_analysis/plots/$COND'_DVARS' --dvars --nomoco -m $SUBJ_DIR/anatom/dbin_nl_brain_Mprage
+Rscript $PREPROC/find_dvars_thresh.R --PATH=$SUBJ_DIR --COND=$COND
+
+# fsl_motion_outliers -i $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND -o $SUBJ_DIR/mot_analysis/$COND'_DVARS.par' -s $SUBJ_DIR/mot_analysis/$COND'_DVARS.val' -p $SUBJ_DIR/mot_analysis/plots/$COND'_DVARS' --dvars --nomoco -m $SUBJ_DIR/anatom/dbin_nl_brain_Mprage --thresh=$DVARS
+
 
 if [[ ! -e $SUBJ_DIR/mot_analysis/$COND'_DVARS.par' ]]; then
 
