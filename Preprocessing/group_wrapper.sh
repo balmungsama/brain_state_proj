@@ -9,13 +9,12 @@
 
 TOP_DIR=$1            # here you enter in the group directory
 COND=$2               # enter the condition name
-FD=$3                 # enter frame-wise displacement threshold
-DVARS=$4              # enter DVARS threshold
-RM=$5                 # use "UNION" or "INTERSECT" of FD & DVARS
-LOW=$6                # low  threshold bandpass filter
-HIGH=$7               # high threshold bandpass filter
+FWHM=$3               # FWHM size in mm
+RM=$4                 # use "UNION" or "INTERSECT" of FD & DVARS
+LOW=$5                # low  threshold bandpass filter
+HIGH=$6               # high threshold bandpass filter
 
-INSPECT=$8
+INSPECT=$7
 #TEMPLATE=$8           # template to be used in normalization
 
 DATE=$(date +%y-%m-%d)
@@ -31,5 +30,5 @@ subj_ls=(${subj_ls[@]:0:1})
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
-	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FD $DVARS $RM $LOW $HIGH $INSPECT
+	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FWHM $RM $LOW $HIGH $INSPECT
 done
