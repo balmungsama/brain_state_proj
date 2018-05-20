@@ -4,8 +4,6 @@
 # COND <- 'Resting'
 # RM   <- 'UNION'
 
-print('mk_scrub_mat.R')
-
 ##### main script #####
 
 args        <- commandArgs(trailingOnly = TRUE)
