@@ -7,18 +7,16 @@
 
 SUBJ_DIR=$1
 COND=$2
-FD=$3
-DVARS=$4
-RM=$5
-LOW=$6
-HIGH=$7
-INSPECT=$8
+FWHM=$3
+RM=$4
+LOW=$5
+HIGH=$6
+INSPECT=$7
 
 echo SUBJ_DIR = $SUBJ_DIR
 echo COND     = $COND
 echo FD       = $FD
-echo DVARS    = $DVARS
-echo RM       = $RM
+echo FWHM     = $FWHM
 echo LOW      = $LOW
 echo HIGH     = $HIGH
 echo INSPECT  = $INSPECT
@@ -33,8 +31,8 @@ bash $PREPROC/skullstrip.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/slicetime.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/intense_norm.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC $FD $DVARS
+bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $FWHM $PREPROC
+bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC 
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
 if [ -e $SUBJ_DIR/PASS ] || [ $INSPECT == 'INSPECT' ]; then

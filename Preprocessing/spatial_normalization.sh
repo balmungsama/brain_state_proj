@@ -3,9 +3,15 @@
 
 SUBJ_DIR=$1
 COND=$2
-PREPROC=$3
+FWHM=$3
+PREPROC=$4
 
 TEMPLATE=$FSLDIR'/data/standard/MNI152_T1_2mm_brain.nii.gz'
+
+# convert kernel from FWHM to sigma
+kernel_conv=2.35482004503
+kernel_size=$("(( $FWHM / $kernel_conv ))" | bc -l)
+
 
 mkdir $SUBJ_DIR/anatom/mats
 mkdir $SUBJ_DIR/task_data/preproc/mats
@@ -39,7 +45,7 @@ fslmaths $SUBJ_DIR/anatom/nl_brain_Mprage -thr 1 -bin $SUBJ_DIR/anatom/bin_nl_br
 echo '       		+ Applying standardized warp to functional data...'
 applywarp --ref=$TEMPLATE --in=$SUBJ_DIR/task_data/preproc/norm_mt_$COND --out=$SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND --warp=$SUBJ_DIR/anatom/cout_nl_brain_Mprage --premat=$SUBJ_DIR/task_data/preproc/mats/func2str.mat
 echo '       		+ Applying spatial smoothing kernel...'
-fslmaths $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND
+fslmaths $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND -kernel gauss $kernel_size -fmean $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND
 
 echo '          + Down-sampling functional data to match original functional resolution...'
 3dresample -dxyz $vox_dim -input $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii* -rmode 'Linear' -prefix $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND
