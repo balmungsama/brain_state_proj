@@ -22,10 +22,6 @@ for (arg in args) {
   } else if (arg[1] == '--RM') {
     
     RM <- arg[2]
-    
-  # } else if (arg[1] == '--NUISSANCE') {
-
-  #   NUISSANCE <- arg[2]
 
   } else {
     
