@@ -29,5 +29,7 @@ med_dvars = median(dvars);
 
 thr_dvars = med_dvars + (AD_dvars * 1.5);
 
+cat(thr_dvars)
+
 # plot(x=1:length(dvars), y=dvars, type = 'l');
 # abline(h = thr_dvars);
