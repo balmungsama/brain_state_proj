@@ -29,7 +29,29 @@ med_fd = median(fd);
 
 thr_fd = med_fd + (AD_fd * 1.5);
 
-cat(thr_fd)
+# cat(thr_fd)
 
 # plot(x=1:length(fd), y=fd, type = 'l');
 # abline(h = thr_fd);
+
+##### comparing variances #####
+
+fd2            <- fd
+fd2[fd>thr_fd] <- NA
+fd3            <- fd2
+fd3[1]         <- NA
+
+f_test <- var.test(fd2, fd3, na.rm=T)
+p_val  <- format.pval(f_test$p.value)
+
+if (grepl(pattern = ' ', x = p_val)) {
+  p_val <- strsplit(p_val, split = ' ')[[1]][2]
+}
+
+p_val <- as.numeric(p_val)
+
+if (p_val < 0.01) {
+  cat('PASS', thr_fd)
+} else {
+  cat(thr_fd)
+}
