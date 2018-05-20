@@ -40,6 +40,7 @@ echo '       		+ Applying standardized warp to functional data...'
 applywarp --ref=$TEMPLATE --in=$SUBJ_DIR/task_data/preproc/norm_mt_$COND --out=$SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND --warp=$SUBJ_DIR/anatom/cout_nl_brain_Mprage --premat=$SUBJ_DIR/task_data/preproc/mats/func2str.mat
 echo '       		+ Applying spatial smoothing kernel...'
 fslmaths $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND -kernel gauss 2.54798709 -fmean $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND
+
 echo '          + Down-sampling functional data to match original functional resolution...'
 3dresample -dxyz $vox_dim -input $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii* -rmode 'Linear' -prefix $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND
 3dAFNItoNIFTI -prefix $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND  $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND+tlrc
