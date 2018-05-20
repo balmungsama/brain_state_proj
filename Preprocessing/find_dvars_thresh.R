@@ -21,7 +21,7 @@ for (arg in args) {
 dvars_file <- paste0(COND, '_DVARS.val')
 dvars_file <- file.path(PATH, 'mot_analysis' , dvars_file)
 
-dvars = read.table(file = dvars, header = F)
+dvars = read.table(file = dvars_file, header = F)
 dvars = dvars$V1
 
 AD_dvars  = mad(dvars,constant = 1);
