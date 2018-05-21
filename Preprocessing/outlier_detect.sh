@@ -1,4 +1,5 @@
 # TODO: add in option for automatic threshold detection if no value specified
+# TODO: add ability to ommit subject from analysis if the Rscript says so
 
 SUBJ_DIR=$1
 COND=$2
