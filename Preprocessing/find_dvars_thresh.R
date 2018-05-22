@@ -51,11 +51,15 @@ if (grepl(pattern = ' ', x = p_val)) {
 
 p_val <- as.numeric(p_val)
 
+print(paste('DVARS p-value: ', p_val))
+
 if (p_val < 0.01) {
-  cat('PASS', thr_dvars)
-} else {
-  cat(thr_dvars)
+  DATE = system('date +%y-%m-%d', intern=T)
+  command = paste('echo', PATH, '>>', paste0('logs/', DATE, '/outlier_report.log') )
+  system(command = command)
 }
+
+cat(thr_dvars)
 
 # plot(x=1:length(dvars), y=dvars, type = 'l');
 # abline(h = thr_dvars);

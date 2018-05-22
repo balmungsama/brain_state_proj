@@ -27,6 +27,8 @@ subj_ls=($(ls $TOP_DIR))
 subj_ls=(${subj_ls[@]:0:1})
 #######################
 
+echo outliers > logs/$DATE/outlier_report.log 
+
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj

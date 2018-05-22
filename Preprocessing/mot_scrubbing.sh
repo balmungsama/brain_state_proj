@@ -3,7 +3,15 @@ COND=$2
 PREPROC=$3
 stage=$4
 
-out_check=$(head -n 1 $SUBJ_DIR/mot_analysis/$COND'_CONFOUND.par')
+out_check=$(echo -n $(head -n 1 Resting_CONFOUND.par) | wc -w)
+n_vols=$(fslnvols $SUBJ_DIR/task_data/preproc/snl_norm_mt_$COND.nii)
+
+out_ratio=$( echo "$out_check / $n_vols" | bc -l)
+out_ratio=$(echo $out_ratio'>'0.5 | bc -l)
+
+if [[ $out_ratio -eq 1 ]]; then
+	echo $SUBJ_DIR >> logs/$DATE/outlier_report.log 
+fi
 
 if [[ "$stage" == 'init' ]]; then
 
