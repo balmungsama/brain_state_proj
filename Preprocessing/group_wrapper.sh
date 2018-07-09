@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -c 1            # Number of CPUS requested. If omitted, the default is 1 CPU.
 #SBATCH --mem=10240     # Memory requested in megabytes. If omitted, the default is 1024 MB.
 
