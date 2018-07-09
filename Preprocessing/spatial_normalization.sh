@@ -74,5 +74,6 @@ echo '          + Down-sampling mask to match original functional resolution...'
 gzip $SUBJ_DIR/anatom/dbin_nl_brain_Mprage.nii
 ###################################################
 
-# rm $SUBJ_DIR/task_data/preproc/norm_mt_$COND.nii
-# rm $SUBJ_DIR/task_data/preproc/nl_norm_mt_$COND.nii
+# cleanup
+rm $SUBJ_DIR/task_data/preproc/dsnl_norm_mt_$COND.nii
+rm $SUBJ_DIR/anatom/dbin_nl_brain_Mprage.nii

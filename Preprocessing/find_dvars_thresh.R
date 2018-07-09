@@ -1,6 +1,8 @@
 args        <- commandArgs(trailingOnly = TRUE)
 unused_args <- NULL
 
+require('ggplot2')
+
 for (arg in args) {
   arg <- strsplit(arg, split = '=')[[1]]
   if (arg[1] == '--PATH') {
@@ -21,14 +23,14 @@ for (arg in args) {
 dvars_file <- paste0(COND, '_DVARS.val')
 dvars_file <- file.path(PATH, 'mot_analysis' , dvars_file)
 
-dvars = read.table(file = dvars_file, header = F)
-dvars = dvars$V1
+dvars <- read.table(file = dvars_file, header = F)
+dvars <- dvars$V1
 
-AD_dvars  = mad(dvars,constant = 1);
-med_dvars = median(dvars);
+AD_dvars  <- mad(dvars, constant = 1);
+med_dvars <- median(dvars);
 
-thr_dvars = med_dvars + (AD_dvars * 1.5);
-sum(dvars<thr_dvars)
+thr_dvars <- med_dvars + (AD_dvars * 1.5);
+sum(dvars < thr_dvars)
 
 # cat(thr_dvars)
 # 
@@ -37,10 +39,10 @@ sum(dvars<thr_dvars)
 
 ##### comparing variances #####
 
-dvars2                  <- dvars
-dvars2[dvars>thr_dvars] <- NA
-dvars3                  <- dvars2
-dvars3[1]               <- NA
+dvars2                    <- dvars
+dvars2[dvars > thr_dvars] <- NA
+dvars3                    <- dvars2
+dvars3[1]                 <- NA
 
 f_test <- var.test(dvars2, dvars3, na.rm=T)
 p_val  <- format.pval(f_test$p.value)
