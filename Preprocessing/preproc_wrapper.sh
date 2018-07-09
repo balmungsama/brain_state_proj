@@ -36,11 +36,11 @@ bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC
 Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
 
-bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'init'
-bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
-bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
-bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'fin'
+# bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'init'
+# bash $PREPROC/nuis_reg.sh $SUBJ_DIR $COND $PREPROC
+# bash $PREPROC/interpolate_scrubbed.sh $SUBJ_DIR $COND $PREPROC
+# bash $PREPROC/bandpass_filter.sh $SUBJ_DIR $COND $LOW $HIGH
+# bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'fin'
 #TODO add another scrubbing step
 
 # bash $PREPROC/mot_reg.sh $SUBJ_DIR $COND
