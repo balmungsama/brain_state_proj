@@ -1,4 +1,4 @@
-# SUBJ_DIR='/mnt/c/Users/john/Documents/sample_fmri/2357ZL'    # subject directory
+# SUBJ_DIR='/mnt/c/Users/john/Documents/sample_fmri/2357ZL'  # subject directory
 # COND='Retrieval'
 
 SUBJ_DIR=$1
@@ -33,4 +33,5 @@ if [[ $slice_order = *"decreasing"* ]]; then
 fi
 
 # run slcie-time correction
-slicetimer -i $SUBJ_DIR/task_data/$COND -o $SUBJ_DIR/task_data/preproc/t_$COND $slice_options
+slicetimer -i $SUBJ_DIR/task_data/$COND \
+  -o $SUBJ_DIR/task_data/preproc/t_$COND $slice_options

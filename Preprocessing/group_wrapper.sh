@@ -1,9 +1,5 @@
-#!/bin/bash
-#$ -S /bin/bash
-#$ -cwd
-#$ -M hpc3586@localhost
-#$ -m be
-#$ -q abaqus.q
+#SBATCH -c 1            # Number of CPUS requested. If omitted, the default is 1 CPU.
+#SBATCH --mem=10240     # Memory requested in megabytes. If omitted, the default is 1024 MB.
 
 # TODO: integrate the TEMPLATE for normalization into the rest of the pipeline
 
@@ -32,5 +28,5 @@ echo outliers > logs/$DATE/outlier_report.log
 ##### primary loop to go through all subject ##### 
 for subj in ${subj_ls[@]}; do
 	SUBJ_DIR=$TOP_DIR/$subj
-	qsub -q abaqus.q -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FWHM $RM $LOW $HIGH $INSPECT
+	sbatch -N pp_$subj -o logs/$DATE/pp_$subj.out -e logs/$DATE/pp_$subj.err preproc_wrapper.sh $SUBJ_DIR $COND $FWHM $RM $LOW $HIGH $INSPECT
 done

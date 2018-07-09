@@ -4,7 +4,8 @@ PREPROC=$3		 # NOTE: must use this name for behav & fmri data
 
 echo '	intensity normalization...'
 
-fslmaths $SUBJ_DIR/task_data/preproc/mt_$COND -ing 1000 $SUBJ_DIR/task_data/preproc/norm_mt_$COND
+fslmaths $SUBJ_DIR/task_data/preproc/mt_$COND \
+    -ing 1000 $SUBJ_DIR/task_data/preproc/norm_mt_$COND
 
 ##### removing intermediate files #####
 
