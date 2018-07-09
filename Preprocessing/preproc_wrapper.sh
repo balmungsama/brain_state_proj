@@ -33,7 +33,7 @@ bash $PREPROC/motcor.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/intense_norm.sh $SUBJ_DIR $COND $PREPROC
 bash $PREPROC/spatial_normalization.sh $SUBJ_DIR $COND $FWHM $PREPROC
 bash $PREPROC/outlier_detect.sh $SUBJ_DIR $COND $PREPROC 
-Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
+# Rscript $PREPROC/mk_scrub_mat.R --PATH=$SUBJ_DIR --COND=$COND --RM=$RM
 
 
 # bash $PREPROC/mot_scrubbing.sh $SUBJ_DIR $COND $PREPROC 'init'
