@@ -10,7 +10,7 @@ TEMPLATE=$FSLDIR'/data/standard/MNI152_T1_2mm_brain.nii.gz'
 
 # convert kernel from FWHM to sigma
 kernel_conv=2.35482004503
-kernel_size=$("(( $FWHM / $kernel_conv ))" | bc -l)
+kernel_size=$(echo "$FWHM/$kernel_conv" | bc -l)
 
 
 mkdir $SUBJ_DIR/anatom/mats
