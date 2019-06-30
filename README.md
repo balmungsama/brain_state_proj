@@ -1,4 +1,4 @@
-# Brain State Proj
+# Brain State Project
 
 Compute transient brain states within resting state fMRI data using k-means clustering.
 
