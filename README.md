@@ -1,4 +1,5 @@
-#Brain State Proj
+# Brain State Proj
+
 Compute transient brain states within resting state fMRI data using k-means clustering.
 
 This package is currently a work in progress. The main functionalities can all be accessed using `Scripts/k_wrapper.sh`. Once initiated, it will prompt the user to perform one of five different operations, which can be selected by entering in the corresponding number:
